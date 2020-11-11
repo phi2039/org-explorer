@@ -1,0 +1,110 @@
+Group,Parent,Manager,Manager FT,Current FT,Current FTE Check,Planned FTE Check,Workloads,Overhead,Operations,Operations Support,Client Support,Analytics and Reporting,Content Development,Product Management,Program Management,Consulting
+S&A,Change Healthcare,Rod O'Reilly,0,,0,0,0,0,0,0,0,0,0,0,0,0
+NFM,S&A,Carolyn Wukitch,0,,0,0,0,0,0,0,0,0,0,0,0,0
+Payment Integrity,Payment Accuracy,,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Coding Advisor Operations,Coding Advisor,Melissa Barbosa,1,9,9,8,3,1,7,2,0,0,0,0,0,0
+Coding Advisor Analytics,Coding Advisor,,0,5,5,2,2,0,0,0,0,4,1,0,0,0
+Coding Advisor Clinical Coding Compliance,Coding Advisor,Joan Warner,1,9,9,3,2,1,9,0,0,0,0,0,0,0
+Coding Advisor,Payment Integrity - DC,Chris Hall,1,0,0,0,0,1,0,0,0,0,0,0,0,0
+Payment Integrity - DC,Payment Integrity,Dave Cardell,1,3,2,1,1,1,0,0,0,0,0,2,0,0
+Carve-out,Payment Integrity - DC,,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Carve-out Admin,Carve-out,Kathy Turnell,1,2,2,0,1,1,0,2,0,0,0,0,0,0
+Carve-out Audit,Carve-out,Mary Correa,1,2,2,1,1,1,2,0,0,0,0,0,0,0
+Specialty Audit,Payment Integrity - DC,Rob Gaudette,1,0,0,0,0,1,0,0,0,0,0,0,0,0
+Specialty Audit Operations,Specialty Audit,,0,10.5,11.5,1,3,0,10.5,0,0,1,0,0,0,0
+Specialty Audit Recovery,Specialty Audit Operations,Darlene Mcaleney,0.5,2,2,1,1,0.5,2,0,0,0,0,0,0,0
+Third-party Liability,Payment Integrity - KH,David Bachert,1,5,5,0,2,1,0,0,3,0,2,0,0,0
+Coordinaction of Benefits Operations,Third-party Liability,Amanda Conard,1,8,9,0,1,1,9,0,0,0,0,0,0,0
+Member Management Operations,Third-party Liability,Garan Yotter,1,1,2,0,1,1,2,0,0,0,0,0,0,0
+Coordination of Benefits Business Analysis,Third-party Liability,Natasha Podstepny,1,2,3,0,1,1,0,0,0,3,0,0,0,0
+Trading Partner ETL / Business Intelligence,Third-party Liability,Jason Norris,1,1,2,0,1,1,2,0,0,0,0,0,0,0
+Coding Review Operations,Pre-pay Insight and Review,Maryhelen Westlund,1,10,10,0,1,1,10,0,0,0,0,0,0,0
+Coding Review Support,Pre-pay Insight and Review,Glenda Haverinen,1,7,7.8,0,2,1,5.8,0,2,0,0,0,0,0
+Clinical Review Investigative Assistants,Clinical Review Support,Jenica Lyon,1,6,8,0,6,1,0,8,0,0,0,0,0,0
+Clinical Review Operations,Pre-pay Insight and Review,Mary Koehler,1,12,14,0,1,1,14,0,0,0,0,0,0,0
+Clinical Review Support,Pre-pay Insight and Review,Louise Dobbe,1,2,2,0,1,1,0,0,0,0,2,0,0,0
+Clinical Review Triage,Clinical Review Support,Kim Nelson,1,7,7,0,1,1,0,7,0,0,0,0,0,0
+Clinical Review Validation,Clinical Review Support,Fred Daniels,1,7,8,0,1,1,0,8,0,0,0,0,0,0
+Pre-pay Insight and Review,Payment Integrity - CL,Shauna Schroeder,1,0,3,0,1,1,0,0,0,0,0,3,0,0
+Payment Integrity - CL,Payment Integrity,Creighton Long,1,7,4,0,1,1,0,0,0,0,4,0,0,0
+Pre-pay IRN Operations,Payment Integrity - CL,Kate Stottlemyer,1,6,6,0,1,1,6,0,0,0,0,0,0,0
+Pre-pay Account Management,Payment Integrity - CL,Lori Holmquist,1,5,5,0,1,1,0,0,5,0,0,0,0,0
+Pre-pay Analytics,Payment Integrity - CL,Juston White,1,8,8,0,1,1,0,0,0,8,0,0,0,0
+Payment Integrity - KH,Payment Integrity,Karl Huff,1,0,1,2,1,1,0,0,0,0,0,1,0,0
+Post-pay Audit,Payment Integrity - KH,,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+DRG Validation Audit,Post-pay Audit,Alisa Kuehn,1,60,60,0,3,1,60,0,0,0,0,0,0,0
+Clinical Validation Audit,DRG Validation Audit Operations,Lisa Pincher,1,14,14,0,2,1,14,0,0,0,0,0,0,0
+Hospital Charge Audit,Post-pay Audit,Tricia Gott,1,5,5.5,0,5,1,2.5,2,0,1,0,0,0,0
+Hospital Charge Audit Operations,Hospital Charge Audit,Deb Haile,1,10,26,1,1,1,26,0,0,0,0,0,0,0
+Hospital Charge Audit Support,Hospital Charge Audit,Erica Coronado,1,9,9.5,0,3,1,0,9.5,0,0,0,0,0,0
+Hospital Charge Audit Client Management,Hospital Charge Audit,Val Pincon,1,5,5,0,2,1,4,1,0,0,0,0,0,0
+Post-pay Service Operations,Payment Integrity - KH,Marie Monzel,1,,0,0,0,1,0,0,0,0,0,0,0,0
+Post-pay Analytics and Reporting,Post-pay Service Operations,Tricia Sbertoli,1,3,8,0,2,1,0,0,0,8,0,0,0,0
+Post-pay Optimization,Post-pay Audit,Carrie Proctor,1,3,3,0,3,1,0,3,0,0,0,0,0,0
+Post-pay Financial Risk Management,Post-pay Service Operations,Rachael Spiotto,1,0,0,0,0,1,0,0,0,0,0,0,0,0
+Post-pay Contract Management,Post-pay Financial Risk Management,Aprille Vranek,1,14,14,0,5,1,9,2,0,0,3,0,0,0
+Post-pay Medical Record Payment Management,Post-pay Financial Risk Management,Selma Rico,1,5,5,0,2,1,4,1,0,0,0,0,0,0
+Hospital Billing Validation Audit,Post-pay Audit,Pat Dear,1,0,0,0,0,1,0,0,0,0,0,0,0,0
+Hospital Billing Validation Operations,Hospital Billing Validation Audit,Melissa Tsolinas,1,14,14,2,2,1,14,0,0,0,0,0,0,0
+Hospital Billing Validation Support,Hospital Billing Validation Audit,Emily Zeif,1,4,4,1,2,1,0,4,0,0,0,0,0,0
+Refund Recovery Operations,Post-pay Service Operations,Dayna Quast,1,38,38,0,8,1,17,18,0,3,0,0,0,0
+Post-pay Administrative Services,Post-pay Service Operations,Kelly Erickson,1,1,1,0,1,1,0,1,0,0,0,0,0,0
+Post-pay Pre-audit Administrative Services,Post-pay Administrative Services,Lorraine Reilly,1,15,15,0,2,1,0,15,0,0,0,0,0,0
+Post-pay Operations Support,Post-pay Administrative Services,Tony Costello,1,10,10,0,4,1,6,0,4,0,0,0,0,0
+Post-pay Compliance,Post-pay Administrative Services,Laurice Talbert,1,17,17,0,4,1,0,11,6,0,0,0,0,0
+Post-pay Account Management,Payment Integrity - KH,Bryan Childress,1,16,16,0,2,1,0,0,16,0,0,0,0,0
+Decision Analytics,NFM,Derek Evans,,,0,0,0,0,0,0,0,0,0,0,0,0
+Risk Analytics,Decision Analytics,,,,0,0,0,0,0,0,0,0,0,0,0,0
+Quality Reporting,Decision Analytics,,,,11,0,2,0,7,0,0,0,0,0,0,0
+Compliance Reporter,Decision Analytics,,,,3,0,1,0,3,0,0,0,0,0,0,0
+Risk Manager,Decision Analytics,,,,7,0,2,0,0,0,7,0,0,0,0,0
+Altegra Revenue Cycle,Risk Analytics,Open,,,1,0,1,0,0,0,0,0,0,0,0,0
+Analytics Advisor,Risk Manager,,,,2,0,1,0,0,0,0,0,0,2,0,0
+EMR Risk Advisor,Risk Analytics,,1,,48,5,1,1,0,0,0,0,0,0,48,0
+Payment Accuracy,NFM,Rick McLaughlin,1,,0,0,0,1,0,0,0,0,0,0,0,0
+Network Mgmt,NFM,Dave Smith,,,0,0,0,0,0,0,0,0,0,0,0,0
+Reimbursement Solutions,Network Mgmt,,,,0,0,0,0,0,0,0,0,0,0,0,0
+Reimbursement Manager,Reimbursement Solutions,,,,2,0,1,0,0,0,0,0,0,2,0,0
+Reimbursement Solutions Shared,Reimbursement Solutions,,,,7,0,2,0,1,0,6,0,0,0,0,0
+Provider Manager,Network Mgmt,Dave Smith,,,17,0,5,0,8,0,6,0,0,3,0,0
+Clinical Claims Management,Payment Accuracy,,,,0,0,0,0,0,0,0,0,0,0,0,0
+CCM - Services,NFM,Terri Gregorio,1,,0,0,0,1,0,0,0,0,0,0,0,0
+CCM Client Services,CCM - Services,Melissa Cross,1,,7,0,1,1,7,0,0,0,0,0,0,0
+CCM Engagement Management,CCM Client Services,John Doyle,1,,9,0,1,1,9,0,0,0,0,0,0,0
+CCM Total Payment Service,CCM - Services,Donna Dugan,1,,10,0,1,1,10,0,0,0,0,0,0,0
+CCM Quality Management,CCM - Services,Chris John,1,,25,0,1,1,25,0,0,0,0,0,0,0
+CCM Technical Services,CCM - Services,Jay Kinzer,1,,9,0,1,1,9,0,0,0,0,0,0,0
+CCM Technical Services Engineering,CCM Technical Services,Guruprasad Sathiyanarayanan,1,,9,0,1,1,9,0,0,0,0,0,0,0
+CCM Technical Services,CCM Technical Services BA,,,,9,0,1,0,9,0,0,0,0,0,0,0
+CCM Technical Services BA,CCM Technical Services BA (1),Kenneth Hendricks,1,,0,0,0,1,0,0,0,0,0,0,0,0
+CCM Technical Services BA,CCM Technical Services BA (2),Donita Jones,1,,0,0,0,1,0,0,0,0,0,0,0,0
+CCM Service Delivery,CCM - Services,Nicole Long,1,,1,0,1,1,1,0,0,0,0,0,0,0
+CCM Claims Solutions,CCM Service Delivery,,,,0,0,0,0,0,0,0,0,0,0,0,0
+CCM Claims Solutions (1),CCM Claims Solutions,Jack Sanders,1,,3,0,1,1,3,0,0,0,0,0,0,0
+CCM Claims Solutions (2),CCM Claims Solutions,Reny Biju,1,,8,0,1,1,8,0,0,0,0,0,0,0
+CCM Claims Solutions (2) - Program Management,CCM Claims Solutions (2),Robert Millspaugh,1,,3,0,1,1,3,0,0,0,0,0,0,0
+CCM Claims Solutions (3),CCM Claims Solutions,Christopher Mirabito,1,,7,0,1,1,7,0,0,0,0,0,0,0
+CCM Claims Solutions (3) - Program Management,CCM Claims Solutions (3),Dan Poulin,1,,2,0,1,1,2,0,0,0,0,0,0,0
+CCM Claims Solutions (4),CCM Claims Solutions,Hamza Olmez,1,,4,0,1,1,4,0,0,0,0,0,0,0
+CCM Service Methodology and Education,CCM - Services,Lisa McTear,1,,1,0,1,1,1,0,0,0,0,0,0,0
+CCM Documentation and Training,CCM Service Methodology and Education,Lesley Brown,1,,5,0,1,1,5,0,0,0,0,0,0,0
+CCM Documentation Development,CCM Documentation and Training,Sarah Trama,1,,6,0,1,1,6,0,0,0,0,0,0,0
+CCM Client Delivery,CCM - Services,Sandeep Naik,1,,5,0,1,1,0,0,5,0,0,0,0,0
+CCM Client Delivery Services,CCM Client Delivery,,,,0,0,0,0,0,0,0,0,0,0,0,0
+CCM Client Delivery Services (1),CCM Client Delivery Services,Sandra Behjoue,1,,26,0,1,1,0,0,26,0,0,0,0,0
+CCM Client Delivery Services (2),CCM Client Delivery Services,Subhanshu Gupta,1,,13,0,1,1,0,0,13,0,0,0,0,0
+CCM Solution Design,CCM - Services,Kristina Rollings,1,,8,0,1,1,0,0,8,0,0,0,0,0
+CCM Emerging Solutions Consulting,CCM Solution Design,Mike Spellman,1,,5,0,1,1,0,0,5,0,0,0,0,0
+Network Management Solutions,CCM Solution Design,Alan Mosley,1,,3,0,1,1,0,0,3,0,0,0,0,0
+CCM - Product,Clinical Claims Management,Amy Larsson,1,,3,0,1,1,0,0,0,0,0,0,0,0
+Clinical Content,CCM - Product,Miriam Burnett,1,,0,0,0,1,0,0,0,0,0,0,0,0
+Clinical Content Operations,Clinical Content,Dorian Harris,1,,32,0,1,1,0,0,0,0,32,0,0,0
+CCM Analytics,CCM - Product,Sheila Miller,1,,1,0,1,1,0,0,0,1,0,0,0,0
+Product Analytics,CCM Analytics,Michael Bradigan,1,,5,0,1,1,0,0,0,5,0,0,0,0
+Technical Analytics,CCM Analytics,April Folgar,1,,3,0,1,1,0,0,0,3,0,0,0,0
+CCM Product Management,CCM - Product,Mark Turner,1,,7,0,1,1,0,0,0,0,0,7,0,0
+Value Based Care,NFM,Rob Capobianco,,,0,0,0,0,0,0,0,0,0,0,0,0
+Value Based Care - Provider,Value Based Care,,,,21,7,6,0,0,0,14,3,0,3,0,0
+,,,,,760.3,35,143,80.5,372.8,94.5,129,40,44,23,48,0
+,,,,,,,,10%,48%,12%,16%,5%,6%,3%,,
+,,,,,,,Span of control,9.4,,,,,,,,

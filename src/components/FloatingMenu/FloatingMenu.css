@@ -1,0 +1,64 @@
+
+.actionMenu {
+  top: 0;
+  left: 0;
+  list-style: none;
+}
+
+.actionMenu ul {
+  box-sizing: border-box;
+  margin: 25px;
+  position: fixed;
+  white-space: nowrap;
+  z-index: 30;
+  padding-left: 0;
+  list-style: none;
+}
+
+.actionMenu li {
+  padding: 25px;
+  margin: -25px;
+  transition: ease-in-out transform .2s;
+  text-align: center;
+}
+
+.actionMenu li.actionButton {
+  padding: 10px;
+  margin: -10px;
+  transition: ease-in-out transform .2s;
+}
+
+.actionMenu li.menuButton {
+  padding: 25x;
+  margin: -25px;
+  transition: ease-in-out transform .2s;
+}
+
+.actionMenu li button {
+  height: 48px;
+  width: 48px;
+  z-index: 20;
+  background-color: #dc3545;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  -webkit-user-drag: none;
+  font-weight: bold;
+  color: #f1f1f1;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+li.menuButton button {
+  height: 64px;
+  width: 64px;
+  z-index: 20;
+  background-color: #020958;
+}

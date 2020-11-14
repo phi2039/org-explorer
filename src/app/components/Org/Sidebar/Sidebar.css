@@ -1,0 +1,34 @@
+.sidebar {
+  background-color: #fff;
+  border: solid 1px #aaa;
+}
+
+.sidebar .header {
+  background-color: #ebebeb;
+  color: white;
+  width: 100%;
+  border-bottom: solid 1px #aaa;
+  display: flex;
+  align-items: center;
+  height: 2em;
+}
+
+.sidebar .open {
+  width: 400px;
+}
+
+.sidebar .collapse-btn {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  color: #969696;
+}
+
+.vertical-separator {
+  background-color: #aaaaaa;
+  width: 1px;
+  cursor: col-resize;
+}

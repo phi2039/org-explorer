@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom';
 
 import { ipcRenderer } from 'electron';
 
-import App from '../components/App';
+import App from '../app/components/App';
 
-import { ViewProvider, useView } from '../state/ViewContext';
-import { DataProvider, useDataContext } from '../state/DataContext';
+import { ViewProvider, useView } from '../app/state/ViewContext';
+import { DataProvider, useDataContext } from '../app/state/DataContext';
 
 import handleMenuAction from './menu-action-handler';
 

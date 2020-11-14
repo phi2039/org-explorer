@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { PropTypes, arrayOf } from 'prop-types';
 
-import * as WebDataRocksReact from '../lib/webdatarocks.react';
+import * as WebDataRocksReact from '../../lib/webdatarocks.react';
 
-import flatten from '../lib/util/tree-flatten';
+import flatten from '../../lib/util/tree-flatten';
 
 const schema = {
   path: {

@@ -5,7 +5,7 @@ const {
   ipcMain,
   Menu,
   dialog,
-} = require('electron');
+} = require('electron'); // eslint-disable-line import/no-extraneous-dependencies
 
 const isDev = require('electron-is-dev');
 const userPrefs = require('./user-prefs');
@@ -88,23 +88,25 @@ const createWindow = () => {
       default: installExtension,
       REACT_DEVELOPER_TOOLS,
       REDUX_DEVTOOLS,
-    } = require('electron-devtools-installer'); // eslint-disable-line global-require
+    } = require('electron-devtools-installer'); // eslint-disable-line global-require, import/no-extraneous-dependencies
 
-    installExtension(REACT_DEVELOPER_TOOLS)
-      .then((name) => {
-        console.log(`Added Extension: ${name}`);
-      })
-      .catch((err) => {
-        console.log('An error occurred: ', err);
-      });
+    app.whenReady().then(() => {
+      installExtension(REACT_DEVELOPER_TOOLS)
+        .then((name) => {
+          console.log(`Added Extension: ${name}`);
+        })
+        .catch((err) => {
+          console.log('An error occurred: ', err);
+        });
 
-    installExtension(REDUX_DEVTOOLS)
-      .then((name) => {
-        console.log(`Added Extension: ${name}`);
-      })
-      .catch((err) => {
-        console.log('An error occurred: ', err);
-      });
+      installExtension(REDUX_DEVTOOLS)
+        .then((name) => {
+          console.log(`Added Extension: ${name}`);
+        })
+        .catch((err) => {
+          console.log('An error occurred: ', err);
+        });
+    });
 
     // Open the DevTools.
     // mainWindow.webContents.openDevTools();

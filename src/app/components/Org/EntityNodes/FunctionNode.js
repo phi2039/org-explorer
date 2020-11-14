@@ -7,25 +7,26 @@ import ListGroupItem from 'react-bootstrap/ListGroupItem';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 
-import AccessTypes from './AccessTypes';
+import BaseNode from './BaseNode';
+import AccessTypes from './common/AccessTypes';
 
-const Function = ({ node, isSelected, onClick }) => (
+const Function = ({ entity, isSelected, onClick }) => (
   <BaseNode onClick={onClick}>
     <Card bg="secondary" text="white" style={{ width: '18rem', borderWidth: isSelected ? 3 : null }}>
       <Card.Body>
         <OverlayTrigger
           placement="right"
-          overlay={<Tooltip>{node.description || 'No Description'}</Tooltip>}
+          overlay={<Tooltip>{entity.description || 'No Description'}</Tooltip>}
         >
-          <Card.Title>{node.name}</Card.Title>
+          <Card.Title>{entity.name}</Card.Title>
         </OverlayTrigger>
       </Card.Body>
       <ListGroup className="list-group-flush">
         <ListGroupItem variant="light">
-          {node.currentTotalFTE} FTE
+          {entity.currentTotalFTE} FTE
         </ListGroupItem>
         <ListGroupItem variant="light">
-          <AccessTypes node={node} />
+          <AccessTypes entity={entity} />
         </ListGroupItem>
       </ListGroup>
     </Card>

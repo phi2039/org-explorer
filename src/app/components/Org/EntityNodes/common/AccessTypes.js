@@ -13,13 +13,13 @@ import {
   FaFingerprint,
 } from 'react-icons/fa';
 
-const hasAccessData = node => (node.payerFacing === 'Yes' || node.providerFacing === 'Yes' || node.requiresPHI === 'Yes');
-const AccessTypes = ({ node }) => hasAccessData(node)
+const hasAccessData = entity => (entity.payerFacing === 'Yes' || entity.providerFacing === 'Yes' || entity.requiresPHI === 'Yes');
+const AccessTypes = ({ entity }) => hasAccessData(entity)
   ? (
     <Container>
       <Row>
         {
-        node.payerFacing === 'Yes'
+        entity.payerFacing === 'Yes'
           ? (
             <Col>
               <OverlayTrigger placement="left" overlay={<Tooltip>Payer Facing</Tooltip>}>
@@ -30,7 +30,7 @@ const AccessTypes = ({ node }) => hasAccessData(node)
           : null
         }
         {
-        node.providerFacing === 'Yes'
+        entity.providerFacing === 'Yes'
           ? (
             <Col>
               <OverlayTrigger placement="left" overlay={<Tooltip>Provider Facing</Tooltip>}>
@@ -41,7 +41,7 @@ const AccessTypes = ({ node }) => hasAccessData(node)
           : null
         }
         {
-        node.requiresPHI === 'Yes'
+        entity.requiresPHI === 'Yes'
           ? (
             <Col>
               <OverlayTrigger placement="left" overlay={<Tooltip>PHI Required</Tooltip>}>

@@ -4,7 +4,7 @@ import Diagram from './Diagram';
 import Dagre from './Diagram/Dagre';
 
 import { useDataContext } from '../state/DataContext';
-import { forEachNode } from '../lib/util/hierarchy';
+import { forEachNode } from '../../lib/util/hierarchy';
 
 const testMove = entities => {
   const node1 = Object.entries(entities.getAll().nodes).filter(([key, value]) => value.type === 'group')[0][1];

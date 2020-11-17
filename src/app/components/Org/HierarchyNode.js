@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { useEntity } from './state';
-
 import Group from './EntityNodes/GroupNode';
 import Function from './EntityNodes/FunctionNode';
 
 const HierarchyNode = ({
+  entity,
   isActiveRoot,
   isSelected,
   isExpanded,
@@ -14,13 +13,9 @@ const HierarchyNode = ({
   setActiveRoot,
   resetActiveRoot,
   select,
+  onEdit,
+  onDelete,
 }) => {
-  const [entity] = useEntity();
-
-  if (!entity) {
-    return <div />;
-  }
-
   const nodeProps = {
     entity,
     collapsed: !isExpanded,
@@ -31,9 +26,10 @@ const HierarchyNode = ({
     focused: isActiveRoot,
     resetRoot: resetActiveRoot,
     onClick: select,
-    // onDelete: nop,
-    // onAddGroup: (props) => org.addNode('group', props),
-    // onAddWorkload: (props) => org.addNode('function', props),
+    onEdit,
+    onDelete,
+    // onAddGroup: nop,
+    // onAddWorkload: nop,
   };
 
   if (entity.type === 'group') {
@@ -48,6 +44,9 @@ const HierarchyNode = ({
 };
 
 HierarchyNode.propTypes = {
+  entity: PropTypes.shape({
+    type: PropTypes.string,
+  }).isRequired,
   isExpanded: PropTypes.bool,
   isActiveRoot: PropTypes.bool,
   isSelected: PropTypes.bool,
@@ -55,6 +54,8 @@ HierarchyNode.propTypes = {
   setActiveRoot: PropTypes.func,
   resetActiveRoot: PropTypes.func,
   select: PropTypes.func,
+  onEdit: PropTypes.func,
+  onDelete: PropTypes.func,
 };
 
 HierarchyNode.defaultProps = {
@@ -65,6 +66,8 @@ HierarchyNode.defaultProps = {
   setActiveRoot: null,
   resetActiveRoot: null,
   select: null,
+  onEdit: null,
+  onDelete: null,
 };
 
 export default HierarchyNode;

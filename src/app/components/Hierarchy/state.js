@@ -1,4 +1,9 @@
-import React, { createContext, useContext, useReducer } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useReducer,
+} from 'react';
+import produce, { current } from 'immer';
 
 const HierarchyStateContext = createContext();
 const HierarchyDispatchContext = createContext();
@@ -26,6 +31,19 @@ const setStateOnAll = (key, value) => (nodes) => Object.entries(nodes).reduce(
       state: {
         ...(attrs.state || {}),
         [key]: value,
+      },
+    },
+  }),
+  {},
+);
+
+const ensureStateOnAll = nodes => Object.entries(nodes).reduce(
+  (acc, [id, attrs]) => ({
+    ...acc,
+    [id]: {
+      ...attrs,
+      state: {
+        ...(attrs.state || {}),
       },
     },
   }),
@@ -65,23 +83,40 @@ const toggleNode = (nodes, id) => {
     : expandNode(nodes, id);
 };
 
+const mergeState = (object, source) => Object.entries(object).reduce(
+  (acc, [id, attrs]) => ({
+    ...acc,
+    [id]: {
+      ...attrs,
+      state: {
+        ...(attrs.state || {}),
+        ...((source[id] || {}).state || {}),
+      },
+    },
+  }),
+  {},
+);
+
 const load = ({
   nodes = {},
   root,
 }) => ({
-  nodes: collapseAll(nodes),
+  nodes: ensureStateOnAll(nodes),
   hierarchy: {
     root,
     activeRoot: root,
   },
 });
 
+// TODO: Switch to immer (performance improvement?)
 const hierarchyReducer = (state, action) => {
   let nextState = state;
   console.log('dispatch', action);
   switch (action.type) {
     case 'load': {
       nextState = load(action.payload.data);
+      const { nodes } = nextState;
+      nextState.nodes = mergeState(nodes, state.nodes || {});
       break;
     }
     case 'set_active_root': {

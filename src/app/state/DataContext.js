@@ -100,7 +100,7 @@ const useData = ({ initialSource, initialEntities = {}, initialRoot }) => {
   };
 };
 
-export const [DataProvider, useDataContext, useSource, useEntities, useOrg] = constate(
+export const [DataProvider, useDataContext, useSource, useEntities, useOrg, useDataService] = constate(
   useData,
   context => context,
   ({ source }) => source,

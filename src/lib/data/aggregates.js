@@ -39,15 +39,15 @@ const countOccurrences = (node, prop, value) => {
 const calculateAggregates = node => ({
   ...node,
   children: node.children.map(calculateAggregates),
-  currentTotalFTE: getCurrentTotalFTE(node),
-  currentTotalWorkloads: getCurrentTotalWorkloads(node),
-  currentTotalOverhead: getCurrentTotalOverhead(node),
-  payerFacingInstances: countOccurrences(node, 'payerFacing', 'Yes'),
-  providerFacingInstances: countOccurrences(node, 'providerFacing', 'Yes'),
-  PHIInstances: countOccurrences(node, 'requiresPHI', 'Yes'),
-  payerFacingFTE: getFilteredCurrentTotalFTE(node, 'payerFacing', 'Yes'),
-  providerFacingFTE: getFilteredCurrentTotalFTE(node, 'providerFacing', 'Yes'),
-  PHIFTE: getFilteredCurrentTotalFTE(node, 'requiresPHI', 'Yes'),
+  // currentTotalFTE: getCurrentTotalFTE(node),
+  // currentTotalWorkloads: getCurrentTotalWorkloads(node),
+  // currentTotalOverhead: getCurrentTotalOverhead(node),
+  // payerFacingInstances: countOccurrences(node, 'payerFacing', 'Yes'),
+  // providerFacingInstances: countOccurrences(node, 'providerFacing', 'Yes'),
+  // PHIInstances: countOccurrences(node, 'requiresPHI', 'Yes'),
+  // payerFacingFTE: getFilteredCurrentTotalFTE(node, 'payerFacing', 'Yes'),
+  // providerFacingFTE: getFilteredCurrentTotalFTE(node, 'providerFacing', 'Yes'),
+  // PHIFTE: getFilteredCurrentTotalFTE(node, 'requiresPHI', 'Yes'),
 });
 
 module.exports = {

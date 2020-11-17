@@ -39,6 +39,7 @@ const Group = ({
   resetRoot,
   onClick,
   onDelete,
+  onEdit,
   onAddGroup,
   onAddWorkload,
   // onCut,
@@ -50,7 +51,7 @@ const Group = ({
       <Card.Body style={{ paddingLeft: 0, paddingRight: 0 }}>
         <Card.Title>
           <Container>
-            <Row>
+            <Row noGutters>
               <Col md="auto">
                 {
                   isRoot
@@ -62,7 +63,7 @@ const Group = ({
                 {entity.name}
               </Col>
               <Col md="auto">
-                <GroupActionMenu onDelete={onDelete} onAddGroup={onAddGroup} onAddWorkload={onAddWorkload} />
+                <GroupActionMenu onEdit={onEdit} onDelete={onDelete} onAddGroup={onAddGroup} onAddWorkload={onAddWorkload} />
               </Col>
             </Row>
           </Container>

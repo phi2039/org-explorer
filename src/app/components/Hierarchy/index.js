@@ -1,4 +1,9 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, {
+  useCallback,
+  useEffect,
+  useState,
+  useMemo,
+} from 'react';
 import { PropTypes } from 'prop-types';
 
 import styled from 'styled-components';
@@ -7,6 +12,16 @@ import {
   useHierarchyDispatch,
   useHierarchyState,
 } from './state';
+
+import {
+  resetSelectionAction,
+  expandAllAction,
+  collapseAllAction,
+  toggleStateAction,
+  setActiveRootAction,
+  resetActiveRootAction,
+  selectAction,
+} from './actions';
 
 const Table = styled.table`
   border-collapse: collapse;
@@ -60,35 +75,13 @@ const hasSiblingRight = (childrenCount, childIndex) => childIndex < childrenCoun
 
 const hasSiblingLeft = (childIndex) => childIndex > 0;
 
-const toggleStateAction = (nodeId, dispatch) => () => {
-  dispatch({
-    type: 'toggle',
-    payload: { id: nodeId },
-  });
-};
-
-const setActiveRootAction = (nodeId, dispatch) => () => {
-  dispatch({
-    type: 'set_active_root',
-    payload: { id: nodeId },
-  });
-};
-
-const resetActiveRootAction = (dispatch) => () => {
-  dispatch({
-    type: 'reset_active_root',
-  });
-};
-
-const selectAction = (nodeId, dispatch) => (e) => {
+const selectHandler = dispatch => nodeId => (e) => {
+  const select = selectAction(dispatch);
   if (e && e.preventDefault) {
     e.preventDefault();
     e.stopPropagation();
   }
-  dispatch({
-    type: 'select',
-    payload: { id: nodeId },
-  });
+  select(nodeId);
 };
 
 const ChildrenLinesAbove = ({ span }) => Array.from({ length: span / 2 }, (v, childIndex) => (
@@ -159,10 +152,11 @@ const HierarchyNode = ({ nodeId, render }) => {
     [node.state.expanded, render],
   );
 
-  const toggleState = useCallback(toggleStateAction(nodeId, dispatch), [nodeId, dispatch]);
-  const setActiveRoot = useCallback(setActiveRootAction(nodeId, dispatch), [nodeId, dispatch]);
+  const isSelected = hierarchy.selection === node.id;
+  const toggleState = useCallback(toggleStateAction(dispatch)(nodeId), [nodeId, dispatch]);
+  const setActiveRoot = useCallback(setActiveRootAction(dispatch)(nodeId), [nodeId, dispatch]);
   const resetActiveRoot = useCallback(resetActiveRootAction(dispatch), [dispatch]);
-  const select = useCallback(selectAction(nodeId, dispatch), [nodeId, dispatch]);
+  const select = useCallback(!isSelected ? selectHandler(dispatch)(nodeId) : null, [nodeId, dispatch]);
 
   const span = (node.children || []).length * 2;
 
@@ -180,7 +174,7 @@ const HierarchyNode = ({ nodeId, render }) => {
                 node,
                 isExpanded: node.state.expanded,
                 isActiveRoot: hierarchy.activeRoot === node.id,
-                isSelected: hierarchy.selection === node.id,
+                isSelected,
                 toggleState,
                 setActiveRoot: hierarchy.root !== node.id ? setActiveRoot : null,
                 resetActiveRoot,
@@ -212,24 +206,6 @@ const RootContainer = styled.div`
   }
 `;
 
-const resetSelectionAction = (dispatch) => () => {
-  dispatch({
-    type: 'reset_selection',
-  });
-};
-
-const expandAllAction = (dispatch) => () => {
-  dispatch({
-    type: 'expand_all',
-  });
-};
-
-const collapseAllAction = (dispatch) => () => {
-  dispatch({
-    type: 'collapse_all',
-  });
-};
-
 const DebugControls = () => {
   const dispatch = useHierarchyDispatch();
   const expandAll = useCallback(expandAllAction(dispatch), [dispatch]);
@@ -245,11 +221,11 @@ const DebugControls = () => {
 
 const Hierarchy = ({ render }) => {
   const {
-    hierarchy: { activeRoot, root },
+    hierarchy: { activeRoot, root, selection },
   } = useHierarchyState();
   const dispatch = useHierarchyDispatch();
 
-  const resetSelection = useCallback(resetSelectionAction(dispatch), [dispatch]);
+  const resetSelection = useCallback(selection ? resetSelectionAction(dispatch) : null, [dispatch]);
   if (!root && !activeRoot) {
     return null;
   }

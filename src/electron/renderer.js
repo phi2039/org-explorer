@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 
 import { ipcRenderer } from 'electron';
@@ -7,6 +7,7 @@ import App from '../app/components/App';
 
 import { ViewProvider, useView } from '../app/state/ViewContext';
 import { DataProvider, useDataContext } from '../app/state/DataContext';
+import { EntityProvider, useEntityState, useEntityDispatch } from '../app/state/EntityContext';
 
 import handleMenuAction from './menu-action-handler';
 
@@ -19,17 +20,32 @@ import '../../public/index.css';
 //   });
 // }
 
+const loadEntitiesAction = dispatch => data => {
+  dispatch({
+    type: 'load',
+    payload: {
+      data,
+    },
+  });
+};
+
 const DataHandler = () => {
   const { source: [, setSource], entities: { load } } = useDataContext();
+
+  const entityDispatch = useEntityDispatch();
+
+  const loadEntities = useCallback(loadEntitiesAction(entityDispatch), [entityDispatch]);
 
   useEffect(() => {
     ipcRenderer.removeAllListeners('data-load');
     ipcRenderer.on('data-load', (event, { data, source }) => {
       setSource(source);
       load(data);
+
+      loadEntities(data);
     });
     ipcRenderer.send('data-reload');
-  }, [setSource, load]);
+  }, [setSource, load, loadEntities]);
   return null;
 };
 
@@ -46,11 +62,13 @@ const MenuHandler = () => {
 };
 
 ReactDOM.render((
-  <DataProvider initialEntities={{}} initialSource={null}>
-    <DataHandler />
-    <ViewProvider initialView="hierarchy">
-      <MenuHandler />
-      <App />
-    </ViewProvider>
-  </DataProvider>
+  <EntityProvider>
+    <DataProvider initialEntities={{}} initialSource={null}>
+      <DataHandler />
+      <ViewProvider initialView="hierarchy">
+        <MenuHandler />
+        <App />
+      </ViewProvider>
+    </DataProvider>
+  </EntityProvider>
 ), document.getElementById('root'));

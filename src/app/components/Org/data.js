@@ -30,10 +30,11 @@ export const reduceData = (entities) => {
     ([, { parent }]) => !parent,
   );
 
-  const groups = Object.keys(entities.groups).map(entityId => ({
+  const groups = Object.entries(entities.groups).map(([entityId, { parent }]) => ({
     id: entityId,
     entityId,
     type: 'group',
+    parent,
     children: [
       ...Object.entries(entities.groups)
         .filter(([, { parent: parentId }]) => parentId === entityId)
@@ -44,10 +45,11 @@ export const reduceData = (entities) => {
     ],
   }));
 
-  const functions = Object.keys(entities.functions).map(entityId => ({
+  const functions = Object.entries(entities.functions).map(([entityId, { parent }]) => ({
     id: entityId,
     entityId,
     type: 'function',
+    parent,
   }));
 
   const nodes = [...groups, ...functions].reduce(

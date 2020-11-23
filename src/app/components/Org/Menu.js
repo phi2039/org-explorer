@@ -8,7 +8,7 @@ import {
 } from 'react-icons/fi';
 import { FaPlusCircle, FaMinusCircle } from 'react-icons/fa';
 
-import FloatingMenu from '../FloatingMenu';
+import FloatingMenu from '../common/FloatingMenu';
 
 const Menu = ({
   actions: {

@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useCallback } from 'react';
 import { PropTypes } from 'prop-types';
 
 import * as Yup from 'yup';
@@ -34,15 +34,20 @@ const GroupForm = forwardRef(({
     throw new Error('invalid entity');
   }
 
+  const handleSubmit = useCallback(values => onSubmit({
+    ...values,
+    managerFTE: values.manager ? values.managerFTE / 100 : undefined,
+  }), [onSubmit]);
+
   return (
     <Form
       initialValues={{
         name: entity.name || '',
         manager: entity.manager || '',
-        managerFTE: entity.managerFTE,
+        managerFTE: (entity.managerFTE || 0) * 100,
       }}
       validationSchema={validationSchema}
-      onSubmit={onSubmit}
+      onSubmit={handleSubmit}
       mode={mode}
       ref={ref}
     >

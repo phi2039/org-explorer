@@ -14,9 +14,17 @@ export const beginCommitAction = dispatch => () => dispatch({
   type: 'commit_begin',
 });
 
-export const endCommitAction = dispatch => values => dispatch({
+export const endCommitAction = dispatch => () => dispatch({
   type: 'commit_end',
+});
+
+export const setClipboardAction = dispatch => subjectId => dispatch({
+  type: 'set_clipboard',
   payload: {
-    values,
+    subjectId,
   },
+});
+
+export const resetClipboardAction = dispatch => () => dispatch({
+  type: 'reset_clipboard',
 });

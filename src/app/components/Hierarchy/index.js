@@ -129,6 +129,9 @@ const HierarchyNode = ({ nodeId, render }) => {
 
   const renderChildren = useCallback(
     (children) => {
+      if (!node) {
+        return null;
+      }
       const span = children.length * 2;
       if (node.state.expanded) {
         return (
@@ -149,20 +152,24 @@ const HierarchyNode = ({ nodeId, render }) => {
       }
       return null;
     },
-    [node.state.expanded, render],
+    [node, render],
   );
 
-  const isSelected = hierarchy.selection === node.id;
+  const isSelected = node && (hierarchy.selection === node.id);
   const toggleState = useCallback(toggleStateAction(dispatch)(nodeId), [nodeId, dispatch]);
   const setActiveRoot = useCallback(setActiveRootAction(dispatch)(nodeId), [nodeId, dispatch]);
   const resetActiveRoot = useCallback(resetActiveRootAction(dispatch), [dispatch]);
   const select = useCallback(!isSelected ? selectHandler(dispatch)(nodeId) : null, [nodeId, dispatch]);
 
-  const span = (node.children || []).length * 2;
-
   if (!node) {
-    return <div>TODO: User Error Boundary</div>;
+    return (
+      <td>
+        <div>TODO: Use Error Boundary</div>
+      </td>
+    );
   }
+
+  const span = (node.children || []).length * 2;
 
   return (
     <NodeGroup>
@@ -170,8 +177,7 @@ const HierarchyNode = ({ nodeId, render }) => {
         <tbody>
           <tr>
             <HierarchyNodeContentContainer colSpan={span}>
-              {render({
-                node,
+              {render(node, {
                 isExpanded: node.state.expanded,
                 isActiveRoot: hierarchy.activeRoot === node.id,
                 isSelected,

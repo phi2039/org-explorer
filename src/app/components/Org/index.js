@@ -1,16 +1,12 @@
 import React, {
-  useState,
   useEffect,
   useCallback,
-  useMemo,
 } from 'react';
 import { PropTypes } from 'prop-types';
 
 import styled from 'styled-components';
 
 import IndianaScrollContainer from 'react-indiana-drag-scroll';
-
-import { toTitleCase } from '../../../lib/util/strings';
 
 import Hierarchy, { HierarchyProvider, useHierarchyState, useHierarchyDispatch } from '../Hierarchy';
 import {
@@ -20,148 +16,26 @@ import {
   resetActiveRootAction,
 } from '../Hierarchy/actions';
 
-import ZoomContainer from '../ZoomContainer';
+import ZoomContainer, { useZoom } from '../common/ZoomContainer';
 
 import Menu from './Menu';
-import HierarchyNode from './HierarchyNode';
 
-import {
-  useEntityState,
-  useEntityDispatch,
-  deleteEntityAction,
-  patchEntityAction,
-} from '../../state/EntityContext';
+import { ActionProvider } from './state';
 
-import { splitNodes, reduceData } from './data';
-
-import { ActionProvider, useActionState, useActionDispatch } from './state';
-
-import ModalForm from './ModalForm';
-
-import FullPageSpinner from './FullPageSpinner';
+import Node from './Nodes/BaseNode';
+import Group from './Nodes/GroupNode';
+import Function from './Nodes/FunctionNode';
 
 import GroupForm from './Forms/GroupForm';
 import FunctionForm from './Forms/FunctionForm';
 
-import {
-  beginActionAction,
-  cancelActionAction,
-  beginCommitAction,
-  endCommitAction,
-} from './actions';
+import OrgNode from './OrgNode';
 
-import Query from './query';
-import { aggregate, compute } from './analytics';
+import ModalActions from './ModalActions';
+
 import { metrics, measures } from './metrics';
-
-// TODO: Split into individual steps/stages (see: redux-thunk)
-const commitActionThunk = (entityDispatch, values) => async (dispatch, getState) => {
-  beginCommitAction(dispatch)();
-
-  const { subject } = getState();
-  patchEntityAction(entityDispatch)(subject, values);
-
-  endCommitAction(dispatch)(values);
-};
-
-const commitActionAction = (actionDispatch, entityDispatch) => values => {
-  actionDispatch(commitActionThunk(entityDispatch, values));
-};
-
-const renderEntityForm = entity => {
-  if (entity.type === 'group') {
-    return <GroupForm entity={entity} />;
-  }
-  if (entity.type === 'function') {
-    return <FunctionForm entity={entity} />;
-  }
-
-  throw new Error('unknown entity type');
-};
-
-const EntityContainer = ({
-  id,
-  Component,
-  ...props
-}) => {
-  const { entities } = useEntityState();
-  const [entity, setEntity] = useState(entities.nodes && entities.nodes[id]);
-
-  const actionDispatch = useActionDispatch();
-  const entityDispatch = useEntityDispatch();
-
-  const onEdit = useCallback(() => beginActionAction(actionDispatch)('edit', entity), [actionDispatch, entity]);
-  const onDelete = useCallback(() => deleteEntityAction(entityDispatch)(entity.id), [entityDispatch, entity]);
-
-  useEffect(() => {
-    setEntity(entities.nodes && entities.nodes[id]);
-  }, [entities, id]);
-
-  const handlers = {
-    onEdit,
-    onDelete,
-  };
-
-  const descendants = useMemo(() => Query(entities).getDescendants(entity.id).map(d => entities.nodes[d.id]), [entity, entities]);
-  // console.log('descendants', descendants);
-
-  const aggregates = useMemo(() => {
-    const result = aggregate(metrics, [entity, ...descendants]);
-    // console.log('aggregates', result);
-    return result;
-  }, [descendants, entity]);
-
-  const computed = useMemo(() => {
-    const result = compute(measures, { ...entity, ...aggregates });
-    console.log('computed', result);
-    return result;
-  }, [entity, aggregates]);
-
-  if (!entity) {
-    return null;
-  }
-
-  return <Component entity={{ ...entity, ...aggregates, ...computed }} {...handlers} {...props} />;
-};
-
-EntityContainer.propTypes = {
-  id: PropTypes.string.isRequired,
-  Component: PropTypes.elementType.isRequired,
-};
-
-const renderOrgNode = ({ node, ...props }) => {
-  const { entityId } = node;
-  return <EntityContainer id={entityId} Component={HierarchyNode} {...props} />;
-};
-
-// const forms = {
-//   group: GroupForm,
-// };
-
-const EntityActions = () => {
-  const { action, subject, isCommitting } = useActionState();
-  const actionDispatch = useActionDispatch();
-  const entityDispatch = useEntityDispatch();
-
-  const closeModal = useCallback(cancelActionAction(actionDispatch), [actionDispatch]);
-  const isModalShowing = !!action;
-  const commitChanges = useCallback(commitActionAction(actionDispatch, entityDispatch), [actionDispatch, entityDispatch]);
-
-  const formatTitle = (s, a) => `${toTitleCase(a)}${s ? ` ${toTitleCase(s.type)}` : ''}`;
-
-  if (isCommitting) {
-    return (
-      <FullPageSpinner caption="Saving" />
-    );
-  }
-
-  return (
-    // <ModalForm forms={forms} formName="group" formMode="create" isShowing={isModalShowing} onCancel={closeModal} onSubmit={commitChanges} title="Something important" commitText="Save" />
-    <ModalForm formMode={action} isShowing={isModalShowing} onCancel={closeModal} onSubmit={commitChanges} title={formatTitle(subject, action)} commitText="Save">
-      {isModalShowing && renderEntityForm(subject)}
-    </ModalForm>
-  );
-};
+import FullPageSpinner from '../common/FullPageSpinner';
+import { usePersistenceDispatch, usePersistenceState, mutateAction } from '../../state/PersistenceContext';
 
 const Workspace = styled.div`
     position: relative;
@@ -178,10 +52,46 @@ const ScrollContainer = styled(IndianaScrollContainer)`
   border: solid 1px #aaa;
 `;
 
+const modalActionForms = {
+  group: {
+    edit: GroupForm,
+    create: GroupForm,
+  },
+  function: {
+    edit: FunctionForm,
+    create: FunctionForm,
+  },
+};
+
+export const reduceHierarchyData = (entities) => {
+  // console.log('reduce hierarchy data');
+  const [root] = Object.entries(entities).find(
+    ([, { parent }]) => !parent,
+  );
+
+  const nodes = Object.entries(entities).reduce((acc, [id, { type, children }]) => ({
+    ...acc,
+    [id]: {
+      id,
+      subjectId: id,
+      type,
+      children,
+    },
+  }), []);
+
+  return {
+    nodes,
+    hierarchy: {
+      root,
+    },
+  };
+};
+
 const Org = ({
   ...props
 }) => {
-  const { entities } = useEntityState();
+  const { cache: { entities }, isLoading } = usePersistenceState();
+  const persistenceDispatch = usePersistenceDispatch();
 
   const { hierarchy: { activeRoot, root } } = useHierarchyState();
   const hierarchyDispatch = useHierarchyDispatch();
@@ -189,18 +99,17 @@ const Org = ({
   const loadHierarchyData = useCallback(loadDataAction(hierarchyDispatch), [hierarchyDispatch]);
 
   useEffect(() => {
-    const { nodes = {} } = entities;
-    if (Object.keys(nodes).length) {
-      const data = splitNodes(nodes);
-      const reduced = reduceData(data);
-      loadHierarchyData(reduced);
+    if (Object.keys(entities).length) {
+      loadHierarchyData(reduceHierarchyData(entities));
     }
   }, [entities, loadHierarchyData]);
 
-  const [zoom, setZoom] = useState(1.0);
-  const zoomIncrement = 0.1;
-  const zoomIn = () => setZoom(level => Math.min(2, level + zoomIncrement));
-  const zoomOut = () => setZoom(level => Math.max(zoomIncrement, level - zoomIncrement));
+  const {
+    zoom,
+    setZoom,
+    zoomIn,
+    zoomOut,
+  } = useZoom();
 
   const resetFocus = useCallback(
     (root !== activeRoot)
@@ -212,9 +121,25 @@ const Org = ({
   const expandAll = useCallback(expandAllAction(hierarchyDispatch), [hierarchyDispatch]);
   const collapseAll = useCallback(collapseAllAction(hierarchyDispatch), [hierarchyDispatch]);
 
+  const mutate = useCallback(mutateAction(persistenceDispatch));
+
+  const commitChanges = useCallback((action, subject, values) => {
+    if (action === 'create') {
+      mutate({ create: [{ ...subject, ...values }] });
+    } else if (action === 'edit') {
+      mutate({ update: [{ id: subject.id, values }] });
+    }
+  }, [mutate]);
+
+  if (isLoading) {
+    return (
+      <FullPageSpinner caption="Loading" />
+    );
+  }
+
   return (
     <Workspace {...props}>
-      <EntityActions />
+      <ModalActions forms={modalActionForms} commitChanges={commitChanges} />
       <Menu actions={{
         collapseAll,
         expandAll,
@@ -225,7 +150,20 @@ const Org = ({
       />
       <ScrollContainer hideScrollbars={false}>
         <ZoomContainer zoom={zoom} setZoom={setZoom}>
-          <Hierarchy render={renderOrgNode} />
+          <Hierarchy render={(node, nodeProps) => (
+            <OrgNode
+              node={node}
+              components={{
+                group: Group,
+                function: Function,
+                default: Node,
+              }}
+              metrics={metrics}
+              measures={measures}
+              {...nodeProps}
+            />
+          )}
+          />
         </ZoomContainer>
       </ScrollContainer>
     </Workspace>

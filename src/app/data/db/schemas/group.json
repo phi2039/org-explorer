@@ -1,0 +1,42 @@
+{
+  "title": "group schema",
+  "version": 0,
+  "description": "describes a single organizational unit",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "primary": true
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "group"
+      ]
+    },
+    "parent": {
+      "type": "string"
+    },
+    "manager": {
+      "type": "string",
+      "maxLength": 64
+    },
+    "managerFTE": {
+      "type": "number",
+      "minimum": 0
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "type"
+  ],
+  "indexes": [
+    "parent"
+  ]
+}

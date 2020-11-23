@@ -1,10 +1,10 @@
 import React, {
   createContext,
   useContext,
-  useReducer,
-  useCallback,
 } from 'react';
 import { PropTypes } from 'prop-types';
+
+import useReducerAsync from '../../hooks/useReducerAsync';
 
 const ActionStateContext = createContext();
 const ActionDispatchContext = createContext();
@@ -28,6 +28,20 @@ const actionReducer = (state, action) => {
       };
       break;
     }
+    case 'set_clipboard': {
+      nextState = {
+        ...state,
+        clipboard: action.payload.subjectId,
+      };
+      break;
+    }
+    case 'reset_clipboard': {
+      nextState = {
+        ...state,
+        clipboard: null,
+      };
+      break;
+    }
     case 'cancel': {
       nextState = defaultState;
       break;
@@ -43,36 +57,35 @@ const actionReducer = (state, action) => {
       nextState = {
         ...state,
         action: undefined,
-        values: action.payload.values,
-      };
-      break;
-    }
-    case 'commit_begin': {
-      nextState = {
-        ...state,
-        isCommitting: true,
-      };
-      break;
-    }
-    case 'commit_end': {
-      nextState = {
-        ...state,
-        action: undefined,
         isCommitting: false,
-        values: action.payload.values,
       };
       break;
     }
-    case 'commit_error': {
-      nextState = {
-        ...state,
-        action: undefined,
-        isCommitting: false,
-        values: action.payload.values,
-        error: action.payload.error,
-      };
-      break;
-    }
+    // case 'commit_begin': {
+    //   nextState = {
+    //     ...state,
+    //     isCommitting: true,
+    //   };
+    //   break;
+    // }
+    // case 'commit_end': {
+    //   nextState = {
+    //     ...state,
+    //     action: undefined,
+    //     isCommitting: false,
+    //   };
+    //   break;
+    // }
+    // case 'commit_error': {
+    //   nextState = {
+    //     ...state,
+    //     action: undefined,
+    //     isCommitting: false,
+    //     values: action.payload.values,
+    //     error: action.payload.error,
+    //   };
+    //   break;
+    // }
     default: {
       throw new Error(`Unhandled action type: ${action.type}`);
     }
@@ -101,52 +114,14 @@ const useActionDispatch = () => {
   return context;
 };
 
-const wrapAsyncAction = (dispatch, getState) => (actionOrThunk) => {
-  if (typeof actionOrThunk === 'function') {
-    const thunk = actionOrThunk;
-    return thunk(dispatch, getState);
-  }
-
-  if (actionOrThunk instanceof Promise) {
-    const promise = actionOrThunk;
-    return promise.then(dispatch, getState);
-  }
-
-  const action = actionOrThunk;
-  return dispatch(action);
-};
-
-const ActionDispatchProvider = ({ value: dispatch, children }) => {
-  const state = useActionState();
-  const getState = useCallback(() => state, [state]);
-
-  // TODO: Performance issue? Forces re-render every time the action state changes
-  const asyncDispatch = useCallback(wrapAsyncAction(dispatch, getState), [dispatch, getState]);
-
-  return (
-    <ActionDispatchContext.Provider value={asyncDispatch}>
-      {children}
-    </ActionDispatchContext.Provider>
-  );
-};
-
-ActionDispatchProvider.propTypes = {
-  value: PropTypes.func.isRequired,
-  children: PropTypes.oneOfType([
-    PropTypes.node,
-    PropTypes.arrayOf([PropTypes.node]),
-    PropTypes.string,
-  ]).isRequired,
-};
-
 const ActionProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(actionReducer, defaultState);
+  const [state, dispatch] = useReducerAsync(actionReducer, defaultState);
 
   return (
     <ActionStateContext.Provider value={state}>
-      <ActionDispatchProvider value={dispatch}>
+      <ActionDispatchContext.Provider value={dispatch}>
         {children}
-      </ActionDispatchProvider>
+      </ActionDispatchContext.Provider>
     </ActionStateContext.Provider>
   );
 };

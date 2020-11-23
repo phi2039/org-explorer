@@ -24,13 +24,15 @@ let mainWindow;
 const loadDataFile = async (location) => {
   await dataService.loadFile(location);
   const data = dataService.getRoot();
+  const entities = dataService.getEntities();
 
   userPrefs.setLastFile(location);
   mainWindow.webContents.send('data-load', {
     data,
+    entities,
     source: location,
   });
-  console.log(`Loaded ${location}`);
+  console.log('Loaded', location);
 };
 
 const onLoadDataFile = async () => {
@@ -107,9 +109,6 @@ const createWindow = () => {
           console.log('An error occurred: ', err);
         });
     });
-
-    // Open the DevTools.
-    // mainWindow.webContents.openDevTools();
   }
 
   mainWindow.once('ready-to-show', () => {
@@ -148,18 +147,6 @@ const generateMenu = () => {
           label: 'Hierarchy',
           click() {
             mainWindow.webContents.send('menu-action', 'view.hierarchy');
-          },
-        },
-        {
-          label: 'Pivot',
-          click() {
-            mainWindow.webContents.send('menu-action', 'view.pivot');
-          },
-        },
-        {
-          label: 'Test',
-          click() {
-            mainWindow.webContents.send('menu-action', 'view.test');
           },
         },
         { type: 'separator' },

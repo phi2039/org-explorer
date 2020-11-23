@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useCallback } from 'react';
 import { PropTypes } from 'prop-types';
 
 import * as Yup from 'yup';
@@ -10,6 +10,7 @@ import NumericInput from './common/NumericInput';
 import Checkbox from './common/Checkbox';
 
 const convertYesNoToBool = value => (value === 'Yes') || value === true;
+const convertBoolToYesNo = value => value ? 'Yes' : 'No';
 
 const validationSchema = Yup.object({
   name: Yup.string()
@@ -42,11 +43,18 @@ const FunctionForm = forwardRef(({
     requiresPHI: convertYesNoToBool(entity.requiresPHI),
   };
 
+  const handleSubmit = useCallback(values => onSubmit({
+    ...values,
+    payerFacing: convertBoolToYesNo(values.payerFacing),
+    providerFacing: convertBoolToYesNo(values.providerFacing),
+    requiresPHI: convertBoolToYesNo(values.requiresPHI),
+  }), [onSubmit]);
+
   return (
     <Form
       initialValues={initialValues}
       validationSchema={validationSchema}
-      onSubmit={onSubmit}
+      onSubmit={handleSubmit}
       mode={mode}
       ref={ref}
     >
@@ -54,7 +62,7 @@ const FunctionForm = forwardRef(({
         label="Name"
         name="name"
         type="text"
-        placeholder="Group Name"
+        placeholder="Function Name"
       />
       <TextInput
         label="Description"
@@ -97,6 +105,9 @@ FunctionForm.propTypes = {
     name: PropTypes.string,
     description: PropTypes.string,
     currentFTE: PropTypes.number,
+    payerFacing: PropTypes.string,
+    providerFacing: PropTypes.string,
+    requiresPHI: PropTypes.string,
   }),
 };
 
@@ -104,6 +115,9 @@ FunctionForm.defaultProps = {
   mode: 'none',
   entity: {
     type: 'function',
+    payerFacing: 'No',
+    providerFacing: 'No',
+    requiresPHI: 'No',
   },
   onSubmit: () => {},
 };

@@ -1,0 +1,4828 @@
+[
+  {
+    "id": "ckhumsh9c0gzubcsifqkyhqk0",
+    "type": "function",
+    "parent": "ckhumsh9c0gztbcsi07m3fnxd",
+    "name": "Administration",
+    "description": null,
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        false
+      ],
+      [
+        "currentFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9c0gztbcsi07m3fnxd",
+    "type": "group",
+    "parent": "ckhumsh9c0gzsbcsifaju1z7b",
+    "name": "Altegra Revenue Cycle",
+    "manager": "Open",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9c0gzwbcsi23su3ziv",
+    "type": "function",
+    "parent": "ckhumsh9c0gzvbcsi5bxnbpct",
+    "name": "Program Management",
+    "description": null,
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        false
+      ],
+      [
+        "currentFTE",
+        48
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9c0gzvbcsi5bxnbpct",
+    "type": "group",
+    "parent": "ckhumsh9c0gzsbcsifaju1z7b",
+    "name": "EMR Risk Advisor",
+    "manager": null,
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9c0gzsbcsifaju1z7b",
+    "type": "group",
+    "parent": "ckhumsh9c0gzrbcsi0vs8eljc",
+    "name": "Risk Analytics",
+    "manager": null,
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9c0gzybcsi4pue8g3m",
+    "type": "function",
+    "parent": "ckhumsh9c0gzxbcsie04c2fjr",
+    "name": "Administration",
+    "description": null,
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        false
+      ],
+      [
+        "currentFTE",
+        4
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9c0gzzbcsi6esjccif",
+    "type": "function",
+    "parent": "ckhumsh9c0gzxbcsie04c2fjr",
+    "name": "Service Delivery",
+    "description": null,
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        false
+      ],
+      [
+        "currentFTE",
+        7
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9c0gzxbcsie04c2fjr",
+    "type": "group",
+    "parent": "ckhumsh9c0gzrbcsi0vs8eljc",
+    "name": "Quality Reporting",
+    "manager": null,
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9c0h01bcsi5rlg2cvw",
+    "type": "function",
+    "parent": "ckhumsh9c0h00bcsi54301txh",
+    "name": "SAAS Services",
+    "description": null,
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        false
+      ],
+      [
+        "currentFTE",
+        3
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9c0h00bcsi54301txh",
+    "type": "group",
+    "parent": "ckhumsh9c0gzrbcsi0vs8eljc",
+    "name": "Compliance Reporter",
+    "manager": null,
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9c0h04bcsifhog9xea",
+    "type": "function",
+    "parent": "ckhumsh9c0h03bcsi2r6w29ws",
+    "name": "Product Management",
+    "description": null,
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        false
+      ],
+      [
+        "currentFTE",
+        2
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9c0h03bcsi2r6w29ws",
+    "type": "group",
+    "parent": "ckhumsh9c0h02bcsi1z155fx7",
+    "name": "Analytics Advisor",
+    "manager": null,
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9c0h05bcsiasqy2pjv",
+    "type": "function",
+    "parent": "ckhumsh9c0h02bcsi1z155fx7",
+    "name": "Implementation Services",
+    "description": null,
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        false
+      ],
+      [
+        "currentFTE",
+        6
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9c0h06bcsi2r2d2mmi",
+    "type": "function",
+    "parent": "ckhumsh9c0h02bcsi1z155fx7",
+    "name": "Sales & Marketing",
+    "description": null,
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        false
+      ],
+      [
+        "currentFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9c0h02bcsi1z155fx7",
+    "type": "group",
+    "parent": "ckhumsh9c0gzrbcsi0vs8eljc",
+    "name": "Risk Manager",
+    "manager": null,
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9c0gzrbcsi0vs8eljc",
+    "type": "group",
+    "parent": "ckhumsh9c0gzqbcsido5he97m",
+    "name": "Decision Analytics",
+    "manager": "Derek Evans",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9c0h0cbcsi8wyxc4rm",
+    "type": "function",
+    "parent": "ckhumsh9c0h0bbcsi2kfof02b",
+    "name": "Program mailings – baseline and profile QA",
+    "description": "QA prior to delivery to fulfillment outsource vendor",
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        true
+      ],
+      [
+        "requiresPHI",
+        false
+      ],
+      [
+        "currentFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9c0h0dbcsi6kccepzx",
+    "type": "function",
+    "parent": "ckhumsh9c0h0bbcsi2kfof02b",
+    "name": "Return mail processing",
+    "description": "Processing of return mail, research of correct addresses, telephonic confirmation, re-generation of outbound correspondence, fulfillment of corrected outbound correspondence",
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        true
+      ],
+      [
+        "requiresPHI",
+        false
+      ],
+      [
+        "currentFTE",
+        2
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9c0h0ebcsic9rx7uk7",
+    "type": "function",
+    "parent": "ckhumsh9c0h0bbcsi2kfof02b",
+    "name": "Call Center – telephonic outreach (inbound and outbound)",
+    "description": "Triage incoming provider calls, monitor and respond to customer service email inbox, initiate telephonic outreach, schedule escalated calls",
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        true
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        6
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9c0h0bbcsi2kfof02b",
+    "type": "group",
+    "parent": "ckhumsh9c0h0abcsi94iv7iyn",
+    "name": "Coding Advisor Operations",
+    "manager": "Melissa Barbosa",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9c0h0gbcsicvjrfbiu",
+    "type": "function",
+    "parent": "ckhumsh9c0h0fbcsib7w5dbtm",
+    "name": "Program analytics",
+    "description": "Management of program data tables, import/export of data, baseline and measurement analytics, internal/external reporting, industry trending, AI development",
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        true
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        4
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9c0h0hbcsi5ryr49tx",
+    "type": "function",
+    "parent": "ckhumsh9c0h0fbcsib7w5dbtm",
+    "name": "Research and development",
+    "description": "Analytic R&D efforts relative to technology enhancements, process improvements, module development, and revenue optimization",
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        true
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9c0h0fbcsib7w5dbtm",
+    "type": "group",
+    "parent": "ckhumsh9c0h0abcsi94iv7iyn",
+    "name": "Coding Advisor Analytics",
+    "manager": null,
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9c0h0jbcsigncz29r4",
+    "type": "function",
+    "parent": "ckhumsh9c0h0ibcsi819908pc",
+    "name": "Telephonic Outreach/Education",
+    "description": "Engage providers via telephone/webex/onsite to deliver program insights and coding related education",
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        true
+      ],
+      [
+        "requiresPHI",
+        false
+      ],
+      [
+        "currentFTE",
+        4
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9c0h0kbcsi3ssd9vae",
+    "type": "function",
+    "parent": "ckhumsh9c0h0ibcsi819908pc",
+    "name": "Audits and R&D",
+    "description": "Conduct Probe Audit activity, deliver findings to providers, assist with new module development",
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        true
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        5
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9c0h0ibcsi819908pc",
+    "type": "group",
+    "parent": "ckhumsh9c0h0abcsi94iv7iyn",
+    "name": "Coding Advisor Clinical Coding Compliance",
+    "manager": "Joan Warner",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9c0h0abcsi94iv7iyn",
+    "type": "group",
+    "parent": "ckhumsh9c0h09bcsiceqyb05c",
+    "name": "Coding Advisor",
+    "manager": "Chris Hall",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9c0h0nbcsiap2xadrl",
+    "type": "function",
+    "parent": "ckhumsh9c0h0mbcsigbo2arj8",
+    "name": "Administration",
+    "description": "Contract compliance admin??",
+    "measures": [
+      [
+        "payerFacing",
+        false
+      ],
+      [
+        "providerFacing",
+        true
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        2
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9c0h0mbcsigbo2arj8",
+    "type": "group",
+    "parent": "ckhumsh9c0h0lbcsigal85oem",
+    "name": "Carve-out Admin",
+    "manager": "Kathy Turnell",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9c0h0pbcsih1w273nl",
+    "type": "function",
+    "parent": "ckhumsh9c0h0obcsi1wwaepmz",
+    "name": "Audit",
+    "description": "Contract compliance audit??",
+    "measures": [
+      [
+        "payerFacing",
+        false
+      ],
+      [
+        "providerFacing",
+        true
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        2
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9c0h0obcsi1wwaepmz",
+    "type": "group",
+    "parent": "ckhumsh9c0h0lbcsigal85oem",
+    "name": "Carve-out Audit",
+    "manager": "Mary Correa",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9c0h0lbcsigal85oem",
+    "type": "group",
+    "parent": "ckhumsh9c0h09bcsiceqyb05c",
+    "name": "Carve-out",
+    "manager": null,
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9c0h0tbcsi4en69g6d",
+    "type": "function",
+    "parent": "ckhumsh9c0h0sbcsi6orm987i",
+    "name": "Refund Recovery",
+    "description": "Send overpayment notification and/or refund recovery letters to providers; ensure all PHI is sent to the correct provider; process outlier claims through offset/check application process to ensure fee is collected",
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        true
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        2
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9c0h0sbcsi6orm987i",
+    "type": "group",
+    "parent": "ckhumsh9c0h0rbcsi23dd5vvs",
+    "name": "Specialty Audit Recovery",
+    "manager": "Darlene Mcaleney",
+    "measures": [
+      [
+        "managerFTE",
+        0.5
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9c0h0ubcsi3wfr7lx5",
+    "type": "function",
+    "parent": "ckhumsh9c0h0rbcsi23dd5vvs",
+    "name": "Post Payment Contract Compliance Audit",
+    "description": "Identification and validation of high cost drug, durable medical equipment, home infusion therapy and renal dialysis claims overpayments",
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        true
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        10
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9c0h0vbcsi2657ciy8",
+    "type": "function",
+    "parent": "ckhumsh9c0h0rbcsi23dd5vvs",
+    "name": "Prepayment Ancillary HIT Network Pricing and Audit",
+    "description": "Audit and price out of network prepayment home infusion therapy claims",
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        true
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        0.5
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9c0h0wbcsiaf3p483d",
+    "type": "function",
+    "parent": "ckhumsh9c0h0rbcsi23dd5vvs",
+    "name": "Data Analysis and Strategic Reporting",
+    "description": "Select, scrub and stage audit files for auditors; prepare strategic reporting for management; automate claims selection process; load finalized audits to internal system",
+    "measures": [
+      [
+        "payerFacing",
+        false
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9c0h0rbcsi23dd5vvs",
+    "type": "group",
+    "parent": "ckhumsh9c0h0qbcsi1lrk9wj3",
+    "name": "Specialty Audit Operations",
+    "manager": null,
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9c0h0qbcsi1lrk9wj3",
+    "type": "group",
+    "parent": "ckhumsh9c0h09bcsiceqyb05c",
+    "name": "Specialty Audit",
+    "manager": "Rob Gaudette",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9c0h0xbcsibpuhd7dw",
+    "type": "function",
+    "parent": "ckhumsh9c0h09bcsiceqyb05c",
+    "name": "Product management",
+    "description": "Product management",
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        true
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        2
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9c0h09bcsiceqyb05c",
+    "type": "group",
+    "parent": "ckhumsh9c0h08bcsi914r4c61",
+    "name": "Payment Integrity - DC",
+    "manager": "Dave Cardell",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h11bcsi0rr76ico",
+    "type": "function",
+    "parent": "ckhumsh9d0h10bcsibdjagb1n",
+    "name": "Coding Review",
+    "description": "Review cases within the ECE and PIP (non-Clinical) work queue for correct coding and to ensure the documentation submitted supports the charges billed by the provider",
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        10
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h10bcsibdjagb1n",
+    "type": "group",
+    "parent": "ckhumsh9d0h0zbcsify4s8toi",
+    "name": "Coding Review Operations",
+    "manager": "Maryhelen Westlund",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h13bcsi22k4ds1w",
+    "type": "function",
+    "parent": "ckhumsh9d0h12bcsicjcgdswo",
+    "name": "Triage and Appeals",
+    "description": "Triage client claims to validate code edits are appropriate applied, Complete client appeals",
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        5.8
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h14bcsihc3p0lvd",
+    "type": "function",
+    "parent": "ckhumsh9d0h12bcsicjcgdswo",
+    "name": "Implementation support and maintenance",
+    "description": "Support Client implementation, client customization processes, Code Edit maintenance, edit enhancements, edit performance, monitor the Code Edit mailbox and correspondence with clients",
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        2
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h12bcsicjcgdswo",
+    "type": "group",
+    "parent": "ckhumsh9d0h0zbcsify4s8toi",
+    "name": "Coding Review Support",
+    "manager": "Glenda Haverinen",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h16bcsi8ub5fh1b",
+    "type": "function",
+    "parent": "ckhumsh9d0h15bcsib0omahvl",
+    "name": "Clinical review",
+    "description": "Review and research prepay, post service claims through review of medical records for professional, facility, home infusion and genetic testing laboratory claims",
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        true
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        14
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h15bcsib0omahvl",
+    "type": "group",
+    "parent": "ckhumsh9d0h0zbcsify4s8toi",
+    "name": "Clinical Review Operations",
+    "manager": "Mary Koehler",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h19bcsi1e61dift",
+    "type": "function",
+    "parent": "ckhumsh9d0h18bcsi9vsah8ox",
+    "name": "Case initiation and chart requests",
+    "description": "Creating the case, adding certain identifiers, verifying addresses/attention lines/preferences for delivery and more for each request made. This can be specific to the Client, the provider, the type of letter being requested, and more",
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        true
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        0
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h1abcsi8ukueyzi",
+    "type": "function",
+    "parent": "ckhumsh9d0h18bcsi9vsah8ox",
+    "name": "Chart processing",
+    "description": "Processing medical records/access to Portals/phone calls to Provider offices",
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        true
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        0
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h1bbcsi9l1v1mzm",
+    "type": "function",
+    "parent": "ckhumsh9d0h18bcsi9vsah8ox",
+    "name": "Provider Service Line",
+    "description": null,
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        true
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h1cbcsi2mfmblpm",
+    "type": "function",
+    "parent": "ckhumsh9d0h18bcsi9vsah8ox",
+    "name": "Provider invoices",
+    "description": "Chart invoice analysis",
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        true
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        0
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h1dbcsice2v2tgw",
+    "type": "function",
+    "parent": "ckhumsh9d0h18bcsi9vsah8ox",
+    "name": "Case management",
+    "description": null,
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        true
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        0
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h1ebcsi7r1m43qi",
+    "type": "function",
+    "parent": "ckhumsh9d0h18bcsi9vsah8ox",
+    "name": "Administrative support",
+    "description": "Catchall for provided detail",
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        true
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        7
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h18bcsi9vsah8ox",
+    "type": "group",
+    "parent": "ckhumsh9d0h17bcsi36ojgop9",
+    "name": "Clinical Review Investigative Assistants",
+    "manager": "Jenica Lyon",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h1gbcsi8eqf9lq2",
+    "type": "function",
+    "parent": "ckhumsh9d0h1fbcsi70jdg7mg",
+    "name": "Triage and rules management",
+    "description": "Responsible for triaging the daily claims that come in for each of their assigned clients. They also work on ensuring our insight review edits, ECE edits, Machinify edits, and Provider Match Flags are functioning the way they should and as efficiently as possible.",
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        true
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        7
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h1fbcsi70jdg7mg",
+    "type": "group",
+    "parent": "ckhumsh9d0h17bcsi36ojgop9",
+    "name": "Clinical Review Triage",
+    "manager": "Kim Nelson",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h1ibcsibgng2ueg",
+    "type": "function",
+    "parent": "ckhumsh9d0h1hbcsid9op5f6k",
+    "name": "Clinical Review Validation",
+    "description": "Validate Findings from clinical and coding teams and finalize ISR to client",
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        true
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        8
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h1hbcsid9op5f6k",
+    "type": "group",
+    "parent": "ckhumsh9d0h17bcsi36ojgop9",
+    "name": "Clinical Review Validation",
+    "manager": "Fred Daniels",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h1jbcsihd71e34e",
+    "type": "function",
+    "parent": "ckhumsh9d0h17bcsi36ojgop9",
+    "name": "Content development and maintenance",
+    "description": "Perform moderately or highly complex analyses of large claims datasets to identify patterns and outlier providers. Analyze multiple flag databases for maintenance, updating criteria.",
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        2
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h17bcsi36ojgop9",
+    "type": "group",
+    "parent": "ckhumsh9d0h0zbcsify4s8toi",
+    "name": "Clinical Review Support",
+    "manager": "Louise Dobbe",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h1kbcsib7us5ebd",
+    "type": "function",
+    "parent": "ckhumsh9d0h0zbcsify4s8toi",
+    "name": "Product Mangement",
+    "description": "Own product vision, roadmap and execution",
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        3
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h0zbcsify4s8toi",
+    "type": "group",
+    "parent": "ckhumsh9d0h0ybcsid8vlavur",
+    "name": "Pre-pay Insight and Review",
+    "manager": "Shauna Schroeder",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h1mbcsigkf5cahw",
+    "type": "function",
+    "parent": "ckhumsh9d0h1lbcsi7zqofsoh",
+    "name": "IRN Operations",
+    "description": "IRN Operations",
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        6
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h1lbcsi7zqofsoh",
+    "type": "group",
+    "parent": "ckhumsh9d0h0ybcsid8vlavur",
+    "name": "Pre-pay IRN Operations",
+    "manager": "Kate Stottlemyer",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h1obcsi63wa2ssb",
+    "type": "function",
+    "parent": "ckhumsh9d0h1nbcsiamf1gt9m",
+    "name": "Account Management",
+    "description": "Account Management",
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        true
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        5
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h1nbcsiamf1gt9m",
+    "type": "group",
+    "parent": "ckhumsh9d0h0ybcsid8vlavur",
+    "name": "Pre-pay Account Management",
+    "manager": "Lori Holmquist",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h1qbcsihiox9924",
+    "type": "function",
+    "parent": "ckhumsh9d0h1pbcsi411jd9j2",
+    "name": "Analytics",
+    "description": "Analytics",
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        8
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h1pbcsi411jd9j2",
+    "type": "group",
+    "parent": "ckhumsh9d0h0ybcsid8vlavur",
+    "name": "Pre-pay Analytics",
+    "manager": "Juston White",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h1rbcsieebsce71",
+    "type": "function",
+    "parent": "ckhumsh9d0h0ybcsid8vlavur",
+    "name": "Code Edit Development",
+    "description": "Develop new Edit concepts",
+    "measures": [
+      [
+        "payerFacing",
+        false
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        4
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h0ybcsid8vlavur",
+    "type": "group",
+    "parent": "ckhumsh9c0h08bcsi914r4c61",
+    "name": "Payment Integrity - CL",
+    "manager": "Creighton Long",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h1vbcsibevp3hud",
+    "type": "function",
+    "parent": "ckhumsh9d0h1ubcsi0ony88cc",
+    "name": "Coordination of Benefits Production",
+    "description": "Team is responsible for all production aspects of COB. This includes verifying and completing leads. Performing QA of production files. Posting files to client SFTP. Tracking and trend analysis. Revenue reporting. Investigating ad hoc client research requests.",
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        9
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h1ubcsi0ony88cc",
+    "type": "group",
+    "parent": "ckhumsh9d0h1tbcsi63hvhl0d",
+    "name": "Coordinaction of Benefits Operations",
+    "manager": "Amanda Conard",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h1xbcsi8apoe8ri",
+    "type": "function",
+    "parent": "ckhumsh9d0h1wbcsibp07f1eb",
+    "name": "Member Management Production",
+    "description": "Handles production for all member management accounts. This includes account management duties, maintaining and revising transformer scripts, client implementation, and assisting other TPL products navigate the RA platform.",
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        2
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h1wbcsibp07f1eb",
+    "type": "group",
+    "parent": "ckhumsh9d0h1tbcsi63hvhl0d",
+    "name": "Member Management Operations",
+    "manager": "Garan Yotter",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h1zbcsi6ovzdj5k",
+    "type": "function",
+    "parent": "ckhumsh9d0h1ybcsiaczba18p",
+    "name": "Coordination of Benefits Business Analysis",
+    "description": "Maintains and refines data match edits/procedures. Responsible for ETL mapping of new trade partner files. Conducts proof of concepts for sales opportunities. Handle production for the HealthNet HEDIS account. Responsible for running COB X270/271 transactions (approx. 2.5M per month) through the RA platform.",
+    "measures": [
+      [
+        "payerFacing",
+        false
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        3
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h1ybcsiaczba18p",
+    "type": "group",
+    "parent": "ckhumsh9d0h1tbcsi63hvhl0d",
+    "name": "Coordination of Benefits Business Analysis",
+    "manager": "Natasha Podstepny",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h21bcsi3w4add8v",
+    "type": "function",
+    "parent": "ckhumsh9d0h20bcsifyfr639t",
+    "name": "Trade Partner ETL / Business Intelligence",
+    "description": "Responsible for ETL of ~300 trade partner files and maintenance. Supports research and ad hoc reporting for COB, Recovery, and Member Management. Peforms production for all 8 eCOB accounts since these were not integrated into the existing TPL application.",
+    "measures": [
+      [
+        "payerFacing",
+        false
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        2
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h20bcsifyfr639t",
+    "type": "group",
+    "parent": "ckhumsh9d0h1tbcsi63hvhl0d",
+    "name": "Trading Partner ETL / Business Intelligence",
+    "manager": "Jason Norris",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h22bcsidcos207f",
+    "type": "function",
+    "parent": "ckhumsh9d0h1tbcsi63hvhl0d",
+    "name": "Eligibility Data Acquisition",
+    "description": "Research and initiate contact with payers to establish data sharing agreements. Negotiate terms of agreements with trading partners. Obtain expansion to existing agreements. Interface with CHC corporate counsel.",
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        false
+      ],
+      [
+        "currentFTE",
+        2
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h23bcsi7uz02lfi",
+    "type": "function",
+    "parent": "ckhumsh9d0h1tbcsi63hvhl0d",
+    "name": "Business Systems",
+    "description": "Handles all non-UI development of TPL application. This includes ETL of client data, new client implementation, data match script updates, reporting, and ad hoc client analysis. Open position for TPL project manager.",
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        3
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h1tbcsi63hvhl0d",
+    "type": "group",
+    "parent": "ckhumsh9d0h1sbcsi3d7nht05",
+    "name": "Third-party Liability",
+    "manager": "David Bachert",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h26bcsi8qis0stc",
+    "type": "function",
+    "parent": "ckhumsh9d0h25bcsi11buacgb",
+    "name": "DRG Audit",
+    "description": "Audit Medical records to ensure the ICD-10 diagnosis and procedure codes generating the DRG assignment are accurate and valid",
+    "measures": [
+      [
+        "payerFacing",
+        false
+      ],
+      [
+        "providerFacing",
+        true
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        50.5
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h27bcsi61tg879d",
+    "type": "function",
+    "parent": "ckhumsh9d0h25bcsi11buacgb",
+    "name": "DRG Claim Screening and Selection",
+    "description": "Screen and select claims for audit",
+    "measures": [
+      [
+        "payerFacing",
+        false
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        2.5
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h28bcsi1cy5esvo",
+    "type": "function",
+    "parent": "ckhumsh9d0h25bcsi11buacgb",
+    "name": "DRG Rebuttal and Appeal Processing / QA",
+    "description": "Respond to provider rebuttals and appeals. Work with physician reviewers to perform re-review of coding reviews when requested.",
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        true
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        7
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h25bcsi11buacgb",
+    "type": "group",
+    "parent": "ckhumsh9d0h24bcsi82nld58g",
+    "name": "DRG Validation Audit",
+    "manager": "Alisa Kuehn",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h2bbcsihxy4hufg",
+    "type": "function",
+    "parent": "ckhumsh9d0h2abcsi5gt9ff20",
+    "name": "Hospital Charge Audit",
+    "description": "Identification of overpayments, policy-based and/or erroneous billing, on both inpatient and outpatient facility claims paid at a percentage of billed charges",
+    "measures": [
+      [
+        "payerFacing",
+        false
+      ],
+      [
+        "providerFacing",
+        true
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        26
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h2abcsi5gt9ff20",
+    "type": "group",
+    "parent": "ckhumsh9d0h29bcsicq7e8gp9",
+    "name": "Hospital Charge Audit Operations",
+    "manager": "Deb Haile",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h2dbcsiccgaaucv",
+    "type": "function",
+    "parent": "ckhumsh9d0h2cbcsi8skz6nni",
+    "name": "Auditor Support & Case Processing",
+    "description": "Responsible for completing bill breakdowns which involves converting paper itemized bills into a systemically readable format via OCR and manual correction.  Team is responsible for processing completed audits and sending audit results to providers. Also responsible for processing cases after provider review in order to move cases to eligibility review and refund recovery.",
+    "measures": [
+      [
+        "payerFacing",
+        false
+      ],
+      [
+        "providerFacing",
+        true
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        5.5
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h2ebcsibon6cdgq",
+    "type": "function",
+    "parent": "ckhumsh9d0h2cbcsi8skz6nni",
+    "name": "Chart retrieval and patient authorization",
+    "description": "Responsible for requesting itemized billed and medical records via email, fax or mail. Also makes follow-up calls on those records, checks medical records for completeness, letters and calls for patient authorizations as well.",
+    "measures": [
+      [
+        "payerFacing",
+        false
+      ],
+      [
+        "providerFacing",
+        true
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        3
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h2fbcsicsxy2bty",
+    "type": "function",
+    "parent": "ckhumsh9d0h2cbcsi8skz6nni",
+    "name": "Case management and overflow",
+    "description": "Handles day to day assignment, management and re-prioritization of work on bill breakdown, case processing and correspondence team.  Also backfills these roles where needed.  Performs triage on incoming emails from auditors and external sources.  Back-up for client/providers issues, handles client calls, handles ad-hoc pre-pay cases, back up for inventory management, back up for contractor pay and expenses, back up for auditor trip approvals and case assignment",
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        true
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h2cbcsi8skz6nni",
+    "type": "group",
+    "parent": "ckhumsh9d0h29bcsicq7e8gp9",
+    "name": "Hospital Charge Audit Support",
+    "manager": "Erica Coronado",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h2hbcsid1axemss",
+    "type": "function",
+    "parent": "ckhumsh9d0h2gbcsi3ww663na",
+    "name": "Eligibility",
+    "description": "Focused on pre-audit review of claims to ensure paid at percent of charge, note any exclusions and/or updates to ensure we are reviewing only claims that are paid percent of charge and that we will have an opportunity to recover on.  Team also reviews claims post-audit to determine correct refund amount prior to sending out refund letter and/or validating client-determined refund amount",
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        4
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h2ibcsi0nnme3ok",
+    "type": "function",
+    "parent": "ckhumsh9d0h2gbcsi3ww663na",
+    "name": "Appeals and Contract Auditor Support",
+    "description": "Day-to-day support of contract auditors, Admin support for appeals & rebuttals, ordering of supplies for remote auditors, processing of expenses and auditor pay for contract auditors, processing of audit fee checks, manual updates to screening selections completed in Allteryx",
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        true
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h2gbcsi3ww663na",
+    "type": "group",
+    "parent": "ckhumsh9d0h29bcsicq7e8gp9",
+    "name": "Hospital Charge Audit Client Management",
+    "manager": "Val Pincon",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h2jbcsi0vh7bo78",
+    "type": "function",
+    "parent": "ckhumsh9d0h29bcsicq7e8gp9",
+    "name": "Screening",
+    "description": "Writing case selection rules, screening claims, performs 2nd level appeals and gap-fills when appeals work is too large.  Occasionally this team will also audit and assists with review of cases for client inquires and presentations",
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        true
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        1.5
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h2kbcsi5j9w5zy2",
+    "type": "function",
+    "parent": "ckhumsh9d0h29bcsicq7e8gp9",
+    "name": "Appeals",
+    "description": "Rebuttals and appeals.  Manages screening of some claims and screening “ineligibles” mailbox which are cases that auditors believe need re-review",
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        true
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h2lbcsih73m45qh",
+    "type": "function",
+    "parent": "ckhumsh9d0h29bcsicq7e8gp9",
+    "name": "Business Analysis",
+    "description": "IT ticket management, requirements generation and UAT testing for enhancements in both Beacon and SAFE, owner of Napersoft letter creation/change for HCA",
+    "measures": [
+      [
+        "payerFacing",
+        false
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h2mbcsic1dsd719",
+    "type": "function",
+    "parent": "ckhumsh9d0h29bcsicq7e8gp9",
+    "name": "Training, Provider Policies, Payer Communications",
+    "description": "Responsible for performing new hire training, team SOPs, training and communication to auditors of monthly updates from CMS, provider policies, payer reimbursement policies, management of Payer special projects.",
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        true
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h2nbcsid029fxfj",
+    "type": "function",
+    "parent": "ckhumsh9d0h29bcsicq7e8gp9",
+    "name": "Inventory Management/Audit Coordination",
+    "description": "Responsible for assigning auditors to facilities, working with auditor and facility to ensure policies are understood, systemically entered and followed",
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        true
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h29bcsicq7e8gp9",
+    "type": "group",
+    "parent": "ckhumsh9d0h24bcsi82nld58g",
+    "name": "Hospital Charge Audit",
+    "manager": "Tricia Gott",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h2pbcsi816b6767",
+    "type": "function",
+    "parent": "ckhumsh9d0h2obcsi3opthx9x",
+    "name": "DRG Claim Screening and Selection Optimization",
+    "description": "Maximize yield of claim selection processes and systems",
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        true
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h2qbcsiao0n721z",
+    "type": "function",
+    "parent": "ckhumsh9d0h2obcsi3opthx9x",
+    "name": "OSR/WPR scheduling",
+    "description": "DRG/CVA OSR/WPR scheduling and facilitation",
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        true
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h2rbcsiew661v6a",
+    "type": "function",
+    "parent": "ckhumsh9d0h2obcsi3opthx9x",
+    "name": "Provider Liaison",
+    "description": "Collaborate with other Payment Integrity areas to identify and mitigate barriers to timely, cost effective audits and recovery.  Makes outreach to “problem” providers for retrieval, audit response, audit fees, MR fees, and refunds to understand issues, work to build a relationship to reduce barriers and increase audit/refund flow.",
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        true
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h2obcsi3opthx9x",
+    "type": "group",
+    "parent": "ckhumsh9d0h24bcsi82nld58g",
+    "name": "Post-pay Optimization",
+    "manager": "Carrie Proctor",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h2ubcsi83655h06",
+    "type": "function",
+    "parent": "ckhumsh9d0h2tbcsifr5vg09y",
+    "name": "HBV Clinical Audit",
+    "description": "Initial manual clinical audit and inspection of submitted hospital provider medical record documentation to validate payer payment accuracy of site of service provider billed.",
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        true
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        10
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h2vbcsi72adcegz",
+    "type": "function",
+    "parent": "ckhumsh9d0h2tbcsifr5vg09y",
+    "name": "HBV Rebuttal Audit",
+    "description": "Manual clinical audit and inspection of additional submitted hospital provider medical record documentation to re-validate payer payment accuracy of site of service provider billed and generate new Provider communication with specific rationale related to the screening criteria",
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        true
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        4
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h2tbcsifr5vg09y",
+    "type": "group",
+    "parent": "ckhumsh9d0h2sbcsib2bd2zpo",
+    "name": "Hospital Billing Validation Operations",
+    "manager": "Melissa Tsolinas",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h2xbcsi6eod3ihb",
+    "type": "function",
+    "parent": "ckhumsh9d0h2wbcsifm0ybrlp",
+    "name": "HBV Clinical Audit Admin",
+    "description": "Direct Provider communications assuring receipt of HBV findings, respond to Provider / Client specific questions, interact with third-party entities (i.e. external law firms or consulting companies hired by Providers to ‘appeal’ results)",
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        true
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        3
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h2ybcsi72ho13gd",
+    "type": "function",
+    "parent": "ckhumsh9d0h2wbcsifm0ybrlp",
+    "name": "HBV Rebuttal Audit Admin",
+    "description": "Respond to payer and provider specific requests for historic and current rebuttal requests, which includes client specific research and support with financial reporting and impact analysis",
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        true
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h2wbcsifm0ybrlp",
+    "type": "group",
+    "parent": "ckhumsh9d0h2sbcsib2bd2zpo",
+    "name": "Hospital Billing Validation Support",
+    "manager": "Emily Zeif",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h2sbcsib2bd2zpo",
+    "type": "group",
+    "parent": "ckhumsh9d0h24bcsi82nld58g",
+    "name": "Hospital Billing Validation Audit",
+    "manager": "Pat Dear",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h24bcsi82nld58g",
+    "type": "group",
+    "parent": "ckhumsh9d0h1sbcsi3d7nht05",
+    "name": "Post-pay Audit",
+    "manager": null,
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9e0h31bcsigy8e6ie0",
+    "type": "function",
+    "parent": "ckhumsh9e0h30bcsidbto9fpa",
+    "name": "Analytics",
+    "description": "Perform a variety of analytics to assist in daily operations, such as claim selection, sizing of growth opportunities, provide insights on client/serviceline performance to aid in revenue optimization efforts",
+    "measures": [
+      [
+        "payerFacing",
+        false
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        5
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9e0h32bcsic95kggii",
+    "type": "function",
+    "parent": "ckhumsh9e0h30bcsidbto9fpa",
+    "name": "Reporting",
+    "description": "Create the logic and process for creating all required reports from DSS3 Database",
+    "measures": [
+      [
+        "payerFacing",
+        false
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        3
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9e0h30bcsidbto9fpa",
+    "type": "group",
+    "parent": "ckhumsh9e0h2zbcsi3wce017r",
+    "name": "Post-pay Analytics and Reporting",
+    "manager": "Tricia Sbertoli",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9e0h35bcsi8jowdny2",
+    "type": "function",
+    "parent": "ckhumsh9e0h34bcsidwuv03tx",
+    "name": "Contract Acquisition",
+    "description": "Work with a multitude of clients (payers) to identify necessary contracts or contractual data required to be instilled into CHC business processes. The allocation of such contracts is conducted through a multi-faceted process; direct interaction with the client, CHC Account Management, or within client systems where access is permitted.",
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        false
+      ],
+      [
+        "currentFTE",
+        4
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9e0h36bcsiep0cgy8t",
+    "type": "function",
+    "parent": "ckhumsh9e0h34bcsidwuv03tx",
+    "name": "Contract Modeling",
+    "description": "Interpret contracts and enter data",
+    "measures": [
+      [
+        "payerFacing",
+        false
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        false
+      ],
+      [
+        "currentFTE",
+        5
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9e0h37bcsieunfc5xo",
+    "type": "function",
+    "parent": "ckhumsh9e0h34bcsidwuv03tx",
+    "name": "Contract Training and QA",
+    "description": "A QA policy is currently upheld to ensure each Analyst and matrix update ticket contains all necessary data/detail. QA huddles are held bi-weekly to allow for continued education and compliance maintenance.",
+    "measures": [
+      [
+        "payerFacing",
+        false
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        false
+      ],
+      [
+        "currentFTE",
+        2
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9e0h38bcsibdek3f79",
+    "type": "function",
+    "parent": "ckhumsh9e0h34bcsidwuv03tx",
+    "name": "Contract Rules Management",
+    "description": "Enter JIRA tickets, UAT, & Manage logic updates.  To allow for matrix updates a ticket is required within JIRA, client loads are conducted bi-weekly to monthly.",
+    "measures": [
+      [
+        "payerFacing",
+        false
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        false
+      ],
+      [
+        "currentFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9e0h39bcsi7jac99yb",
+    "type": "function",
+    "parent": "ckhumsh9e0h34bcsidwuv03tx",
+    "name": "Contract Rules Analysis",
+    "description": "Assess & validate data accuracy;  manage matrix to fall out “Response” files to allocate business priority & risk, reconciles provider data through implementation/maintenance phases, responsible for I&O translation, code/table maintenance, and other data analysis as deemed.",
+    "measures": [
+      [
+        "payerFacing",
+        false
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        false
+      ],
+      [
+        "currentFTE",
+        2
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9e0h34bcsidwuv03tx",
+    "type": "group",
+    "parent": "ckhumsh9e0h33bcsigrzufu1o",
+    "name": "Post-pay Contract Management",
+    "manager": "Aprille Vranek",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9e0h3bbcsi9nluej3j",
+    "type": "function",
+    "parent": "ckhumsh9e0h3abcsia32c79p7",
+    "name": "Payment remittance",
+    "description": "Process Invoice payments according to fee compliance: payer provider, state, contracted vendor rates; monitor said inventory with applicable TAT’s.",
+    "measures": [
+      [
+        "payerFacing",
+        false
+      ],
+      [
+        "providerFacing",
+        true
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        4
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9e0h3cbcsiezng0kt6",
+    "type": "function",
+    "parent": "ckhumsh9e0h3abcsia32c79p7",
+    "name": "Dispute Management",
+    "description": "Oversee and mitigate payments out of compliance prn; Build/Maintain strong relationships/ arrangements among copy vendors or other high volume or high cost providers; escalate inventory to Sr. Mgnt prn to allow for business decisions to follow.",
+    "measures": [
+      [
+        "payerFacing",
+        false
+      ],
+      [
+        "providerFacing",
+        true
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9e0h3abcsia32c79p7",
+    "type": "group",
+    "parent": "ckhumsh9e0h33bcsigrzufu1o",
+    "name": "Post-pay Medical Record Payment Management",
+    "manager": "Selma Rico",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9e0h33bcsigrzufu1o",
+    "type": "group",
+    "parent": "ckhumsh9e0h2zbcsi3wce017r",
+    "name": "Post-pay Financial Risk Management",
+    "manager": "Rachael Spiotto",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9e0h3ebcsi7h5o6i6q",
+    "type": "function",
+    "parent": "ckhumsh9e0h3dbcsidf4fas1s",
+    "name": "Correspondence",
+    "description": "Handle inbound and outbound correspondence with providers, including checks",
+    "measures": [
+      [
+        "payerFacing",
+        false
+      ],
+      [
+        "providerFacing",
+        true
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        3
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9e0h3fbcsi04s9fzgd",
+    "type": "function",
+    "parent": "ckhumsh9e0h3dbcsidf4fas1s",
+    "name": "Revision Calls and Provider Data Maintenance",
+    "description": "Responsible for handling inbound and outbound phone calls and emails from Health Systems and facilities to obtain clinical CVA/DRG signoffs",
+    "measures": [
+      [
+        "payerFacing",
+        false
+      ],
+      [
+        "providerFacing",
+        true
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        3
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9e0h3gbcsicm1z712a",
+    "type": "function",
+    "parent": "ckhumsh9e0h3dbcsidf4fas1s",
+    "name": "Collections",
+    "description": "Responsible for handling inbound and outbound phone calls and emails from Health Systems and facilities to obtain overpayments (checks) and offset approval for all Equiclaim audits: DRG, HCA, HBV, CVA, CCA, Carve Out",
+    "measures": [
+      [
+        "payerFacing",
+        false
+      ],
+      [
+        "providerFacing",
+        true
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        9
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9e0h3hbcsi3y6i8ckr",
+    "type": "function",
+    "parent": "ckhumsh9e0h3dbcsidf4fas1s",
+    "name": "Refund Recovery Coordination",
+    "description": "Responsible for managing and processing payments for all Equiclaim audits: DRG, HCA, HBV, CVA, CCA, Carve Out.",
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        12
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9e0h3ibcsifqwi3kkh",
+    "type": "function",
+    "parent": "ckhumsh9e0h3dbcsidf4fas1s",
+    "name": "Billing Operations/QA",
+    "description": "Responsible for preparing check reports and validate posted funds for invoices for all Equiclaim audits: DRG, HCA, HBV, CVA, CCA, Carve Out; Analyze fee discrepancies and delayed fee payments. Work with audit teams, account management and recovery team to address and resolve issues; Client compliance reporting",
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        2
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9e0h3jbcsi0cgo2h3a",
+    "type": "function",
+    "parent": "ckhumsh9e0h3dbcsidf4fas1s",
+    "name": "Optimization Business Analyst",
+    "description": "Plan and design business processes, conduct gap analysis on existing processes and conduct quality checks to improve inventory flow and revenue results",
+    "measures": [
+      [
+        "payerFacing",
+        false
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        false
+      ],
+      [
+        "currentFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9e0h3kbcsiars1897y",
+    "type": "function",
+    "parent": "ckhumsh9e0h3dbcsidf4fas1s",
+    "name": "TPL Business Analyst",
+    "description": "Act as Payer BA, Claims BA and/or Denial Management BA; Plan and design scripts to load data and apply business logic and client-specific rules to score claims – automated claim screening; Point of Contact for TPL Recovery team reported issues; widely-varied additional tasks",
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        3
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9e0h3lbcsi55lh150o",
+    "type": "function",
+    "parent": "ckhumsh9e0h3dbcsidf4fas1s",
+    "name": "TPL Recovery Processing",
+    "description": "Generate and send Overpayment letters ; Post checks and EOBs for processing; Outbound calls to Payers to verify member information and eligibility",
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        5
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9e0h3dbcsidf4fas1s",
+    "type": "group",
+    "parent": "ckhumsh9e0h2zbcsi3wce017r",
+    "name": "Refund Recovery Operations",
+    "manager": "Dayna Quast",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9e0h3obcsi4ojldlto",
+    "type": "function",
+    "parent": "ckhumsh9e0h3nbcsiay7z85vh",
+    "name": "Customer Service",
+    "description": "Perform routine outreach to Health Information Mgmt departments",
+    "measures": [
+      [
+        "payerFacing",
+        false
+      ],
+      [
+        "providerFacing",
+        true
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        10
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9e0h3pbcsieyhs3z5n",
+    "type": "function",
+    "parent": "ckhumsh9e0h3nbcsiay7z85vh",
+    "name": "Retrieval Support",
+    "description": "Provides medical record administrative support",
+    "measures": [
+      [
+        "payerFacing",
+        false
+      ],
+      [
+        "providerFacing",
+        true
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        5
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9e0h3nbcsiay7z85vh",
+    "type": "group",
+    "parent": "ckhumsh9e0h3mbcsihxduhp6m",
+    "name": "Post-pay Pre-audit Administrative Services",
+    "manager": "Lorraine Reilly",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9e0h3rbcsibi8o7gi7",
+    "type": "function",
+    "parent": "ckhumsh9e0h3qbcsidmyo0x62",
+    "name": "Incoming Paper Mail",
+    "description": "Handles all incoming paper mail to the Lombard office, excluding E&E Team",
+    "measures": [
+      [
+        "payerFacing",
+        false
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9e0h3sbcsidputg60e",
+    "type": "function",
+    "parent": "ckhumsh9e0h3qbcsidmyo0x62",
+    "name": "Incoming E-mail",
+    "description": "Processes incoming RightFax documents",
+    "measures": [
+      [
+        "payerFacing",
+        false
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9e0h3tbcsi597obi8d",
+    "type": "function",
+    "parent": "ckhumsh9e0h3qbcsidmyo0x62",
+    "name": "Outgoing Correspondence",
+    "description": "Pre and Post Audit outgoing correspondence",
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        true
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        4
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9e0h3ubcsi4zlvht07",
+    "type": "function",
+    "parent": "ckhumsh9e0h3qbcsidmyo0x62",
+    "name": "Implementations",
+    "description": "Supports operational new client implementations, enhancements and process improvements",
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        4
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9e0h3qbcsidmyo0x62",
+    "type": "group",
+    "parent": "ckhumsh9e0h3mbcsihxduhp6m",
+    "name": "Post-pay Operations Support",
+    "manager": "Tony Costello",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9e0h3wbcsicq1d1lep",
+    "type": "function",
+    "parent": "ckhumsh9e0h3vbcsi69cs7e02",
+    "name": "Inventory Management",
+    "description": "Review status and reason codes for inventory within the AST lifecycle to ensure that it is compliant with internal TAT and external SARS/PARS/CARS expectations",
+    "measures": [
+      [
+        "payerFacing",
+        false
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        3
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9e0h3xbcsi1n4aafrw",
+    "type": "function",
+    "parent": "ckhumsh9e0h3vbcsi69cs7e02",
+    "name": "Administrative Services QA",
+    "description": "Review AST processes for Quality Assurance purposes",
+    "measures": [
+      [
+        "payerFacing",
+        false
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        5
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9e0h3ybcsi1kdm14tg",
+    "type": "function",
+    "parent": "ckhumsh9e0h3vbcsi69cs7e02",
+    "name": "Compliance Support",
+    "description": "Provides support for incoming appeals and maintains provider compliance tools",
+    "measures": [
+      [
+        "payerFacing",
+        false
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        3
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9e0h3zbcsifmyy126m",
+    "type": "function",
+    "parent": "ckhumsh9e0h3vbcsi69cs7e02",
+    "name": "Client Services",
+    "description": "Leverages client system access to handle a variety of tasks",
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        6
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9e0h3vbcsi69cs7e02",
+    "type": "group",
+    "parent": "ckhumsh9e0h3mbcsihxduhp6m",
+    "name": "Post-pay Compliance",
+    "manager": "Laurice Talbert",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9e0h40bcsi5n25ht74",
+    "type": "function",
+    "parent": "ckhumsh9e0h3mbcsihxduhp6m",
+    "name": "Training",
+    "description": "Responsible for new hire training and maximizing employee output through evaluation and enhancement of employees’ skillsets",
+    "measures": [
+      [
+        "payerFacing",
+        false
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        false
+      ],
+      [
+        "currentFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9e0h3mbcsihxduhp6m",
+    "type": "group",
+    "parent": "ckhumsh9e0h2zbcsi3wce017r",
+    "name": "Post-pay Administrative Services",
+    "manager": "Kelly Erickson",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9e0h2zbcsi3wce017r",
+    "type": "group",
+    "parent": "ckhumsh9d0h1sbcsi3d7nht05",
+    "name": "Post-pay Service Operations",
+    "manager": "Marie Monzel",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9e0h42bcsicdyzddre",
+    "type": "function",
+    "parent": "ckhumsh9e0h41bcsi1c0j8o1d",
+    "name": "Account Management",
+    "description": "Account Management",
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        true
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        10
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9e0h43bcsi0ion3uey",
+    "type": "function",
+    "parent": "ckhumsh9e0h41bcsi1c0j8o1d",
+    "name": "Implementations",
+    "description": "Implementations",
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        6
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9e0h41bcsi1c0j8o1d",
+    "type": "group",
+    "parent": "ckhumsh9d0h1sbcsi3d7nht05",
+    "name": "Post-pay Account Management",
+    "manager": "Bryan Childress",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9e0h44bcsigcc7e4e6",
+    "type": "function",
+    "parent": "ckhumsh9d0h1sbcsi3d7nht05",
+    "name": "Product Mangement",
+    "description": "Own product vision, roadmap and execution",
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9d0h1sbcsi3d7nht05",
+    "type": "group",
+    "parent": "ckhumsh9c0h08bcsi914r4c61",
+    "name": "Payment Integrity - KH",
+    "manager": "Karl Huff",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9c0h08bcsi914r4c61",
+    "type": "group",
+    "parent": "ckhumsh9c0h07bcsia1kic8e8",
+    "name": "Payment Integrity",
+    "manager": null,
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h49bcsi88hm9219",
+    "type": "function",
+    "parent": "ckhumsh9f0h48bcsid0nrcybx",
+    "name": "Content Operations",
+    "description": null,
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        32
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h48bcsid0nrcybx",
+    "type": "group",
+    "parent": "ckhumsh9f0h47bcsihxeadfi4",
+    "name": "Clinical Content Operations",
+    "manager": "Dorian Harris",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h47bcsihxeadfi4",
+    "type": "group",
+    "parent": "ckhumsh9f0h46bcsi9k8e95b0",
+    "name": "Clinical Content",
+    "manager": "Miriam Burnett",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h4cbcsi9hfr34hh",
+    "type": "function",
+    "parent": "ckhumsh9f0h4bbcsiaxwzftjm",
+    "name": "Product Analytics",
+    "description": null,
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        5
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h4bbcsiaxwzftjm",
+    "type": "group",
+    "parent": "ckhumsh9f0h4abcsig2to7cct",
+    "name": "Product Analytics",
+    "manager": "Michael Bradigan",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h4ebcsi8nfphmee",
+    "type": "function",
+    "parent": "ckhumsh9f0h4dbcsi3j7073sl",
+    "name": "Technical Analytics",
+    "description": null,
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        3
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h4dbcsi3j7073sl",
+    "type": "group",
+    "parent": "ckhumsh9f0h4abcsig2to7cct",
+    "name": "Technical Analytics",
+    "manager": "April Folgar",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h4fbcsicselbsy6",
+    "type": "function",
+    "parent": "ckhumsh9f0h4abcsig2to7cct",
+    "name": "Data Science",
+    "description": null,
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h4abcsig2to7cct",
+    "type": "group",
+    "parent": "ckhumsh9f0h46bcsi9k8e95b0",
+    "name": "CCM Analytics",
+    "manager": "Sheila Miller",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h4hbcsi53jzh4fl",
+    "type": "function",
+    "parent": "ckhumsh9f0h4gbcsif4pc1zde",
+    "name": "Product Management",
+    "description": null,
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        7
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h4gbcsif4pc1zde",
+    "type": "group",
+    "parent": "ckhumsh9f0h46bcsi9k8e95b0",
+    "name": "CCM Product Management",
+    "manager": "Mark Turner",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h4ibcsidf5p28nl",
+    "type": "function",
+    "parent": "ckhumsh9f0h46bcsi9k8e95b0",
+    "name": "Admin / Other",
+    "description": null,
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        3
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h46bcsi9k8e95b0",
+    "type": "group",
+    "parent": "ckhumsh9f0h45bcsi2dbdbmsv",
+    "name": "CCM - Product",
+    "manager": "Amy Larsson",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h45bcsi2dbdbmsv",
+    "type": "group",
+    "parent": "ckhumsh9c0h07bcsia1kic8e8",
+    "name": "Clinical Claims Management",
+    "manager": null,
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9c0h07bcsia1kic8e8",
+    "type": "group",
+    "parent": "ckhumsh9c0gzqbcsido5he97m",
+    "name": "Payment Accuracy",
+    "manager": "Rick McLaughlin",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h4mbcsihtm698du",
+    "type": "function",
+    "parent": "ckhumsh9f0h4lbcsi498ueva8",
+    "name": "Product Management",
+    "description": null,
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        false
+      ],
+      [
+        "currentFTE",
+        2
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h4lbcsi498ueva8",
+    "type": "group",
+    "parent": "ckhumsh9f0h4kbcsidss78zog",
+    "name": "Reimbursement Manager",
+    "manager": null,
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h4obcsidfrqaug1",
+    "type": "function",
+    "parent": "ckhumsh9f0h4nbcsi7bryay9n",
+    "name": "Client Delivery",
+    "description": null,
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        false
+      ],
+      [
+        "currentFTE",
+        6
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h4pbcsideyodcec",
+    "type": "function",
+    "parent": "ckhumsh9f0h4nbcsi7bryay9n",
+    "name": "Operations",
+    "description": null,
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        false
+      ],
+      [
+        "currentFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h4nbcsi7bryay9n",
+    "type": "group",
+    "parent": "ckhumsh9f0h4kbcsidss78zog",
+    "name": "Reimbursement Solutions Shared",
+    "manager": null,
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h4kbcsidss78zog",
+    "type": "group",
+    "parent": "ckhumsh9f0h4jbcsievgz9afp",
+    "name": "Reimbursement Solutions",
+    "manager": "Nick Raup",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h4sbcsibelsd0ns",
+    "type": "function",
+    "parent": "ckhumsh9f0h4rbcsi5oph2avq",
+    "name": "Client Delivery",
+    "description": null,
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        false
+      ],
+      [
+        "currentFTE",
+        6
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h4tbcsi0qfo5kuh",
+    "type": "function",
+    "parent": "ckhumsh9f0h4rbcsi5oph2avq",
+    "name": "Operations Management",
+    "description": null,
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        false
+      ],
+      [
+        "currentFTE",
+        2
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h4ubcsi51ap5tdj",
+    "type": "function",
+    "parent": "ckhumsh9f0h4rbcsi5oph2avq",
+    "name": "Product Management",
+    "description": null,
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        false
+      ],
+      [
+        "currentFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h4vbcsiawe0acoq",
+    "type": "function",
+    "parent": "ckhumsh9f0h4rbcsi5oph2avq",
+    "name": "Solution Architects",
+    "description": null,
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        false
+      ],
+      [
+        "currentFTE",
+        2
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h4wbcsiasdc4uz6",
+    "type": "function",
+    "parent": "ckhumsh9f0h4rbcsi5oph2avq",
+    "name": "Technical Services",
+    "description": null,
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        false
+      ],
+      [
+        "currentFTE",
+        6
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h4rbcsi5oph2avq",
+    "type": "group",
+    "parent": "ckhumsh9f0h4qbcsifv1b9sfg",
+    "name": "Provider Manager",
+    "manager": null,
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h4qbcsifv1b9sfg",
+    "type": "group",
+    "parent": "ckhumsh9f0h4jbcsievgz9afp",
+    "name": "Provider Mgr",
+    "manager": "Dave Smith",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h4jbcsievgz9afp",
+    "type": "group",
+    "parent": "ckhumsh9c0gzqbcsido5he97m",
+    "name": "Network Mgmt",
+    "manager": null,
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h50bcsi4a9d5zn1",
+    "type": "function",
+    "parent": "ckhumsh9f0h4zbcsi7gye4m5n",
+    "name": "Engagement Management",
+    "description": null,
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        9
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h4zbcsi7gye4m5n",
+    "type": "group",
+    "parent": "ckhumsh9f0h4ybcsi1ew6c37j",
+    "name": "CCM Engagement Management",
+    "manager": "John Doyle",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h51bcsi79v88kxk",
+    "type": "function",
+    "parent": "ckhumsh9f0h4ybcsi1ew6c37j",
+    "name": "Engagement Management",
+    "description": null,
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        7
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h4ybcsi1ew6c37j",
+    "type": "group",
+    "parent": "ckhumsh9f0h4xbcsi55wc7l37",
+    "name": "CCM Client Services",
+    "manager": "Melissa Cross",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h53bcsigk3sbv69",
+    "type": "function",
+    "parent": "ckhumsh9f0h52bcsid3tdghwz",
+    "name": "Client Services",
+    "description": null,
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        10
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h52bcsid3tdghwz",
+    "type": "group",
+    "parent": "ckhumsh9f0h4xbcsi55wc7l37",
+    "name": "CCM Total Payment Service",
+    "manager": "Donna Dugan",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h55bcsi571c388z",
+    "type": "function",
+    "parent": "ckhumsh9f0h54bcsicu1n3gns",
+    "name": "Quality Management",
+    "description": null,
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        25
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h54bcsicu1n3gns",
+    "type": "group",
+    "parent": "ckhumsh9f0h4xbcsi55wc7l37",
+    "name": "CCM Quality Management",
+    "manager": "Chris John",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h58bcsi5qzacj5a",
+    "type": "function",
+    "parent": "ckhumsh9f0h57bcsiexzu5qno",
+    "name": "Application Engineering",
+    "description": null,
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        9
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h57bcsiexzu5qno",
+    "type": "group",
+    "parent": "ckhumsh9f0h56bcsihev37w5y",
+    "name": "CCM Technical Services Engineering",
+    "manager": "Guruprasad Sathiyanarayanan",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h59bcsi326o2d11",
+    "type": "function",
+    "parent": "ckhumsh9f0h56bcsihev37w5y",
+    "name": "Technical Services",
+    "description": null,
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        9
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h56bcsihev37w5y",
+    "type": "group",
+    "parent": "ckhumsh9f0h4xbcsi55wc7l37",
+    "name": "CCM Technical Services",
+    "manager": "Jay Kinzer",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h5dbcsibv5x5u73",
+    "type": "function",
+    "parent": "ckhumsh9f0h5cbcsiax0meomd",
+    "name": "Solution Consulting",
+    "description": null,
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        3
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h5cbcsiax0meomd",
+    "type": "group",
+    "parent": "ckhumsh9f0h5bbcsif9u5c6l0",
+    "name": "CCM Claims Solutions (1)",
+    "manager": "Jack Sanders",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h5gbcsi0do2ewwh",
+    "type": "function",
+    "parent": "ckhumsh9f0h5fbcsi6z47geru",
+    "name": "Program Management",
+    "description": null,
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        3
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h5fbcsi6z47geru",
+    "type": "group",
+    "parent": "ckhumsh9f0h5ebcsif9yx9ph0",
+    "name": "CCM Claims Solutions (2) - Program Management",
+    "manager": "Robert Millspaugh",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h5hbcsi7t1q2xjt",
+    "type": "function",
+    "parent": "ckhumsh9f0h5ebcsif9yx9ph0",
+    "name": "Solution Consulting",
+    "description": null,
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        8
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h5ebcsif9yx9ph0",
+    "type": "group",
+    "parent": "ckhumsh9f0h5bbcsif9u5c6l0",
+    "name": "CCM Claims Solutions (2)",
+    "manager": "Reny Biju",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h5kbcsia02w8sab",
+    "type": "function",
+    "parent": "ckhumsh9f0h5jbcsihatc8r9a",
+    "name": "Program Management",
+    "description": null,
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        2
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h5jbcsihatc8r9a",
+    "type": "group",
+    "parent": "ckhumsh9f0h5ibcsi0gyz294i",
+    "name": "CCM Claims Solutions (3) - Program Management",
+    "manager": "Dan Poulin",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h5lbcsi5l1ceu53",
+    "type": "function",
+    "parent": "ckhumsh9f0h5ibcsi0gyz294i",
+    "name": "Solution Consulting",
+    "description": null,
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        7
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h5ibcsi0gyz294i",
+    "type": "group",
+    "parent": "ckhumsh9f0h5bbcsif9u5c6l0",
+    "name": "CCM Claims Solutions (3)",
+    "manager": "Christopher Mirabito",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h5nbcsi7z23efcp",
+    "type": "function",
+    "parent": "ckhumsh9f0h5mbcsi352e5fpg",
+    "name": "Solution Consulting",
+    "description": null,
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        4
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h5mbcsi352e5fpg",
+    "type": "group",
+    "parent": "ckhumsh9f0h5bbcsif9u5c6l0",
+    "name": "CCM Claims Solutions (4)",
+    "manager": "Hamza Olmez",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h5bbcsif9u5c6l0",
+    "type": "group",
+    "parent": "ckhumsh9f0h5abcsi71vg94ku",
+    "name": "CCM Claims Solutions",
+    "manager": null,
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h5obcsi8hs116td",
+    "type": "function",
+    "parent": "ckhumsh9f0h5abcsi71vg94ku",
+    "name": "Service Delivery",
+    "description": null,
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h5abcsi71vg94ku",
+    "type": "group",
+    "parent": "ckhumsh9f0h4xbcsi55wc7l37",
+    "name": "CCM Service Delivery",
+    "manager": "Nicole Long",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h5sbcsi32o6f8rz",
+    "type": "function",
+    "parent": "ckhumsh9f0h5rbcsi0r2k1hxj",
+    "name": "Documentation Development",
+    "description": null,
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        6
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h5rbcsi0r2k1hxj",
+    "type": "group",
+    "parent": "ckhumsh9f0h5qbcsi5py340eq",
+    "name": "CCM Documentation Development",
+    "manager": "Sarah Trama",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h5tbcsi9sox8l5i",
+    "type": "function",
+    "parent": "ckhumsh9f0h5qbcsi5py340eq",
+    "name": "CCM Training",
+    "description": null,
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        5
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h5qbcsi5py340eq",
+    "type": "group",
+    "parent": "ckhumsh9f0h5pbcsi0kl75t6i",
+    "name": "CCM Documentation and Training",
+    "manager": "Lesley Brown",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h5ubcsidmfx8f6i",
+    "type": "function",
+    "parent": "ckhumsh9f0h5pbcsi0kl75t6i",
+    "name": "Solution Development",
+    "description": null,
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h5pbcsi0kl75t6i",
+    "type": "group",
+    "parent": "ckhumsh9f0h4xbcsi55wc7l37",
+    "name": "CCM Service Methodology and Education",
+    "manager": "Lisa McTear",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h5ybcsiaivngi2g",
+    "type": "function",
+    "parent": "ckhumsh9f0h5xbcsibtd84x8e",
+    "name": "Client Delivery Services",
+    "description": null,
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        26
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h5xbcsibtd84x8e",
+    "type": "group",
+    "parent": "ckhumsh9f0h5wbcsic08a8ikm",
+    "name": "CCM Client Delivery Services (1)",
+    "manager": "Sandra Behjoue",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9g0h60bcsi5zheamv7",
+    "type": "function",
+    "parent": "ckhumsh9f0h5zbcsidqas49yd",
+    "name": "Client Delivery Services",
+    "description": null,
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        13
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h5zbcsidqas49yd",
+    "type": "group",
+    "parent": "ckhumsh9f0h5wbcsic08a8ikm",
+    "name": "CCM Client Delivery Services (2)",
+    "manager": "Subhanshu Gupta",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h5wbcsic08a8ikm",
+    "type": "group",
+    "parent": "ckhumsh9f0h5vbcsigdis33n7",
+    "name": "CCM Client Delivery Services",
+    "manager": null,
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9g0h61bcsigh7gc9mz",
+    "type": "function",
+    "parent": "ckhumsh9f0h5vbcsigdis33n7",
+    "name": "Client Delivery",
+    "description": null,
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        5
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h5vbcsigdis33n7",
+    "type": "group",
+    "parent": "ckhumsh9f0h4xbcsi55wc7l37",
+    "name": "CCM Client Delivery",
+    "manager": "Sandeep Naik",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9g0h64bcsi8dxv8ig4",
+    "type": "function",
+    "parent": "ckhumsh9g0h63bcsi1gpxgkq1",
+    "name": "Solution Design",
+    "description": null,
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        5
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9g0h63bcsi1gpxgkq1",
+    "type": "group",
+    "parent": "ckhumsh9g0h62bcsiag983uwn",
+    "name": "CCM Emerging Solutions Consulting",
+    "manager": "Mike Spellman",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9g0h66bcsig9ezcray",
+    "type": "function",
+    "parent": "ckhumsh9g0h65bcsig4pdhdjt",
+    "name": "Solution Design",
+    "description": null,
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        3
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9g0h65bcsig4pdhdjt",
+    "type": "group",
+    "parent": "ckhumsh9g0h62bcsiag983uwn",
+    "name": "Network Management Solutions",
+    "manager": "Alan Mosley",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9g0h67bcsihfmq283t",
+    "type": "function",
+    "parent": "ckhumsh9g0h62bcsiag983uwn",
+    "name": "Solution Design",
+    "description": null,
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        false
+      ],
+      [
+        "requiresPHI",
+        true
+      ],
+      [
+        "currentFTE",
+        8
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9g0h62bcsiag983uwn",
+    "type": "group",
+    "parent": "ckhumsh9f0h4xbcsi55wc7l37",
+    "name": "CCM Solution Design",
+    "manager": "Kristina Rollings",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9f0h4xbcsi55wc7l37",
+    "type": "group",
+    "parent": "ckhumsh9c0gzqbcsido5he97m",
+    "name": "CCM - Services",
+    "manager": "Terri Gregorio",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9g0h6abcsiezqq1xbx",
+    "type": "function",
+    "parent": "ckhumsh9g0h69bcsi4y2vgt7a",
+    "name": "Administration",
+    "description": null,
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        true
+      ],
+      [
+        "requiresPHI",
+        false
+      ],
+      [
+        "currentFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9g0h6bbcsihtqj64ee",
+    "type": "function",
+    "parent": "ckhumsh9g0h69bcsi4y2vgt7a",
+    "name": "Applied Analytics",
+    "description": null,
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        true
+      ],
+      [
+        "requiresPHI",
+        false
+      ],
+      [
+        "currentFTE",
+        3
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9g0h6cbcsi4ektfoke",
+    "type": "function",
+    "parent": "ckhumsh9g0h69bcsi4y2vgt7a",
+    "name": "Client Delivery",
+    "description": null,
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        true
+      ],
+      [
+        "requiresPHI",
+        false
+      ],
+      [
+        "currentFTE",
+        11
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9g0h6dbcsi9sue2up9",
+    "type": "function",
+    "parent": "ckhumsh9g0h69bcsi4y2vgt7a",
+    "name": "Implementation Services",
+    "description": null,
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        true
+      ],
+      [
+        "requiresPHI",
+        false
+      ],
+      [
+        "currentFTE",
+        3
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9g0h6ebcsicd1s9alr",
+    "type": "function",
+    "parent": "ckhumsh9g0h69bcsi4y2vgt7a",
+    "name": "Product Management",
+    "description": null,
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        true
+      ],
+      [
+        "requiresPHI",
+        false
+      ],
+      [
+        "currentFTE",
+        3
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9g0h6fbcsi9srg5yhc",
+    "type": "function",
+    "parent": "ckhumsh9g0h69bcsi4y2vgt7a",
+    "name": "Support Services",
+    "description": null,
+    "measures": [
+      [
+        "payerFacing",
+        true
+      ],
+      [
+        "providerFacing",
+        true
+      ],
+      [
+        "requiresPHI",
+        false
+      ],
+      [
+        "currentFTE",
+        0
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9g0h69bcsi4y2vgt7a",
+    "type": "group",
+    "parent": "ckhumsh9g0h68bcsihtz10vym",
+    "name": "Value Based Care - Provider",
+    "manager": null,
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9g0h68bcsihtz10vym",
+    "type": "group",
+    "parent": "ckhumsh9c0gzqbcsido5he97m",
+    "name": "Value Based Care",
+    "manager": "Rob Capobianco",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  },
+  {
+    "id": "ckhumsh9c0gzqbcsido5he97m",
+    "type": "group",
+    "parent": null,
+    "name": "NFM",
+    "manager": "Carolyn Wukitch",
+    "measures": [
+      [
+        "managerFTE",
+        1
+      ]
+    ]
+  }
+]

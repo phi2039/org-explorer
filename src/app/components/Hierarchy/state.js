@@ -3,7 +3,6 @@ import React, {
   useContext,
   useReducer,
 } from 'react';
-import produce, { current } from 'immer';
 
 const HierarchyStateContext = createContext();
 const HierarchyDispatchContext = createContext();
@@ -111,7 +110,7 @@ const load = ({
 // TODO: Switch to immer (performance improvement?)
 const hierarchyReducer = (state, action) => {
   let nextState = state;
-  console.log('dispatch', action);
+  console.log('dispatch[Hierarchy]', action);
   switch (action.type) {
     case 'load': {
       nextState = load(action.payload.data);
@@ -186,7 +185,7 @@ const hierarchyReducer = (state, action) => {
       throw new Error(`Unhandled action type: ${action.type}`);
     }
   }
-  console.log('nextState', nextState);
+  console.log('nextState[Hierarchy]', nextState);
   return nextState;
 };
 

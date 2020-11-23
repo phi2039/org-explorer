@@ -5,7 +5,7 @@ import React, {
 } from 'react';
 import { PropTypes } from 'prop-types';
 
-import Modal from './Modal';
+import Modal from '../common/Modal';
 import FormSelector from './Forms/FormSelector';
 
 const ModalForm = ({

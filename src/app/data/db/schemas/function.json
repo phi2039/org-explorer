@@ -1,0 +1,52 @@
+{
+  "title": "function schema",
+  "version": 0,
+  "description": "describes a single work function",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "primary": true
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "function"
+      ]
+    },
+    "parent": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 256
+    },
+    "payerFacing": {
+      "type": "boolean"
+    },
+    "providerFacing": {
+      "type": "boolean"
+    },
+    "requiresPHI": {
+      "type": "boolean"
+    },
+    "currentFTE": {
+      "type": "number",
+      "minimum": 0
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "type",
+    "currentFTE"
+  ],
+  "indexes": [
+    "parent"
+  ]
+}

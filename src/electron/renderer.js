@@ -6,46 +6,46 @@ import { ipcRenderer } from 'electron';
 import App from '../app/components/App';
 
 import { ViewProvider, useView } from '../app/state/ViewContext';
-import { DataProvider, useDataContext } from '../app/state/DataContext';
-import { EntityProvider, useEntityState, useEntityDispatch } from '../app/state/EntityContext';
+import { PersistenceProvider, usePersistenceDispatch } from '../app/state/PersistenceContext';
 
 import handleMenuAction from './menu-action-handler';
 
+import useWhyDidYouUpdate from '../app/hooks/useWhyDidYouUpdate';
 import '../../public/index.css';
 
-// if (process.env.NODE_ENV === 'development') {
-//   const whyDidYouRender = require('@welldone-software/why-did-you-render'); // eslint-disable-line global-require
-//   whyDidYouRender(React, {
-//     trackAllPureComponents: true,
-//   });
-// }
+const loadDataThunk = entities => async (dispatch, getState, extraArg) => {
+  const persistenceService = extraArg;
+  await persistenceService.load(entities);
 
-const loadEntitiesAction = dispatch => data => {
   dispatch({
     type: 'load',
     payload: {
-      data,
+      entities,
     },
   });
 };
 
 const DataHandler = () => {
-  const { source: [, setSource], entities: { load } } = useDataContext();
+  const persistenceDispatch = usePersistenceDispatch();
+  const loadEntities = useCallback(entities => persistenceDispatch(loadDataThunk(entities)), [persistenceDispatch]);
 
-  const entityDispatch = useEntityDispatch();
+  const setSource = useCallback(source => persistenceDispatch({
+    type: 'set_source',
+    payload: {
+      source,
+    },
+  }), [persistenceDispatch]);
 
-  const loadEntities = useCallback(loadEntitiesAction(entityDispatch), [entityDispatch]);
+  useWhyDidYouUpdate('Main Renderer', { setSource, loadEntities });
 
   useEffect(() => {
     ipcRenderer.removeAllListeners('data-load');
-    ipcRenderer.on('data-load', (event, { data, source }) => {
+    ipcRenderer.on('data-load', (event, { source, entities }) => {
       setSource(source);
-      load(data);
-
-      loadEntities(data);
+      loadEntities(entities.nodes);
     });
     ipcRenderer.send('data-reload');
-  }, [setSource, load, loadEntities]);
+  }, [setSource, loadEntities]);
   return null;
 };
 
@@ -62,13 +62,11 @@ const MenuHandler = () => {
 };
 
 ReactDOM.render((
-  <EntityProvider>
-    <DataProvider initialEntities={{}} initialSource={null}>
-      <DataHandler />
-      <ViewProvider initialView="hierarchy">
-        <MenuHandler />
-        <App />
-      </ViewProvider>
-    </DataProvider>
-  </EntityProvider>
+  <PersistenceProvider initialSource={null}>
+    <DataHandler />
+    <ViewProvider initialView="hierarchy">
+      <MenuHandler />
+      <App />
+    </ViewProvider>
+  </PersistenceProvider>
 ), document.getElementById('root'));

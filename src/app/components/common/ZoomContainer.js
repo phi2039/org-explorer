@@ -32,7 +32,7 @@ const ZoomContainer = ({ zoom, setZoom, children }) => {
 
   const getTransform = z => `scale(${z})`;
   return (
-    <div ref={container} style={{ minHeight: '100vh', minWidth: '100%' }}>
+    <div ref={container}>
       <div style={{ transform: getTransform(zoom), transformOrigin: 'top center' }}>
         {children}
       </div>

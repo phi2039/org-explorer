@@ -49,6 +49,27 @@ const addLazyEvalChildren = nodes => node => {
   };
 };
 
+const getAncestors = (node, nodes) => {
+  const ancestors = [];
+
+  let currentNode = node;
+  while (currentNode.parent) {
+    ancestors.push(currentNode.parent);
+    currentNode = nodes[currentNode.parent];
+  }
+
+  return ancestors;
+};
+
+const addLazyEvalAncestors = nodes => node => ({
+  ...node,
+  get ancestors() {
+    delete this.ancestors;
+    this.ancestors = getAncestors(node, nodes);
+    return this.ancestors;
+  },
+});
+
 const getDescendants = (node, nodes) => {
   const { children = [] } = node;
 
@@ -77,19 +98,20 @@ const getEnhancers = docs => [
   addLazyEvalPath(docs),
   addLazyEvalChildren(docs),
   addLazyEvalDescendants(docs),
+  addLazyEvalAncestors(docs),
 ];
 
 const enhanceDocument = (doc, enhancers) => flow(enhancers)(doc);
 
 const enhanceDocuments = (docs) => {
-  const enhancers = getEnhancers(docs);
+  const result = {};
+  const enhancers = getEnhancers(result);
 
   Object.entries(docs).forEach(([id, attrs]) => {
-    // eslint-disable-next-line no-param-reassign
-    docs[id] = enhanceDocument(attrs, enhancers);
+    result[id] = enhanceDocument(attrs, enhancers);
   });
 
-  return docs;
+  return result;
 };
 
 const mutateThunk = mutations => async (dispatch, getState, extraArg) => {
@@ -141,8 +163,18 @@ const fetchThunk = ids => async (dispatch, getState, extraArg) => {
   });
 };
 
-export const fetchAction = dispatch => mutations => {
-  dispatch(fetchThunk(mutations));
+export const fetchAction = dispatch => ids => {
+  dispatch(fetchThunk(ids));
+};
+
+// TODO: This is ugly. Should not be using dispatch for general message-passing
+const saveThunk = () => async (dispatch, getState, extraArg) => {
+  const persistenceService = extraArg;
+  await persistenceService.flush();
+};
+
+export const saveAction = dispatch => location => {
+  dispatch(saveThunk(location));
 };
 
 const getInitialState = source => ({

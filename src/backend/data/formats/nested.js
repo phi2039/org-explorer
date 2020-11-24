@@ -1,9 +1,6 @@
-const cuid = require('cuid');
-
 const { normalize, schema } = require('normalizr');
 const { pick } = require('lodash');
-
-const { readFile } = require('./store/file-store');
+const cuid = require('cuid');
 
 const ensureIds = (node, parent = null) => {
   const id = node.id || cuid();
@@ -49,41 +46,19 @@ const nodeArraySchema = new schema.Array({
 
 nodeSchema.define({ children: nodeArraySchema });
 
-// const mapEntity = entity =>
 const normalizeData = data => {
   if (!data) {
     return {};
   }
 
-  const normalizedData = normalize(data, nodeSchema);
+  const enhanced = ensureIds(data[0] || data);
+
+  const normalizedData = normalize(enhanced, nodeSchema);
+
   return {
-    entities: normalizedData.entities,
+    entities: normalizedData.entities.nodes,
     root: normalizedData.result,
   };
 };
 
-const OrgDataService = () => {
-  let root = null;
-
-  const getRoot = () => root;
-
-  const getEntities = () => normalizeData(root).entities;
-
-  const loadFile = async (location, format) => {
-    const data = await readFile(location, format);
-    root = ensureIds(data[0] || data); // eslint-disable-line prefer-destructuring
-  };
-
-  const saveFile = async (location, format) => {
-
-  };
-
-  return {
-    loadFile,
-    saveFile,
-    getRoot,
-    getEntities,
-  };
-};
-
-module.exports = OrgDataService;
+module.exports = normalizeData;

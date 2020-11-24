@@ -12,13 +12,13 @@ const MenuItem = ({ Icon, tooltip, onClick }) => (
   </ActionButton>
 );
 
-const FloatingMenu = ({ items = [] }) => {
+const FloatingMenu = ({ offsetTop, items = [] }) => {
   const [opened, setOpened] = useState(false);
   const toggle = () => setOpened(!opened);
 
   return (
     <div className="actionMenu">
-      <ul>
+      <ul style={{ top: offsetTop }}>
         <>
           <MenuButton opened={opened} toggleMenu={toggle} />
           {

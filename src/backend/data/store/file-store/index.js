@@ -1,15 +1,15 @@
 const path = require('path');
 const isUrl = require('is-url');
 
-const readLocalFile = require('./local');
+const { readFile: readLocalFile, writeFile: writeLocalFile } = require('./local');
 const readRemoteFile = require('./url');
 
-const loadYamlData = require('../loaders/yaml-loader');
-const loadExcelData = require('../loaders/excel-loader');
+const yamlLoader = require('../../loaders/yaml-loader');
+const excelLoader = require('../../loaders/excel-loader');
 
 const dataTypeLoaders = {
-  excel: loadExcelData,
-  yaml: loadYamlData,
+  excel: excelLoader,
+  yaml: yamlLoader,
 };
 
 const fileTypeLoaders = {
@@ -34,8 +34,24 @@ const readLocal = async (file, format) => {
   }
 
   const buf = await readLocalFile(file);
-  const data = await loader(buf);
+  const data = await loader.load(buf);
   return data;
+};
+
+const writeLocal = async (data, file, format) => {
+  let loader;
+  if (format) {
+    loader = dataTypeLoaders[format];
+  } else {
+    const extension = path.extname(file);
+    loader = fileTypeLoaders[extension];
+  }
+  if (!loader) {
+    throw new Error('Unknown file type');
+  }
+
+  const buf = await loader.store(data);
+  await writeLocalFile(file, buf);
 };
 
 const readRemote = async (url, format) => {
@@ -56,6 +72,14 @@ const readFile = async (spec, format) => {
   return data;
 };
 
+const writeFile = async (data, spec, format) => {
+  if (isUrl(spec)) {
+    throw new Error('cannot write to URL locations');
+  }
+  await writeLocal(data, spec, format);
+};
+
 module.exports = {
   readFile,
+  writeFile,
 };

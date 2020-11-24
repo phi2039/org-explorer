@@ -29,7 +29,7 @@
 }
 
 .actionMenu li.menuButton {
-  padding: 25x;
+  padding: 25px;
   margin: -25px;
   transition: ease-in-out transform .2s;
 }

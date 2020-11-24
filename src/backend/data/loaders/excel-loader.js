@@ -1,7 +1,7 @@
 const _ = require('lodash');
 const readXlsxFile = require('read-excel-file/node');
 
-const streamify = require('../../util/streamify');
+const streamify = require('../../../lib/util/streamify');
 
 const groupSheetName = 'Team';
 const groupFieldNameMap = {
@@ -83,4 +83,7 @@ const loadExcelData = async (fileName) => {
   return tree;
 };
 
-module.exports = loadExcelData;
+module.exports = {
+  load: loadExcelData,
+  store: () => { throw new Error('loader does not support writing'); },
+};

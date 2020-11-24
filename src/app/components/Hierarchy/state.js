@@ -116,6 +116,9 @@ const hierarchyReducer = (state, action) => {
       nextState = load(action.payload.data);
       const { nodes } = nextState;
       nextState.nodes = mergeState(nodes, state.nodes || {});
+      if (state.hierarchy.activeRoot !== state.hierarchy.root && nextState.nodes[state.hierarchy.activeRoot]) {
+        nextState.hierarchy.activeRoot = state.hierarchy.activeRoot;
+      }
       break;
     }
     case 'set_active_root': {

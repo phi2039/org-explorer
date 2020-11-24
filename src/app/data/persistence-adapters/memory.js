@@ -4,40 +4,36 @@ import cuid from 'cuid';
 
 import { cloneDeep } from 'lodash';
 
-const mapDoc = ({
-  id,
-  type,
-  parent,
-  name,
-  description,
-  manager,
-  payerFacing,
-  providerFacing,
-  requiresPHI,
-  currentFTE,
-  managerFTE,
-}) => ({
-  id,
-  type,
-  parent,
-  name,
-  description,
-  manager,
-  measures: [
-    ['payerFacing', type === 'group' ? null : payerFacing === 'Yes'],
-    ['providerFacing', type === 'group' ? null : providerFacing === 'Yes'],
-    ['requiresPHI', type === 'group' ? null : requiresPHI === 'Yes'],
-    ['currentFTE', type === 'group' ? null : (currentFTE || 0)],
-    ['managerFTE', type === 'group' ? (managerFTE || 1) : null],
-  ].filter(([, val]) => val !== null),
-});
+import { ipcRenderer } from 'electron'; // eslint-disable-line import/no-extraneous-dependencies
 
 // TODO: Enforce immutability for returned objects
-const MemoryPersistenceAdapter = () => {
-  console.log('initialize entity service');
-
+const MemoryPersistenceAdapter = ({
+  backupInterval = 30000,
+} = {}) => {
   const data = {
     documents: {},
+    version: 0,
+    backupVersion: 0,
+  };
+
+  const saveBackup = () => {
+    if (data.backupVersion !== data.version) {
+      ipcRenderer.send('data-save-wip', data.documents);
+    }
+    data.backupVersion = data.version;
+  };
+
+  const backupJob = setInterval(saveBackup, backupInterval);
+
+  /* ***Adapter Implementation*** */
+  const destroy = () => {
+    clearInterval(backupJob);
+  };
+
+  const flush = async () => {
+    ipcRenderer.send('data-save', data.documents);
+    data.version = 0;
+    data.backupVersion = 0;
   };
 
   const applyFilter = async (filter) => {
@@ -89,9 +85,9 @@ const MemoryPersistenceAdapter = () => {
   const load = async (documents) => {
     console.log('load documents');
     data.documents = cloneDeep(documents);
+    data.version = 0;
+    data.backupVersion = 0;
     console.dir(data.documents);
-
-    console.log(JSON.stringify(Object.values(data.documents).map(mapDoc)));
   };
 
   // TODO: Is this the right way to enforce immutability?
@@ -101,6 +97,7 @@ const MemoryPersistenceAdapter = () => {
       ...doc,
     };
     data.documents[id] = enhanced;
+    data.version += 1;
     return enhanced;
   };
 
@@ -135,6 +132,7 @@ const MemoryPersistenceAdapter = () => {
   const remove = async (id) => {
     const doc = data.documents[id];
     if (doc) {
+      data.version += 1;
       delete data.documents[id];
     } else {
       console.warn('no document found for id:', id);
@@ -148,7 +146,9 @@ const MemoryPersistenceAdapter = () => {
   };
 
   return {
+    destroy,
     load,
+    flush,
     get,
     getMany,
     find,

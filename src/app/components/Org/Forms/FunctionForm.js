@@ -9,9 +9,6 @@ import TextInput from './common/TextInput';
 import NumericInput from './common/NumericInput';
 import Checkbox from './common/Checkbox';
 
-const convertYesNoToBool = value => (value === 'Yes') || value === true;
-const convertBoolToYesNo = value => value ? 'Yes' : 'No';
-
 const validationSchema = Yup.object({
   name: Yup.string()
     .max(64, 'Must be 64 characters or less')
@@ -38,16 +35,16 @@ const FunctionForm = forwardRef(({
     name: entity.name || '',
     description: entity.description || '',
     currentFTE: entity.currentFTE || 1,
-    payerFacing: convertYesNoToBool(entity.payerFacing),
-    providerFacing: convertYesNoToBool(entity.providerFacing),
-    requiresPHI: convertYesNoToBool(entity.requiresPHI),
+    payerFacing: entity.payerFacing,
+    providerFacing: entity.providerFacing,
+    requiresPHI: entity.requiresPHI,
   };
 
   const handleSubmit = useCallback(values => onSubmit({
     ...values,
-    payerFacing: convertBoolToYesNo(values.payerFacing),
-    providerFacing: convertBoolToYesNo(values.providerFacing),
-    requiresPHI: convertBoolToYesNo(values.requiresPHI),
+    payerFacing: values.payerFacing,
+    providerFacing: values.providerFacing,
+    requiresPHI: values.requiresPHI,
   }), [onSubmit]);
 
   return (
@@ -105,9 +102,9 @@ FunctionForm.propTypes = {
     name: PropTypes.string,
     description: PropTypes.string,
     currentFTE: PropTypes.number,
-    payerFacing: PropTypes.string,
-    providerFacing: PropTypes.string,
-    requiresPHI: PropTypes.string,
+    payerFacing: PropTypes.bool,
+    providerFacing: PropTypes.bool,
+    requiresPHI: PropTypes.bool,
   }),
 };
 
@@ -115,9 +112,9 @@ FunctionForm.defaultProps = {
   mode: 'none',
   entity: {
     type: 'function',
-    payerFacing: 'No',
-    providerFacing: 'No',
-    requiresPHI: 'No',
+    payerFacing: false,
+    providerFacing: false,
+    requiresPHI: false,
   },
   onSubmit: () => {},
 };

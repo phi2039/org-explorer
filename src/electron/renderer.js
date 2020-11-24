@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 
-import { ipcRenderer } from 'electron';
+import { ipcRenderer } from 'electron'; // eslint-disable-line import/no-extraneous-dependencies
 
 import App from '../app/components/App';
 
@@ -25,9 +25,15 @@ const loadDataThunk = entities => async (dispatch, getState, extraArg) => {
   });
 };
 
+const saveDataThunk = () => async (dispatch, getState, extraArg) => {
+  const persistenceService = extraArg;
+  await persistenceService.flush();
+};
+
 const DataHandler = () => {
   const persistenceDispatch = usePersistenceDispatch();
   const loadEntities = useCallback(entities => persistenceDispatch(loadDataThunk(entities)), [persistenceDispatch]);
+  const saveData = useCallback(() => persistenceDispatch(saveDataThunk()), [persistenceDispatch]);
 
   const setSource = useCallback(source => persistenceDispatch({
     type: 'set_source',
@@ -40,12 +46,15 @@ const DataHandler = () => {
 
   useEffect(() => {
     ipcRenderer.removeAllListeners('data-load');
-    ipcRenderer.on('data-load', (event, { source, entities }) => {
+    ipcRenderer.on('load-data', (event, { source, entities }) => {
       setSource(source);
-      loadEntities(entities.nodes);
+      loadEntities(entities);
+    });
+    ipcRenderer.on('save-data', () => {
+      saveData();
     });
     ipcRenderer.send('data-reload');
-  }, [setSource, loadEntities]);
+  }, [setSource, loadEntities, saveData]);
   return null;
 };
 

@@ -38,18 +38,34 @@ import FullPageSpinner from '../common/FullPageSpinner';
 import { usePersistenceDispatch, usePersistenceState, mutateAction } from '../../state/PersistenceContext';
 
 const Workspace = styled.div`
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 `;
 
 const ScrollContainer = styled(IndianaScrollContainer)`
   overflow: hidden;
-  height: 100vh;
+  flex-grow: 1;
   width: 100%;
   cursor: grab;
   border: solid 1px #aaa;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: stretch;
+`;
+
+const FocusHeaderContainer = styled.div`
+  height: ${({ height = '2.5rem' }) => height};
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(173, 205, 235, 0.5);
+  font-weight: 600;
+  border-top: solid 1px #aaa;
 `;
 
 const modalActionForms = {
@@ -87,6 +103,12 @@ export const reduceHierarchyData = (entities) => {
   };
 };
 
+const FocusHeader = ({ children }) => (
+  <FocusHeaderContainer>
+    {children}
+  </FocusHeaderContainer>
+);
+
 const Org = ({
   ...props
 }) => {
@@ -118,6 +140,8 @@ const Org = ({
     [hierarchyDispatch],
   );
 
+  const isFocused = root !== activeRoot;
+
   const expandAll = useCallback(expandAllAction(hierarchyDispatch), [hierarchyDispatch]);
   const collapseAll = useCallback(collapseAllAction(hierarchyDispatch), [hierarchyDispatch]);
 
@@ -140,14 +164,21 @@ const Org = ({
   return (
     <Workspace {...props}>
       <ModalActions forms={modalActionForms} commitChanges={commitChanges} />
-      <Menu actions={{
-        collapseAll,
-        expandAll,
-        zoomIn,
-        zoomOut,
-        resetFocus,
-      }}
+      <Menu
+        actions={{
+          collapseAll,
+          expandAll,
+          zoomIn,
+          zoomOut,
+          resetFocus,
+        }}
+        offsetTop={isFocused ? '2.5rem' : 0}
       />
+      {isFocused && (
+        <FocusHeader>
+          <span>{[activeRoot, ...entities[activeRoot].ancestors].reverse().map(id => entities[id].name).join(' -> ')}</span>
+        </FocusHeader>
+      )}
       <ScrollContainer hideScrollbars={false}>
         <ZoomContainer zoom={zoom} setZoom={setZoom}>
           <Hierarchy render={(node, nodeProps) => (

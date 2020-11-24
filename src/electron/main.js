@@ -1,3 +1,4 @@
+const path = require('path');
 const {
   app,
   BrowserWindow,
@@ -10,7 +11,7 @@ const {
 const isDev = require('electron-is-dev');
 const userPrefs = require('./user-prefs');
 
-const OrgDataService = require('../lib/data/service');
+const OrgDataService = require('../backend/data/service');
 
 const dataService = OrgDataService();
 
@@ -22,13 +23,10 @@ if (require('electron-squirrel-startup')) { // eslint-disable-line global-requir
 let mainWindow;
 
 const loadDataFile = async (location) => {
-  await dataService.loadFile(location);
-  const data = dataService.getRoot();
-  const entities = dataService.getEntities();
+  const entities = await dataService.loadFile(location);
 
   userPrefs.setLastFile(location);
-  mainWindow.webContents.send('data-load', {
-    data,
+  mainWindow.webContents.send('load-data', {
     entities,
     source: location,
   });
@@ -51,14 +49,48 @@ const onLoadDataFile = async () => {
   }
 };
 
-const onSaveDataFile = async () => {
-  const fileName = dialog.showSaveDialog({
+const getSaveLocation = async (ignoreLastLocation) => {
+  const lastLocation = ignoreLastLocation ? undefined : userPrefs.getLastFile();
+  if (lastLocation) {
+    return lastLocation;
+  }
+  const result = await dialog.showSaveDialog({
     filters: [
       { name: 'Org Files', extensions: ['org'] },
     ],
   });
-  if (fileName) {
-    dataService.saveFile(fileName);
+  if (result.canceled) {
+    return null;
+  }
+
+  return result.filePath;
+};
+
+const saveDataFile = async (entities, maybeLocation) => {
+  const location = maybeLocation || (await getSaveLocation());
+  if (location) {
+    await dataService.saveFile(entities, location);
+    console.log('saved', location);
+  }
+};
+
+const onSaveDataFile = async () => {
+  mainWindow.webContents.send('save-data');
+};
+
+// TODO: Trigger create by persistence provider
+const onNewFile = async () => {
+  const location = await getSaveLocation(true);
+  if (location) {
+    await saveDataFile({
+      root: {
+        id: 'root',
+        type: 'group',
+        parent: null,
+        name: '[Untitled]',
+      },
+    }, location);
+    await loadDataFile(location);
   }
 };
 
@@ -125,6 +157,13 @@ const generateMenu = () => {
       label: 'File',
       submenu: [
         {
+          label: 'New',
+          click() {
+            onNewFile();
+          },
+        },
+        { type: 'separator' },
+        {
           label: 'Open',
           click() {
             onLoadDataFile();
@@ -187,6 +226,24 @@ ipcMain.on('load-page', (event, arg) => {
 
 ipcMain.on('data-reload', () => {
   const location = userPrefs.getLastFile();
-  console.log(`${location ? 'Loading' : 'Not loading'} most recent file${`: ${location}` || ''}`);
-  loadDataFile(location);
+  console.log(`[Persistence]${location ? 'Loading' : 'Not loading'} most recent file${`: ${location}` || ''}`);
+  if (location) {
+    loadDataFile(location);
+  }
+});
+
+ipcMain.on('data-save', (event, entities) => {
+  if (entities) {
+    saveDataFile(entities);
+  }
+});
+
+ipcMain.on('data-save-wip', (event, entities) => {
+  const lastLocation = userPrefs.getLastFile();
+  if (lastLocation) {
+    const parsed = path.parse(lastLocation);
+    const location = path.join(parsed.dir, `~${parsed.base}`);
+    console.log(`[Persistence]Saving backup file: ${location}`);
+    saveDataFile(entities, location);
+  }
 });

@@ -31,32 +31,32 @@ export const metrics = [
   {
     name: 'PHIInstances',
     aggregation: 'countWhere',
-    params: [isEqual('requiresPHI', 'Yes')],
+    params: [isEqual('requiresPHI', true)],
   },
   {
     name: 'payerFacingInstances',
     aggregation: 'countWhere',
-    params: [isEqual('payerFacing', 'Yes')],
+    params: [isEqual('payerFacing', true)],
   },
   {
     name: 'providerFacingInstances',
     aggregation: 'countWhere',
-    params: [isEqual('providerFacing', 'Yes')],
+    params: [isEqual('providerFacing', true)],
   },
   {
     name: 'PHIFTE',
     aggregation: 'sumWhere',
-    params: [isEqual('requiresPHI', 'Yes'), 'currentFTE'],
+    params: [isEqual('requiresPHI', true), 'currentFTE'],
   },
   {
     name: 'payerFacingFTE',
     aggregation: 'sumWhere',
-    params: [isEqual('payerFacing', 'Yes'), 'currentFTE'],
+    params: [isEqual('payerFacing', true), 'currentFTE'],
   },
   {
     name: 'providerFacingFTE',
     aggregation: 'sumWhere',
-    params: [isEqual('providerFacing', 'Yes'), 'currentFTE'],
+    params: [isEqual('providerFacing', true), 'currentFTE'],
   },
 ];
 

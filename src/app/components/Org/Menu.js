@@ -18,6 +18,7 @@ const Menu = ({
     zoomOut,
     resetFocus,
   },
+  offsetTop,
 }) => {
   const menuItems = [
     resetFocus && {
@@ -32,7 +33,7 @@ const Menu = ({
     zoomOut && { action: zoomOut, icon: FaMinusCircle, tooltip: 'Zoom Out' },
   ].filter(item => item);
 
-  return <FloatingMenu items={menuItems} />;
+  return <FloatingMenu items={menuItems} offsetTop={offsetTop} />;
 };
 
 Menu.propTypes = {
@@ -43,10 +44,15 @@ Menu.propTypes = {
     zoomOut: PropTypes.func,
     resetFocus: PropTypes.func,
   }),
+  offsetTop: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]),
 };
 
 Menu.defaultProps = {
   actions: {},
+  offsetTop: 0,
 };
 
 export default Menu;

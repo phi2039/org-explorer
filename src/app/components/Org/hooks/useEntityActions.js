@@ -20,9 +20,14 @@ const Entity = entity => {
 
   const mutate = useCallback(mutateAction(persistenceDispatch), [mutateAction]);
 
+  const pasteClipboard = useCallback(subject => {
+    mutate({ update: [{ id: subject, values: { parent: entity.id } }] });
+    resetClipboardAction(actionDispatch)();
+  }, [entity, mutate, actionDispatch]);
+
   const onEdit = useCallback(() => beginActionAction(actionDispatch)('edit', entity), [actionDispatch, entity]);
   const onCut = useMemo(() => clipboard ? null : () => setClipboardAction(actionDispatch)(entity.id), [actionDispatch, entity, clipboard]);
-  const onPaste = useMemo(() => clipboard ? resetClipboardAction(actionDispatch) : null, [actionDispatch, clipboard]);
+  const onPaste = useMemo(() => clipboard ? () => pasteClipboard(clipboard) : null, [clipboard, pasteClipboard]);
   const onCreateChild = useCallback(type => beginActionAction(actionDispatch)(
     'create',
     { type, parent: entity.id, path: [entity.path, entity.id].filter(path => !!path).join('/') },

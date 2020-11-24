@@ -1,7 +1,7 @@
 {
   "name": "org-explorer",
   "productName": "Org  Explorer",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Labor analysis tool",
   "main": ".webpack/main",
   "scripts": {
@@ -133,13 +133,8 @@
     "is-url": "^1.2.4",
     "js-yaml": "^3.13.1",
     "lodash": "^4.17.15",
-    "ml-matrix": "^6.5.3",
     "node-yaml": "^4.0.1",
     "normalizr": "^3.3.0",
-    "pathfinding": "^0.4.18",
-    "paths-js": "^0.4.10",
-    "pouchdb-adapter-indexeddb": "^7.2.2",
-    "pouchdb-adapter-memory": "^7.2.2",
     "predicate": "^2.0.0",
     "prop-types": "^15.7.2",
     "react": "^16.13.0",
@@ -152,16 +147,10 @@
     "react-indiana-drag-scroll": "^1.6.0",
     "react-modal": "^3.11.2",
     "react-planet": "^1.0.1",
-    "react-query": "^2.26.2",
     "react-spinners": "^0.9.0",
     "read-excel-file": "^4.0.2",
-    "resize-observer-polyfill": "^1.5.1",
-    "rxdb": "^9.9.0",
     "styled-components": "^4.2.0",
     "styled-system": "^5.1.5",
-    "unstated": "^2.1.1",
-    "unstated-debug": "^0.3.2",
-    "webdatarocks": "^1.2.0",
     "yup": "^0.29.3"
   }
 }

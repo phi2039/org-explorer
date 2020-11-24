@@ -1,7 +1,7 @@
 {
   "name": "org-explorer",
   "productName": "Org  Explorer",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Labor analysis tool",
   "main": ".webpack/main",
   "scripts": {
@@ -149,6 +149,7 @@
     "react-planet": "^1.0.1",
     "react-spinners": "^0.9.0",
     "read-excel-file": "^4.0.2",
+    "run-s": "^0.0.0",
     "styled-components": "^4.2.0",
     "styled-system": "^5.1.5",
     "yup": "^0.29.3"

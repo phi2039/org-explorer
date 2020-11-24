@@ -1,6 +1,0 @@
-- id: root
-  type: group
-  parent: null
-  name: '[Untitled]'
-  annotations: []
-  measures: []

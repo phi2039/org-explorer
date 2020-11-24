@@ -8,6 +8,8 @@ const {
   dialog,
 } = require('electron'); // eslint-disable-line import/no-extraneous-dependencies
 
+require('./updates');
+
 const isDev = require('electron-is-dev');
 const userPrefs = require('./user-prefs');
 

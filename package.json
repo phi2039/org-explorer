@@ -1,7 +1,7 @@
 {
   "name": "org-explorer",
   "productName": "Org  Explorer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Labor analysis tool",
   "main": ".webpack/main",
   "scripts": {
@@ -9,7 +9,14 @@
     "package": "electron-forge package",
     "make": "electron-forge make",
     "publish": "electron-forge publish",
-    "lint": "echo \"No linting configured\""
+    "lint": "echo \"No linting configured\"",
+    "commit": "git-cz",
+    "release": "standard-version",
+    "release:tags": "git push --follow-tags release master",
+    "prerelease": "git checkout master && git pull release master && npm i && git add .",
+    "postrelease": "run-s release:*",
+    "ci:validate": "rm -rf node_modules && npm ci && npm run validate",
+    "prepublishOnly": "npm run ci:validate"
   },
   "keywords": [],
   "author": {
@@ -42,6 +49,18 @@
           "config": {}
         }
       ],
+      "publishers": [
+        {
+          "name": "@electron-forge/publisher-github",
+          "config": {
+            "repository": {
+              "owner": "phi2039",
+              "name": "org-explorer"
+            },
+            "prerelease": true
+          }
+        }
+      ],
       "plugins": [
         [
           "@electron-forge/plugin-webpack",
@@ -72,6 +91,7 @@
     "@electron-forge/maker-squirrel": "6.0.0-beta.50",
     "@electron-forge/maker-zip": "6.0.0-beta.50",
     "@electron-forge/plugin-webpack": "6.0.0-beta.50",
+    "@electron-forge/publisher-github": "^6.0.0-beta.54",
     "@marshallofsound/webpack-asset-relocator-loader": "^0.5.0",
     "@welldone-software/why-did-you-render": "^4.0.5",
     "babel-eslint": "^10.1.0",
@@ -87,7 +107,10 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^2.5.0",
+    "git-cz": "^4.7.4",
+    "husky": "^4.3.0",
     "node-loader": "^0.6.0",
+    "standard-version": "^9.0.0",
     "style-loader": "^0.23.1"
   },
   "dependencies": {

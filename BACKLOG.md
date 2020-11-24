@@ -7,3 +7,4 @@
 * Add floating status bar/area to bottom of view
 * Show "Focus" path in stateus bar
 * Show "Cut" path in status bar
+* Shade "Cut" nodes

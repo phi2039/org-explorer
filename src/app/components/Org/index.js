@@ -1,6 +1,7 @@
 import React, {
   useEffect,
   useCallback,
+  useMemo,
 } from 'react';
 import { PropTypes } from 'prop-types';
 
@@ -20,7 +21,7 @@ import ZoomContainer, { useZoom } from '../common/ZoomContainer';
 
 import Menu from './Menu';
 
-import { ActionProvider } from './state';
+import { ActionProvider, GraphProvider, useActionState, useGraph } from './state';
 
 import Node from './Nodes/BaseNode';
 import Group from './Nodes/GroupNode';
@@ -33,9 +34,10 @@ import OrgNode from './OrgNode';
 
 import ModalActions from './ModalActions';
 
-import { metrics, measures } from './metrics';
 import FullPageSpinner from '../common/FullPageSpinner';
 import { usePersistenceDispatch, usePersistenceState, mutateAction } from '../../state/PersistenceContext';
+import { AnalyticsProvider } from './analytics-context';
+import useSelectionHotkeys from './hooks/useSelectionHotkeys';
 
 const Workspace = styled.div`
   position: relative;
@@ -79,19 +81,23 @@ const modalActionForms = {
   },
 };
 
-export const reduceHierarchyData = (entities) => {
+export const reduceHierarchyData = (entities, graph) => {
   // console.log('reduce hierarchy data');
   const [root] = Object.entries(entities).find(
     ([, { parent }]) => !parent,
   );
 
-  const nodes = Object.entries(entities).reduce((acc, [id, { type, children }]) => ({
+  const nodes = Object.entries(entities).reduce((acc, [id, { type }]) => ({
     ...acc,
     [id]: {
       id,
       subjectId: id,
       type,
-      children,
+      get children() { // Lazy-evaluation
+        delete this.children;
+        this.children = graph.adjacencies(id);
+        return this.children;
+      },
     },
   }), []);
 
@@ -109,7 +115,15 @@ const FocusHeader = ({ children }) => (
   </FocusHeaderContainer>
 );
 
+const Hotkeys = () => {
+  useSelectionHotkeys();
+  return null;
+};
+
 const Org = ({
+  options: {
+    enableHotkeys = true,
+  } = {},
   ...props
 }) => {
   const { cache: { entities }, isLoading } = usePersistenceState();
@@ -118,13 +132,15 @@ const Org = ({
   const { hierarchy: { activeRoot, root } } = useHierarchyState();
   const hierarchyDispatch = useHierarchyDispatch();
 
+  const graph = useGraph();
+
   const loadHierarchyData = useCallback(loadDataAction(hierarchyDispatch), [hierarchyDispatch]);
 
   useEffect(() => {
     if (Object.keys(entities).length) {
-      loadHierarchyData(reduceHierarchyData(entities));
+      loadHierarchyData(reduceHierarchyData(entities, graph));
     }
-  }, [entities, loadHierarchyData]);
+  }, [entities, graph, loadHierarchyData]);
 
   const {
     zoom,
@@ -141,6 +157,7 @@ const Org = ({
   );
 
   const isFocused = root !== activeRoot;
+  const focusPath = useMemo(() => isFocused ? graph.path(activeRoot).reverse().map(id => entities[id].name).join(' -> ') : '', [isFocused, graph, activeRoot, entities]);
 
   const expandAll = useCallback(expandAllAction(hierarchyDispatch), [hierarchyDispatch]);
   const collapseAll = useCallback(collapseAllAction(hierarchyDispatch), [hierarchyDispatch]);
@@ -155,6 +172,8 @@ const Org = ({
     }
   }, [mutate]);
 
+  const { action } = useActionState();
+
   if (isLoading) {
     return (
       <FullPageSpinner caption="Loading" />
@@ -164,6 +183,7 @@ const Org = ({
   return (
     <Workspace {...props}>
       <ModalActions forms={modalActionForms} commitChanges={commitChanges} />
+      {!action && <Hotkeys />}
       <Menu
         actions={{
           collapseAll,
@@ -176,7 +196,7 @@ const Org = ({
       />
       {isFocused && (
         <FocusHeader>
-          <span>{[activeRoot, ...entities[activeRoot].ancestors].reverse().map(id => entities[id].name).join(' -> ')}</span>
+          <span>{focusPath}</span>
         </FocusHeader>
       )}
       <ScrollContainer hideScrollbars={false}>
@@ -189,8 +209,6 @@ const Org = ({
                 function: Function,
                 default: Node,
               }}
-              metrics={metrics}
-              measures={measures}
               {...nodeProps}
             />
           )}
@@ -201,10 +219,22 @@ const Org = ({
   );
 };
 
-export default ({ ...props }) => (
+const OrgProviders = ({ children }) => (
   <HierarchyProvider>
     <ActionProvider>
-      <Org {...props} />
+      <GraphProvider>
+        <AnalyticsProvider>
+          {children}
+        </AnalyticsProvider>
+      </GraphProvider>
     </ActionProvider>
   </HierarchyProvider>
+);
+
+export default ({ children }) => (
+  <OrgProviders>
+    <Org>
+      {children}
+    </Org>
+  </OrgProviders>
 );

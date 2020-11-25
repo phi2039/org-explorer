@@ -71,7 +71,7 @@ const Function = ({
   onEdit,
   onCut,
 }) => (
-  <BaseNode onClick={onClick}>
+  <BaseNode onClick={onClick} onDoubleClick={onEdit}>
     <Card bg={isSelected ? 'success' : 'secondary'} text="white" style={{ width: '18rem' }}>
       <Card.Body>
         <Card.Title>

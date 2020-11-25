@@ -1,13 +1,44 @@
 import React, {
   createContext,
   useContext,
+  useMemo,
 } from 'react';
 import { PropTypes } from 'prop-types';
 
 import useReducerAsync from '../../hooks/useReducerAsync';
+import { usePersistenceState } from '../../state/PersistenceContext';
+
+import Graph from '../../../lib/graph';
 
 const ActionStateContext = createContext();
 const ActionDispatchContext = createContext();
+
+export const beginActionAction = dispatch => (action, subject) => dispatch({
+  type: 'begin',
+  payload: {
+    action,
+    subject,
+  },
+});
+
+export const cancelActionAction = dispatch => () => dispatch({
+  type: 'cancel',
+});
+
+export const commitAction = dispatch => () => dispatch({
+  type: 'commit',
+});
+
+export const setClipboardAction = dispatch => subjectId => dispatch({
+  type: 'set_clipboard',
+  payload: {
+    subjectId,
+  },
+});
+
+export const resetClipboardAction = dispatch => () => dispatch({
+  type: 'reset_clipboard',
+});
 
 const defaultState = {
   action: undefined,
@@ -17,7 +48,7 @@ const defaultState = {
 
 const actionReducer = (state, action) => {
   let nextState = state;
-  console.log('dispatch', action);
+  console.log('dispatch[Actions]', action);
   switch (action.type) {
     case 'begin': {
       nextState = {
@@ -61,36 +92,11 @@ const actionReducer = (state, action) => {
       };
       break;
     }
-    // case 'commit_begin': {
-    //   nextState = {
-    //     ...state,
-    //     isCommitting: true,
-    //   };
-    //   break;
-    // }
-    // case 'commit_end': {
-    //   nextState = {
-    //     ...state,
-    //     action: undefined,
-    //     isCommitting: false,
-    //   };
-    //   break;
-    // }
-    // case 'commit_error': {
-    //   nextState = {
-    //     ...state,
-    //     action: undefined,
-    //     isCommitting: false,
-    //     values: action.payload.values,
-    //     error: action.payload.error,
-    //   };
-    //   break;
-    // }
     default: {
       throw new Error(`Unhandled action type: ${action.type}`);
     }
   }
-  console.log('nextState', nextState);
+  console.log('nextState[Actions]', nextState);
   return nextState;
 };
 
@@ -134,4 +140,42 @@ ActionProvider.propTypes = {
   ]).isRequired,
 };
 
-export { ActionProvider, useActionState, useActionDispatch };
+const GraphContext = createContext();
+
+const useGraph = () => {
+  const context = useContext(GraphContext);
+  if (context === undefined) {
+    throw new Error(
+      'useGraph must be used within a GraphProvider',
+    );
+  }
+  return context;
+};
+
+const GraphProvider = ({ children }) => {
+  const { cache: { entities } } = usePersistenceState();
+
+  const graph = useMemo(() => Graph(Object.values(entities).map(({ id, parent }) => ({ id, parent }))), [entities]);
+
+  return (
+    <GraphContext.Provider value={graph}>
+      {children}
+    </GraphContext.Provider>
+  );
+};
+
+GraphProvider.propTypes = {
+  children: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.arrayOf([PropTypes.node]),
+    PropTypes.string,
+  ]).isRequired,
+};
+
+export {
+  ActionProvider,
+  useActionState,
+  useActionDispatch,
+  GraphProvider,
+  useGraph,
+};

@@ -1,49 +1,60 @@
 import {
   useCallback,
-  useMemo,
 } from 'react';
 
-import { useActionDispatch, useActionState } from '../state';
-
 import {
+  useActionDispatch,
+  useActionState,
   beginActionAction,
   setClipboardAction,
   resetClipboardAction,
-} from '../actions';
+  useGraph,
+} from '../state';
 
 import { usePersistenceDispatch, mutateAction } from '../../../state/PersistenceContext';
 
-const Entity = entity => {
+import useWhyDidYouUpdate from '../../../hooks/useWhyDidYouUpdate';
+
+const useEntityActions = entity => {
   const { clipboard } = useActionState();
   const actionDispatch = useActionDispatch();
   const persistenceDispatch = usePersistenceDispatch();
+  const graph = useGraph();
 
   const mutate = useCallback(mutateAction(persistenceDispatch), [mutateAction]);
 
-  const pasteClipboard = useCallback(subject => {
-    mutate({ update: [{ id: subject, values: { parent: entity.id } }] });
-    resetClipboardAction(actionDispatch)();
-  }, [entity, mutate, actionDispatch]);
-
   const onEdit = useCallback(() => beginActionAction(actionDispatch)('edit', entity), [actionDispatch, entity]);
-  const onCut = useMemo(() => clipboard ? null : () => setClipboardAction(actionDispatch)(entity.id), [actionDispatch, entity, clipboard]);
-  const onPaste = useMemo(() => clipboard ? () => pasteClipboard(clipboard) : null, [clipboard, pasteClipboard]);
+
+  const onCut = useCallback(() => !clipboard && entity && setClipboardAction(actionDispatch)(entity.id), [actionDispatch, entity, clipboard]);
+
+  const onPaste = useCallback(() => {
+    if (entity && clipboard) {
+      mutate({ update: [{ id: clipboard, values: { parent: entity.id } }] });
+      resetClipboardAction(actionDispatch)();
+    }
+  }, [entity, clipboard, mutate, actionDispatch]);
+
   const onCreateChild = useCallback(type => beginActionAction(actionDispatch)(
     'create',
-    { type, parent: entity.id, path: [entity.path, entity.id].filter(path => !!path).join('/') },
+    { type, parent: entity.id },
   ), [actionDispatch, entity]);
 
   const onDelete = useCallback(() => {
-    mutate({ remove: [entity.id, ...(entity.descendants || [])] });
-  }, [mutate, entity]);
+    if (entity) {
+      const ids = graph.depthFirstSearch(null, entity.id);
+      mutate({ remove: ids });
+    }
+  }, [mutate, entity, graph]);
+
+  useWhyDidYouUpdate('useEntityActions', { entity, clipboard });
 
   return {
     onEdit,
     onDelete,
-    onCut,
-    onPaste,
+    onCut: !clipboard ? onCut : undefined,
+    onPaste: clipboard ? onPaste : undefined,
     onCreateChild,
   };
 };
 
-export default Entity;
+export default useEntityActions;

@@ -2,7 +2,6 @@ import React, {
   useCallback,
   useEffect,
   useState,
-  useMemo,
 } from 'react';
 import { PropTypes } from 'prop-types';
 
@@ -75,12 +74,8 @@ const hasSiblingRight = (childrenCount, childIndex) => childIndex < childrenCoun
 
 const hasSiblingLeft = (childIndex) => childIndex > 0;
 
-const selectHandler = dispatch => nodeId => (e) => {
+const selectHandler = dispatch => nodeId => {
   const select = selectAction(dispatch);
-  if (e && e.preventDefault) {
-    e.preventDefault();
-    e.stopPropagation();
-  }
   select(nodeId);
 };
 
@@ -159,7 +154,7 @@ const HierarchyNode = ({ nodeId, render }) => {
   const toggleState = useCallback(toggleStateAction(dispatch)(nodeId), [nodeId, dispatch]);
   const setActiveRoot = useCallback(setActiveRootAction(dispatch)(nodeId), [nodeId, dispatch]);
   const resetActiveRoot = useCallback(resetActiveRootAction(dispatch), [dispatch]);
-  const select = useCallback(!isSelected ? selectHandler(dispatch)(nodeId) : null, [nodeId, dispatch]);
+  const select = useCallback(() => !isSelected && selectHandler(dispatch)(nodeId), [isSelected, nodeId, dispatch]);
 
   if (!node) {
     return (

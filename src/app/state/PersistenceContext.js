@@ -3,116 +3,12 @@ import PropTypes from 'prop-types';
 
 import produce, { current } from 'immer';
 
-import { flow, flatten } from 'lodash';
-
-import { joinTruthy } from '../../lib/util/strings';
-
 import useWhyDidYouUpdate from '../hooks/useWhyDidYouUpdate';
 import useReducerAsync from '../hooks/useReducerAsync';
 import PersistenceService from '../data/service';
 
 const PersistenceStateContext = createContext();
 const PersistenceDispatchContext = createContext();
-
-const getPath = (node, nodes) => flow([
-  n => nodes[n.parent], // get parent
-  parent => parent
-    ? joinTruthy([parent.path, parent.id], '/')
-    : '',
-])(node);
-
-const addLazyEvalPath = nodes => node => ({
-  ...node,
-  get path() {
-    delete this.path;
-    this.path = getPath(node, nodes);
-    return this.path;
-  },
-});
-
-const getChildren = (node, nodes) => Object.values(nodes)
-  .filter(n => n.parent === node.id)
-  .map(n => n.id);
-
-const addLazyEvalChildren = nodes => node => {
-  if (node.type !== 'group') {
-    return node;
-  }
-
-  return {
-    ...node,
-    get children() {
-      delete this.children;
-      this.children = getChildren(node, nodes);
-      return this.children;
-    },
-  };
-};
-
-const getAncestors = (node, nodes) => {
-  const ancestors = [];
-
-  let currentNode = node;
-  while (currentNode.parent) {
-    ancestors.push(currentNode.parent);
-    currentNode = nodes[currentNode.parent];
-  }
-
-  return ancestors;
-};
-
-const addLazyEvalAncestors = nodes => node => ({
-  ...node,
-  get ancestors() {
-    delete this.ancestors;
-    this.ancestors = getAncestors(node, nodes);
-    return this.ancestors;
-  },
-});
-
-const getDescendants = (node, nodes) => {
-  const { children = [] } = node;
-
-  return flatten(children.map(child => ([
-    child,
-    ...getDescendants(nodes[child], nodes),
-  ])));
-};
-
-const addLazyEvalDescendants = nodes => node => {
-  if (node.type !== 'group') {
-    return node;
-  }
-
-  return {
-    ...node,
-    get descendants() {
-      delete this.descendants;
-      this.descendants = getDescendants(node, nodes);
-      return this.descendants;
-    },
-  };
-};
-
-const getEnhancers = docs => [
-  addLazyEvalPath(docs),
-  addLazyEvalChildren(docs),
-  addLazyEvalDescendants(docs),
-  addLazyEvalAncestors(docs),
-];
-
-const enhanceDocument = (doc, enhancers) => flow(enhancers)(doc);
-
-const enhanceDocuments = (docs) => {
-  const result = {};
-  const enhancers = getEnhancers(result);
-
-  Object.entries(docs).forEach(([id, attrs]) => {
-    result[id] = enhanceDocument(attrs, enhancers);
-  });
-
-  return result;
-};
 
 const mutateThunk = mutations => async (dispatch, getState, extraArg) => {
   dispatch({
@@ -194,7 +90,7 @@ const persistenceReducer = produce((draft, action) => {
     }
     case 'load': {
       draft.isLoading = false;
-      draft.cache.entities = enhanceDocuments(action.payload.entities);
+      draft.cache.entities = action.payload.entities;
       break;
     }
     case 'reload_begin': {
@@ -203,7 +99,7 @@ const persistenceReducer = produce((draft, action) => {
     }
     case 'reload_complete': {
       draft.isLoading = false;
-      draft.cache.entities = enhanceDocuments(action.payload.entities);
+      draft.cache.entities = action.payload.entities;
       break;
     }
     case 'fetch_begin': {
@@ -216,7 +112,6 @@ const persistenceReducer = produce((draft, action) => {
       items.forEach(item => {
         draft.cache.entities[item.id] = item;
       });
-      draft.cache.entities = enhanceDocuments(draft.cache.entities);
       break;
     }
     case 'mutation_begin': {
@@ -235,7 +130,6 @@ const persistenceReducer = produce((draft, action) => {
       updated.forEach(item => {
         draft.cache.entities[item.id] = item;
       });
-      draft.cache.entities = enhanceDocuments(draft.cache.entities);
       break;
     }
     default: {

@@ -29,15 +29,13 @@ const mapNodeProps = ({
 const OrgNode = ({
   node,
   components,
-  metrics,
-  measures,
   ...props
 }) => {
   const { subjectId: entityId } = node;
 
   const entity = useEntity(entityId);
   const handlers = useEntityActions(entity);
-  const calculatedValues = useCalculatedValues(entity, { metrics, measures });
+  const calculatedValues = useCalculatedValues(entity);
 
   if (!entity) {
     return null;
@@ -62,13 +60,6 @@ OrgNode.propTypes = {
     subjectId: PropTypes.string,
   }).isRequired,
   components: PropTypes.objectOf(PropTypes.elementType).isRequired,
-  metrics: PropTypes.arrayOf(PropTypes.shape({})),
-  measures: PropTypes.arrayOf(PropTypes.shape({})),
-};
-
-OrgNode.defaultProps = {
-  metrics: [],
-  measures: [],
 };
 
 export default OrgNode;

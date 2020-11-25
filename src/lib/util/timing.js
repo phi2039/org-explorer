@@ -19,7 +19,10 @@ export const Timer = () => {
     state.last = ref;
   };
 
+  const current = () => window.performance.now() - state.start;
+
   return {
+    current,
     mark,
     reset,
   };

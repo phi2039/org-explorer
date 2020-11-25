@@ -48,7 +48,7 @@ const Group = ({
   const onAddWorkload = useCallback(values => onCreateChild('function', values), [onCreateChild]);
 
   return (
-    <BaseNode onClick={onClick}>
+    <BaseNode onClick={onClick} onDoubleClick={onEdit}>
       <Card bg={isSelected ? 'success' : 'primary'} text="white" style={{ width: '18rem' }}>
         {entity.manager ? <Card.Header>{entity.manager}</Card.Header> : null}
         <Card.Body style={{ paddingLeft: 0, paddingRight: 0 }}>

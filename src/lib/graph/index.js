@@ -157,7 +157,6 @@ const Graph = (initialNodeOrNodes) => {
   };
 
   if (initialNodeOrNodes) {
-    console.log('initializing graph');
     add(initialNodeOrNodes);
   }
 

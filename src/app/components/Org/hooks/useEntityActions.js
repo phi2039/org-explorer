@@ -13,7 +13,7 @@ import {
 
 import { usePersistenceDispatch, mutateAction } from '../../../state/PersistenceContext';
 
-import useWhyDidYouUpdate from '../../../hooks/useWhyDidYouUpdate';
+// import useWhyDidYouUpdate from '../../../hooks/useWhyDidYouUpdate';
 
 const useEntityActions = entity => {
   const { clipboard } = useActionState();
@@ -46,7 +46,7 @@ const useEntityActions = entity => {
     }
   }, [mutate, entity, graph]);
 
-  useWhyDidYouUpdate('useEntityActions', { entity, clipboard });
+  // useWhyDidYouUpdate('useEntityActions', { entity, clipboard });
 
   return {
     onEdit,

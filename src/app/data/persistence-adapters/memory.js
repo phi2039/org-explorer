@@ -4,37 +4,28 @@ import cuid from 'cuid';
 
 import { cloneDeep } from 'lodash';
 
-import { ipcRenderer } from 'electron'; // eslint-disable-line import/no-extraneous-dependencies
+const emptyDoc = {
+  type: 'group',
+  parent: null,
+  name: '[Untitled]',
+};
 
-// TODO: Enforce immutability for returned objects
-const MemoryPersistenceAdapter = ({
-  backupInterval = 30000,
-} = {}) => {
+const MemoryPersistenceAdapter = emitter => {
   const data = {
     documents: {},
     version: 0,
-    backupVersion: 0,
   };
 
-  const saveBackup = () => {
-    if (data.backupVersion !== data.version) {
-      ipcRenderer.send('data-save-wip', data.documents);
-    }
-    data.backupVersion = data.version;
+  const load = async (documents) => {
+    data.documents = cloneDeep(documents);
   };
 
-  const backupJob = setInterval(saveBackup, backupInterval);
+  const getAllSync = () => data.documents;
+
+  const getVersion = () => data.version;
 
   /* ***Adapter Implementation*** */
-  const destroy = () => {
-    clearInterval(backupJob);
-  };
-
-  const flush = async () => {
-    ipcRenderer.send('data-save', data.documents);
-    data.version = 0;
-    data.backupVersion = 0;
-  };
+  const getAll = async () => ({ ...data.documents });
 
   const applyFilter = async (filter) => {
     const predicates = Object.entries(filter).map(([key, { fn, value }]) => {
@@ -82,51 +73,33 @@ const MemoryPersistenceAdapter = ({
 
   /* ***Mutations*** */
 
-  const load = async (documents) => {
-    console.log('load documents');
-    data.documents = cloneDeep(documents);
-    data.version = 0;
-    data.backupVersion = 0;
-    console.dir(data.documents);
-  };
-
-  // TODO: Is this the right way to enforce immutability?
   const put = async (id, doc) => {
-    const enhanced = {
-      id,
-      ...doc,
-    };
-    data.documents[id] = enhanced;
+    data.documents[id] = doc;
     data.version += 1;
-    return enhanced;
+    return doc;
   };
 
-  const create = async (item) => {
+  const create = async (values) => {
     const id = cuid();
-    return put(id, {
-      ...item,
-    });
-  };
-
-  const createMany = async (items) => {
-    const results = await Promise.all(items.map(create));
-    return results;
+    const item = {
+      id,
+      ...values,
+    };
+    emitter.emit('created', item);
+    return put(id, item);
   };
 
   const update = async (id, values) => {
     const doc = data.documents[id];
     if (doc) {
-      return put(id, {
+      const item = {
         ...doc,
         ...values,
-      });
+      };
+      emitter.emit('updated', item);
+      return put(id, item);
     }
     throw new Error('invalid document id:', id);
-  };
-
-  const updateMany = async (updates) => {
-    const results = await Promise.all(updates.map(({ id, values }) => update(id, values)));
-    return results;
   };
 
   const remove = async (id) => {
@@ -134,31 +107,34 @@ const MemoryPersistenceAdapter = ({
     if (doc) {
       data.version += 1;
       delete data.documents[id];
+      emitter.emit('removed', id);
     } else {
       console.warn('no document found for id:', id);
     }
     return { id };
   };
 
-  const removeMany = async (ids) => {
-    const results = await Promise.all(ids.map(remove));
-    return results;
+  const open = async (location, { empty }) => {
+    if (empty) {
+      data.documents = {};
+      await create(emptyDoc);
+    }
   };
 
   return {
-    destroy,
     load,
-    flush,
+    getAllSync,
+    getVersion,
+    // Adapter Implementation
+    open,
     get,
     getMany,
+    getAll,
     find,
     findOne,
     create,
-    createMany,
     update,
-    updateMany,
     remove,
-    removeMany,
   };
 };
 

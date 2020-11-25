@@ -1,4 +1,4 @@
-import React, { createContext, useContext } from 'react';
+import React, { createContext, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import produce, { current } from 'immer';
@@ -64,13 +64,23 @@ export const fetchAction = dispatch => ids => {
 };
 
 // TODO: This is ugly. Should not be using dispatch for general message-passing
-const saveThunk = () => async (dispatch, getState, extraArg) => {
+const saveThunk = (location) => async (dispatch, getState, extraArg) => {
   const persistenceService = extraArg;
-  await persistenceService.flush();
+  await persistenceService.flush(location);
 };
 
 export const saveAction = dispatch => location => {
   dispatch(saveThunk(location));
+};
+
+// TODO: This is ugly. Should not be using dispatch for general message-passing
+const openThunk = (location, options) => async (dispatch, getState, extraArg) => {
+  const persistenceService = extraArg;
+  await persistenceService.open(location, options);
+};
+
+export const openAction = dispatch => (location, options) => {
+  dispatch(openThunk(location, options));
 };
 
 const getInitialState = source => ({
@@ -140,11 +150,45 @@ const persistenceReducer = produce((draft, action) => {
 });
 /* eslint-enable no-param-reassign */
 
-const persistenceService = PersistenceService();
+const persistenceService = PersistenceService({
+  persistenceAdapter: 'file',
+});
 
 const PersistenceProvider = ({ initialSource, children }) => {
   const [state, dispatch] = useReducerAsync(persistenceReducer, getInitialState(initialSource), persistenceService);
   useWhyDidYouUpdate('PersistenceProvider', state);
+
+  useEffect(() => {
+    const locationListener = persistenceService.on('location_changed', async (location /* , options */) => {
+      dispatch({
+        type: 'set_source',
+        payload: {
+          source: location,
+        },
+      });
+    });
+
+    const openListener = persistenceService.on('open', async (filePath /* , options */) => {
+      const entities = await persistenceService.getAll();
+      dispatch({
+        type: 'load',
+        payload: {
+          entities,
+        },
+      });
+      dispatch({
+        type: 'set_source',
+        payload: {
+          source: filePath,
+        },
+      });
+    });
+
+    return () => {
+      persistenceService.removeListener(locationListener);
+      persistenceService.removeListener(openListener);
+    };
+  }, [dispatch]);
 
   return (
     <PersistenceStateContext.Provider value={state}>

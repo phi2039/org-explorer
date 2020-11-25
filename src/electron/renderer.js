@@ -6,55 +6,34 @@ import { ipcRenderer } from 'electron'; // eslint-disable-line import/no-extrane
 import App from '../app/components/App';
 
 import { ViewProvider, useView } from '../app/state/ViewContext';
-import { PersistenceProvider, usePersistenceDispatch } from '../app/state/PersistenceContext';
+import {
+  PersistenceProvider,
+  usePersistenceDispatch,
+  openAction,
+  saveAction,
+} from '../app/state/PersistenceContext';
 
 import handleMenuAction from './menu-action-handler';
 
-import useWhyDidYouUpdate from '../app/hooks/useWhyDidYouUpdate';
 import '../../public/index.css';
-
-const loadDataThunk = entities => async (dispatch, getState, extraArg) => {
-  const persistenceService = extraArg;
-  await persistenceService.load(entities);
-
-  dispatch({
-    type: 'load',
-    payload: {
-      entities,
-    },
-  });
-};
-
-const saveDataThunk = () => async (dispatch, getState, extraArg) => {
-  const persistenceService = extraArg;
-  await persistenceService.flush();
-};
 
 const DataHandler = () => {
   const persistenceDispatch = usePersistenceDispatch();
-  const loadEntities = useCallback(entities => persistenceDispatch(loadDataThunk(entities)), [persistenceDispatch]);
-  const saveData = useCallback(() => persistenceDispatch(saveDataThunk()), [persistenceDispatch]);
-
-  const setSource = useCallback(source => persistenceDispatch({
-    type: 'set_source',
-    payload: {
-      source,
-    },
-  }), [persistenceDispatch]);
-
-  useWhyDidYouUpdate('Main Renderer', { setSource, loadEntities });
+  const saveData = useCallback(saveAction(persistenceDispatch), [persistenceDispatch]);
+  const openPersistence = useCallback(openAction(persistenceDispatch), [persistenceDispatch]);
 
   useEffect(() => {
-    ipcRenderer.removeAllListeners('data-load');
-    ipcRenderer.on('load-data', (event, { source, entities }) => {
-      setSource(source);
-      loadEntities(entities);
+    ipcRenderer.removeAllListeners('persistence:open');
+    ipcRenderer.on('persistence:open', (event, { location, options }) => {
+      openPersistence(location, options);
     });
-    ipcRenderer.on('save-data', () => {
-      saveData();
+
+    ipcRenderer.removeAllListeners('persistence:flush');
+    ipcRenderer.on('persistence:flush', (event, location) => {
+      saveData(location);
     });
-    ipcRenderer.send('data-reload');
-  }, [setSource, loadEntities, saveData]);
+    ipcRenderer.send('view:ready');
+  }, [openPersistence, saveData]);
   return null;
 };
 
@@ -71,7 +50,7 @@ const MenuHandler = () => {
 };
 
 ReactDOM.render((
-  <PersistenceProvider initialSource={null}>
+  <PersistenceProvider>
     <DataHandler />
     <ViewProvider initialView="hierarchy">
       <MenuHandler />

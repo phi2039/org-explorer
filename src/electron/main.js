@@ -1,4 +1,3 @@
-const path = require('path');
 const {
   app,
   BrowserWindow,
@@ -14,8 +13,9 @@ const isDev = require('electron-is-dev');
 const userPrefs = require('./user-prefs');
 
 const OrgDataService = require('../backend/data/service');
+const PersistenceService = require('./ipc-services/persistence');
 
-const dataService = OrgDataService();
+PersistenceService({ dataService: OrgDataService() });
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) { // eslint-disable-line global-require
@@ -24,15 +24,17 @@ if (require('electron-squirrel-startup')) { // eslint-disable-line global-requir
 
 let mainWindow;
 
-const loadDataFile = async (location) => {
-  const entities = await dataService.loadFile(location);
+const openFile = (location, options) => {
+  if (location) {
+    mainWindow.webContents.send('persistence:open', {
+      location,
+      options,
+    });
+  }
+};
 
-  userPrefs.setLastFile(location);
-  mainWindow.webContents.send('load-data', {
-    entities,
-    source: location,
-  });
-  console.log('Loaded', location);
+const saveFile = (location) => {
+  mainWindow.webContents.send('persistence:flush', location);
 };
 
 const onLoadDataFile = async () => {
@@ -47,7 +49,7 @@ const onLoadDataFile = async () => {
   });
   if (!canceled && filePaths && filePaths.length) {
     const location = filePaths[0];
-    await loadDataFile(location);
+    openFile(location);
   }
 };
 
@@ -68,35 +70,30 @@ const getSaveLocation = async (ignoreLastLocation) => {
   return result.filePath;
 };
 
-const saveDataFile = async (entities, maybeLocation) => {
-  const location = maybeLocation || (await getSaveLocation());
+const onSaveDataFile = async () => {
+  saveFile();
+};
+
+const onSaveDataFileAs = async () => {
+  const location = await getSaveLocation(true);
   if (location) {
-    await dataService.saveFile(entities, location);
-    console.log('saved', location);
+    saveFile(location);
   }
 };
 
-const onSaveDataFile = async () => {
-  mainWindow.webContents.send('save-data');
-};
-
-// TODO: Trigger create by persistence provider
 const onNewFile = async () => {
   const location = await getSaveLocation(true);
   if (location) {
-    await saveDataFile({
-      root: {
-        id: 'root',
-        type: 'group',
-        parent: null,
-        name: '[Untitled]',
-      },
-    }, location);
-    await loadDataFile(location);
+    openFile(location, { empty: true });
   }
 };
 
 const onWindowReady = async () => {
+};
+
+const loadLastFile = () => {
+  const location = userPrefs.getLastFile();
+  openFile(location);
 };
 
 const createWindow = () => {
@@ -177,6 +174,12 @@ const generateMenu = () => {
             onSaveDataFile();
           },
         },
+        {
+          label: 'Save As...',
+          click() {
+            onSaveDataFileAs();
+          },
+        },
         { type: 'separator' },
         { role: 'quit' },
       ],
@@ -226,26 +229,6 @@ ipcMain.on('load-page', (event, arg) => {
   mainWindow.loadURL(arg);
 });
 
-ipcMain.on('data-reload', () => {
-  const location = userPrefs.getLastFile();
-  console.log(`[Persistence]${location ? 'Loading' : 'Not loading'} most recent file${`: ${location}` || ''}`);
-  if (location) {
-    loadDataFile(location);
-  }
-});
-
-ipcMain.on('data-save', (event, entities) => {
-  if (entities) {
-    saveDataFile(entities);
-  }
-});
-
-ipcMain.on('data-save-wip', (event, entities) => {
-  const lastLocation = userPrefs.getLastFile();
-  if (lastLocation) {
-    const parsed = path.parse(lastLocation);
-    const location = path.join(parsed.dir, `~${parsed.base}`);
-    console.log(`[Persistence]Saving backup file: ${location}`);
-    saveDataFile(entities, location);
-  }
+ipcMain.on('view:ready', () => {
+  loadLastFile();
 });

@@ -8,3 +8,8 @@
 * Show "Focus" path in stateus bar
 * Show "Cut" path in status bar
 * Shade "Cut" nodes
+
+
+# Issues
+
+* Zoom container content does not grow to remain centered

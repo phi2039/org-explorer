@@ -6,6 +6,7 @@ import { useHotkeys } from 'react-hotkeys-hook';
 
 import { usePersistenceState } from '../../../state/PersistenceContext';
 import { useHierarchyState } from '../../Hierarchy';
+import { useClipboard } from '../state';
 
 import useEntityActions from './useEntityActions';
 
@@ -16,6 +17,7 @@ const nop = () => {};
 const useSelectionHotkeys = () => {
   const { cache: { entities } } = usePersistenceState();
   const { hierarchy: { selection } } = useHierarchyState();
+  const { subject, resetClipboard } = useClipboard();
 
   const entity = useMemo(() => entities && selection && entities[selection], [entities, selection]);
 
@@ -35,6 +37,7 @@ const useSelectionHotkeys = () => {
   useHotkeys('ctrl+v', onPaste || nop, [onPaste]);
   useHotkeys('delete', onDelete, [onDelete]);
   useHotkeys('enter', onEdit, [onEdit]);
+  useHotkeys('escape', subject ? resetClipboard : nop, [resetClipboard, subject]);
 };
 
 export default useSelectionHotkeys;

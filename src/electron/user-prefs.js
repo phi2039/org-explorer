@@ -2,9 +2,7 @@ const Store = require('electron-store');
 
 const store = new Store({
   configName: 'user-preferences',
-  defaults: {
-    lastFile: 'public/org.yaml',
-  },
+  defaults: {},
 });
 
 module.exports = {

@@ -1,3 +1,4 @@
+const path = require('path');
 const {
   app,
   BrowserWindow,
@@ -15,7 +16,10 @@ const userPrefs = require('./user-prefs');
 const OrgDataService = require('../backend/data/service');
 const PersistenceService = require('./ipc-services/persistence');
 
-PersistenceService({ dataService: OrgDataService() });
+const persistenceService = PersistenceService({ dataService: OrgDataService() });
+
+const isWindows = () => path.sep === '\\';
+const normalizePath = str => str && (isWindows() ? str.replaceAll('\\', '/') : str);
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) { // eslint-disable-line global-require
@@ -24,17 +28,47 @@ if (require('electron-squirrel-startup')) { // eslint-disable-line global-requir
 
 let mainWindow;
 
+const sendNotification = ({
+  level = 'info',
+  title,
+  message,
+}) => {
+  mainWindow.webContents.send('notification', {
+    level,
+    title,
+    message,
+  });
+};
+
+persistenceService.on('save', location => {
+  userPrefs.setLastFile(location);
+  sendNotification({
+    title: 'Saved',
+    message: location,
+  });
+});
+
+persistenceService.on('load', location => {
+  userPrefs.setLastFile(location);
+  sendNotification({
+    title: 'Opened',
+    message: location,
+  });
+});
+
 const openFile = (location, options) => {
-  if (location) {
+  const normalizedLocation = normalizePath(location);
+  if (normalizedLocation) {
     mainWindow.webContents.send('persistence:open', {
-      location,
+      location: normalizedLocation,
       options,
     });
   }
 };
 
 const saveFile = (location) => {
-  mainWindow.webContents.send('persistence:flush', location);
+  const normalizedLocation = normalizePath(location);
+  mainWindow.webContents.send('persistence:flush', normalizedLocation);
 };
 
 const onLoadDataFile = async () => {

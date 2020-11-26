@@ -25,7 +25,7 @@ const useEntityActions = entity => {
 
   const onEdit = useCallback(() => beginActionAction(actionDispatch)('edit', entity), [actionDispatch, entity]);
 
-  const onCut = useCallback(() => !clipboard && entity && setClipboardAction(actionDispatch)(entity.id), [actionDispatch, entity, clipboard]);
+  const onCut = useCallback(() => entity && setClipboardAction(actionDispatch)(entity.id), [actionDispatch, entity]);
 
   const onPaste = useCallback(() => {
     if (entity && clipboard) {
@@ -51,7 +51,7 @@ const useEntityActions = entity => {
   return {
     onEdit,
     onDelete,
-    onCut: !clipboard ? onCut : undefined,
+    onCut,
     onPaste: clipboard ? onPaste : undefined,
     onCreateChild,
   };

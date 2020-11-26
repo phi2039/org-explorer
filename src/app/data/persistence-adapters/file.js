@@ -13,9 +13,9 @@ const FilePersistenceClient = () => {
     return null;
   };
 
-  const saveData = async (data, location) => {
+  const saveData = async (data, location, options) => {
     if (location) {
-      await ipcRenderer.invoke('persistence:file:save', data, location);
+      await ipcRenderer.invoke('persistence:file:save', data, location, options);
     }
   };
 
@@ -42,7 +42,7 @@ const FilePersistenceAdapter = emitter => {
       const parsedPath = path.parse(state.filePath);
       const backupFilePath = path.join(parsedPath.dir, `~${parsedPath.base}`);
       const data = await memoryProvider.getAll();
-      await fileProvider.saveData(data, backupFilePath);
+      await fileProvider.saveData(data, backupFilePath, { temporary: true });
       console.log('[FilePersistenceAdapter] backed-up changes:', backupFilePath);
     }
     state.backupVersion = memoryProvider.getVersion();

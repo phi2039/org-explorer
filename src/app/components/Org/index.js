@@ -9,6 +9,10 @@ import styled from 'styled-components';
 
 import IndianaScrollContainer from 'react-indiana-drag-scroll';
 
+// import { useToasts } from 'react-toast-notifications'
+
+import ZoomContainer, { useZoom } from '../common/ZoomContainer';
+
 import Hierarchy, { HierarchyProvider, useHierarchyState, useHierarchyDispatch } from '../Hierarchy';
 import {
   loadDataAction,
@@ -17,11 +21,16 @@ import {
   resetActiveRootAction,
 } from '../Hierarchy/actions';
 
-import ZoomContainer, { useZoom } from '../common/ZoomContainer';
-
+import Snackbar from './Snackbar';
 import Menu from './Menu';
 
-import { ActionProvider, GraphProvider, useActionState, useGraph } from './state';
+import {
+  ActionProvider,
+  GraphProvider,
+  useActionState,
+  useClipboard,
+  useGraph,
+} from './state';
 
 import Node from './Nodes/BaseNode';
 import Group from './Nodes/GroupNode';
@@ -82,7 +91,6 @@ const modalActionForms = {
 };
 
 export const reduceHierarchyData = (entities, graph) => {
-  // console.log('reduce hierarchy data');
   const [root] = Object.entries(entities).find(
     ([, { parent }]) => !parent,
   );
@@ -115,6 +123,51 @@ const FocusHeader = ({ children }) => (
   </FocusHeaderContainer>
 );
 
+const ClipboardSnackbarContent = styled.div`
+  line-height: 2;
+  text-align: center;
+`;
+
+const HotkeySpan = styled.span`
+  border: 1px solid lightgray;
+  color: rgb(49, 49, 49);
+  background-color: lightgray;
+  border-radius: 3px;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+  padding-bottom: 0.15rem;
+  padding-top: 0.10rem;
+`;
+
+const ClipboardSnackbar = ({
+  subject,
+  onDismiss,
+}) => {
+  if (!subject) {
+    return null;
+  }
+
+  return (
+    <Snackbar onDismiss={onDismiss}>
+      <ClipboardSnackbarContent>
+        <strong>Cut {subject.name} to clipboard</strong><br />Press <HotkeySpan>Ctrl-V</HotkeySpan> or use menus to paste
+      </ClipboardSnackbarContent>
+    </Snackbar>
+  );
+};
+
+ClipboardSnackbar.propTypes = {
+  subject: PropTypes.shape({
+    name: PropTypes.string,
+  }),
+  onDismiss: PropTypes.func,
+};
+
+ClipboardSnackbar.defaultProps = {
+  subject: null,
+  onDismiss: null,
+};
+
 const Hotkeys = () => {
   useSelectionHotkeys();
   return null;
@@ -122,8 +175,8 @@ const Hotkeys = () => {
 
 const Org = ({
   options: {
-    enableHotkeys = true,
-  } = {},
+    enableHotkeys,
+  },
   ...props
 }) => {
   const { cache: { entities }, isLoading } = usePersistenceState();
@@ -133,6 +186,8 @@ const Org = ({
   const hierarchyDispatch = useHierarchyDispatch();
 
   const graph = useGraph();
+
+  const { subject: clipboardSubject, resetClipboard } = useClipboard();
 
   const loadHierarchyData = useCallback(loadDataAction(hierarchyDispatch), [hierarchyDispatch]);
 
@@ -183,7 +238,7 @@ const Org = ({
   return (
     <Workspace {...props}>
       <ModalActions forms={modalActionForms} commitChanges={commitChanges} />
-      {!action && <Hotkeys />}
+      {!action && enableHotkeys && <Hotkeys />}
       <Menu
         actions={{
           collapseAll,
@@ -215,8 +270,24 @@ const Org = ({
           />
         </ZoomContainer>
       </ScrollContainer>
+      <ClipboardSnackbar
+        subject={clipboardSubject && entities[clipboardSubject]}
+        onDismiss={resetClipboard}
+      />
     </Workspace>
   );
+};
+
+Org.propTypes = {
+  options: PropTypes.shape({
+    enableHotkeys: PropTypes.bool,
+  }),
+};
+
+Org.defaultProps = {
+  options: {
+    enableHotkeys: true,
+  },
 };
 
 const OrgProviders = ({ children }) => (

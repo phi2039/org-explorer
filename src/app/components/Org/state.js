@@ -1,9 +1,11 @@
 import React, {
   createContext,
+  useCallback,
   useContext,
   useMemo,
 } from 'react';
 import { PropTypes } from 'prop-types';
+import produce, { current } from 'immer';
 
 import useReducerAsync from '../../hooks/useReducerAsync';
 import { usePersistenceState } from '../../state/PersistenceContext';
@@ -46,59 +48,43 @@ const defaultState = {
   values: {},
 };
 
-const actionReducer = (state, action) => {
-  let nextState = state;
-  console.log('dispatch[Actions]', action);
+/* eslint-disable no-param-reassign */
+const actionReducer = produce((draft, action) => {
+  console.log('dispatch[Org]', action);
   switch (action.type) {
     case 'begin': {
-      nextState = {
-        ...state,
-        action: action.payload.action,
-        subject: action.payload.subject,
-        values: {},
-      };
+      draft.action = action.payload.action;
+      draft.subject = action.payload.subject;
+      draft.values = {};
       break;
     }
     case 'set_clipboard': {
-      nextState = {
-        ...state,
-        clipboard: action.payload.subjectId,
-      };
+      draft.clipboard = action.payload.subjectId;
       break;
     }
     case 'reset_clipboard': {
-      nextState = {
-        ...state,
-        clipboard: null,
-      };
+      draft.clipboard = null;
       break;
     }
     case 'cancel': {
-      nextState = defaultState;
-      break;
-    }
-    case 'reset': {
-      nextState = {
-        ...state,
-        values: {},
-      };
+      draft.action = undefined;
+      draft.subject = undefined;
+      draft.values = {};
       break;
     }
     case 'commit': {
-      nextState = {
-        ...state,
-        action: undefined,
-        isCommitting: false,
-      };
+      draft.action = undefined;
+      draft.subject = undefined;
+      draft.values = {};
       break;
     }
     default: {
       throw new Error(`Unhandled action type: ${action.type}`);
     }
   }
-  console.log('nextState[Actions]', nextState);
-  return nextState;
-};
+  console.log('nextState[Org]', current(draft));
+});
+/* eslint-enable no-param-reassign */
 
 const useActionState = () => {
   const context = useContext(ActionStateContext);
@@ -118,6 +104,22 @@ const useActionDispatch = () => {
     );
   }
   return context;
+};
+
+const useClipboard = () => {
+  const context = useContext(ActionStateContext);
+  const dispatch = useContext(ActionDispatchContext);
+  if (context === undefined) {
+    throw new Error(
+      'useActionState must be used within a ActionProvider',
+    );
+  }
+
+  const resetClipboard = useCallback(() => resetClipboardAction(dispatch)(), [dispatch]);
+  return {
+    subject: context.clipboard,
+    resetClipboard,
+  };
 };
 
 const ActionProvider = ({ children }) => {
@@ -178,4 +180,5 @@ export {
   useActionDispatch,
   GraphProvider,
   useGraph,
+  useClipboard,
 };

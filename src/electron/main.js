@@ -149,6 +149,7 @@ const generateMenu = () => {
           },
           accelerator: 'CommandOrControl+Shift+S',
         },
+        { type: 'separator' },
         {
           label: 'Export...',
           click() {

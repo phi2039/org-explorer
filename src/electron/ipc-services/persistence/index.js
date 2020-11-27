@@ -7,19 +7,14 @@ const {
 const Transformer = require('../transformer');
 const LocalFileProvider = require('./local-file');
 
-const baseOutputTransforms = [{
-  transform: 'object',
-  operation: 'values',
-}, {
-  transform: 'normalize',
-  operation: 'normalize',
-}];
+const baseOutputTransforms = [
+  {
+    transform: 'object',
+    operation: 'values',
+  },
+];
 
 const baseInputTransforms = [
-  {
-    transform: 'normalize',
-    operation: 'denormalize',
-  },
   {
     transform: 'object',
     operation: 'fromArray',
@@ -31,6 +26,10 @@ const baseInputTransforms = [
 
 const orgFileOutputTransforms = [
   {
+    transform: 'normalize',
+    operation: 'normalize',
+  },
+  {
     transform: 'yaml',
     operation: 'dump',
   },
@@ -40,6 +39,10 @@ const orgFileInputTransforms = [
   {
     transform: 'yaml',
     operation: 'parse',
+  },
+  {
+    transform: 'normalize',
+    operation: 'denormalize',
   },
 ];
 

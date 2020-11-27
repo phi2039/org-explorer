@@ -8,6 +8,8 @@ import {
   saveAction,
 } from '../../../app/state/PersistenceContext';
 
+import exportTransforms from '../exporters';
+
 const normalizePath = str => str && str.replaceAll('\\', '/');
 
 const DataHandler = () => {
@@ -30,10 +32,7 @@ const DataHandler = () => {
     ipcRenderer.on('persistence:export', (event, location, format) => {
       saveData(location, {
         external: true,
-        transforms: [{
-          transform: format,
-          operation: 'dump',
-        }],
+        transforms: exportTransforms[format],
       });
     });
     ipcRenderer.send('view:ready');

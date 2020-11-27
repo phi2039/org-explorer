@@ -3,7 +3,12 @@ import { useEffect } from 'react';
 import { ipcRenderer } from 'electron'; // eslint-disable-line import/no-extraneous-dependencies
 
 import { useView } from '../../../app/state/ViewContext';
-import handleMenuAction from '../../menu-action-handler';
+
+const handleMenuAction = ({ setView }) => async (event, arg) => {
+  if (arg === 'view.hierarchy') {
+    setView('hierarchy');
+  }
+};
 
 const MenuHandler = () => {
   const [, setView] = useView();

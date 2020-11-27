@@ -79,16 +79,16 @@ const FilePersistenceAdapter = emitter => {
   };
 
   const flush = async (location, options) => {
-    if (location && location !== state.filePath) {
+    if (!options.external && location && location !== state.filePath) {
       state.filePath = location;
       emitter.emit('location_changed', location);
     }
 
     const data = await memoryProvider.getAll();
-    await fileProvider.saveData(data, state.filePath, options);
+    await fileProvider.saveData(data, location, options);
 
     state.backupVersion = memoryProvider.getVersion();
-    console.log('[FilePersistenceAdapter] saved:', state.filePath);
+    console.log('[FilePersistenceAdapter] saved:', location);
   };
 
   const destroy = async () => {

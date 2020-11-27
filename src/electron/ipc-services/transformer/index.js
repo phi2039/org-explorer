@@ -30,7 +30,7 @@ const Transformer = ({
     return operation;
   });
 
-  console.log('[Transformer] create:', transforms.map(({ transform, operation }) => `${transform}.${operation}`).join(' -> '));
+  // console.log('[Transformer] create:', transforms.map(({ transform, operation }) => `${transform}.${operation}`).join(' -> '));
 
   const apply = pipeAsync(operations);
 

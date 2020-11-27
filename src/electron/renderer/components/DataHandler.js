@@ -29,6 +29,7 @@ const DataHandler = () => {
     ipcRenderer.removeAllListeners('persistence:export');
     ipcRenderer.on('persistence:export', (event, location, format) => {
       saveData(location, {
+        external: true,
         transforms: [{
           transform: format,
           operation: 'dump',

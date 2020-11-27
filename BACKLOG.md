@@ -4,11 +4,9 @@
 * Open "Focus" view in new tab
 * "Focus" stack for incremental navigation in/out
 * Move zoom controls to lower-right corner floating control
-* Add floating status bar/area to bottom of view
-* Show "Focus" path in stateus bar
-* Show "Cut" path in status bar
 * Shade "Cut" nodes
-
+* Edit in place
+* Notifications dialog for file I/O errors
 
 # Issues
 

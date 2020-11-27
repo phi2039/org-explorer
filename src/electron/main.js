@@ -1,11 +1,9 @@
-const path = require('path');
 const {
   app,
   BrowserWindow,
   shell,
   ipcMain,
   Menu,
-  dialog,
 } = require('electron'); // eslint-disable-line import/no-extraneous-dependencies
 
 require('./updates');
@@ -13,12 +11,13 @@ require('./updates');
 const isDev = require('electron-is-dev');
 const userPrefs = require('./user-prefs');
 
+const FileHandlers = require('./file-handlers');
+
 const PersistenceService = require('./ipc-services/persistence');
 
-const persistenceService = PersistenceService();
+const fileHandlers = FileHandlers();
 
-const isWindows = () => path.sep === '\\';
-const normalizePath = str => str && (isWindows() ? str.replaceAll('\\', '/') : str);
+const persistenceService = PersistenceService();
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) { // eslint-disable-line global-require
@@ -26,14 +25,6 @@ if (require('electron-squirrel-startup')) { // eslint-disable-line global-requir
 }
 
 let mainWindow;
-
-const fileTypeFilters = {
-  all: { name: 'All File Types', extensions: ['org', 'xlsx', 'xlsb', 'xlsm', 'yaml', 'yml', 'json'] },
-  org: { name: 'Org Files', extensions: ['org'] },
-  excel: { name: 'Excel Files', extensions: ['xlsx', 'xlsb', 'xlsm'] },
-  yaml: { name: 'YAML Files', extensions: ['yaml', 'yml'] },
-  json: { name: 'JSON Files', extensions: ['json'] },
-};
 
 const sendNotification = ({
   level = 'info',
@@ -65,99 +56,7 @@ persistenceService.on('load', location => {
   });
 });
 
-const openFile = (location, options) => {
-  const normalizedLocation = normalizePath(location);
-  if (normalizedLocation) {
-    mainWindow.webContents.send('persistence:open', {
-      location: normalizedLocation,
-      options,
-    });
-  }
-};
-
-const saveFile = (location) => {
-  const normalizedLocation = normalizePath(location);
-  mainWindow.webContents.send('persistence:flush', normalizedLocation);
-};
-
-const exportFile = (location, format) => {
-  const normalizedLocation = normalizePath(location);
-  mainWindow.webContents.send('persistence:export', normalizedLocation, format);
-};
-
-const onLoadDataFile = async () => {
-  const { filePaths, canceled } = await dialog.showOpenDialog({
-    filters: [
-      fileTypeFilters.all,
-      fileTypeFilters.org,
-      fileTypeFilters.excel,
-      fileTypeFilters.json,
-      fileTypeFilters.yaml,
-    ],
-    properties: ['openFile'],
-  });
-  if (!canceled && filePaths && filePaths.length) {
-    const location = filePaths[0];
-    openFile(location);
-  }
-};
-
-const getSaveLocation = async ({ ignoreLastLocation, filters = [fileTypeFilters.org] }) => {
-  const lastLocation = ignoreLastLocation ? undefined : userPrefs.getLastFile();
-  if (lastLocation) {
-    return lastLocation;
-  }
-  const result = await dialog.showSaveDialog({
-    filters,
-  });
-  if (result.canceled) {
-    return null;
-  }
-
-  return result.filePath;
-};
-
-const onSaveDataFile = async () => {
-  const location = await getSaveLocation({ ignoreLastLocation: false });
-  saveFile(location);
-};
-
-const onSaveDataFileAs = async () => {
-  const location = await getSaveLocation({ ignoreLastLocation: true });
-  if (location) {
-    saveFile(location);
-  }
-};
-
-const onExport = async () => {
-  const location = await getSaveLocation({
-    ignoreLastLocation: true,
-    filters: [
-      fileTypeFilters.excel,
-      fileTypeFilters.json,
-      fileTypeFilters.yaml,
-    ],
-  });
-  if (location) {
-    const extension = path.extname(location).slice(1);
-    const format = extension;
-    exportFile(location, format);
-  }
-};
-
-const onNewFile = async () => {
-  const location = await getSaveLocation({ ignoreLastLocation: true });
-  if (location) {
-    openFile(location, { empty: true });
-  }
-};
-
 const onWindowReady = async () => {
-};
-
-const loadLastFile = () => {
-  const location = userPrefs.getLastFile();
-  openFile(location);
 };
 
 const createWindow = () => {
@@ -173,6 +72,8 @@ const createWindow = () => {
     height: 860,
     width: 1280,
   });
+
+  fileHandlers.setWindow(mainWindow);
 
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY); // eslint-disable-line no-undef
 
@@ -222,7 +123,7 @@ const generateMenu = () => {
         {
           label: 'New',
           click() {
-            onNewFile();
+            fileHandlers.onNewFile();
           },
           accelerator: 'CommandOrControl+N',
         },
@@ -230,28 +131,28 @@ const generateMenu = () => {
         {
           label: 'Open',
           click() {
-            onLoadDataFile();
+            fileHandlers.onLoadDataFile();
           },
           accelerator: 'CommandOrControl+O',
         },
         {
           label: 'Save',
           click() {
-            onSaveDataFile();
+            fileHandlers.onSaveDataFile();
           },
           accelerator: 'CommandOrControl+S',
         },
         {
           label: 'Save As...',
           click() {
-            onSaveDataFileAs();
+            fileHandlers.onSaveDataFileAs();
           },
           accelerator: 'CommandOrControl+Shift+S',
         },
         {
           label: 'Export...',
           click() {
-            onExport();
+            fileHandlers.onExport();
           },
           accelerator: 'CommandOrControl+Shift+E',
         },
@@ -308,5 +209,5 @@ ipcMain.on('load-page', (event, arg) => {
 });
 
 ipcMain.on('view:ready', () => {
-  loadLastFile();
+  fileHandlers.loadLastFile();
 });

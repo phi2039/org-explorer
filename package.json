@@ -71,7 +71,7 @@
               "entryPoints": [
                 {
                   "html": "./public/index.html",
-                  "js": "./src/electron/main-window.js",
+                  "js": "./src/electron/renderer/main-window.js",
                   "name": "main_window"
                 }
               ]

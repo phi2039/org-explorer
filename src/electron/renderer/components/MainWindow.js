@@ -9,9 +9,9 @@ import {
   PersistenceProvider,
 } from '../../../app/state/PersistenceContext';
 
-import DataHandler from '../components/DataHandler';
-import MenuHandler from '../components/MenuHandler';
-import NotificationHandler from '../components/NotificationHandler';
+import DataHandler from './DataHandler';
+import MenuHandler from './MenuHandler';
+import NotificationHandler from './NotificationHandler';
 
 import '../../../../public/index.css';
 

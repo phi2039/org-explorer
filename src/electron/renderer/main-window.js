@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import MainWindow from './renderer/MainWindow';
+import MainWindow from './components/MainWindow';
 
 ReactDOM.render(<MainWindow />, document.getElementById('root'));

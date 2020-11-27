@@ -64,13 +64,13 @@ export const fetchAction = dispatch => ids => {
 };
 
 // TODO: This is ugly. Should not be using dispatch for general message-passing
-const saveThunk = (location) => async (dispatch, getState, extraArg) => {
+const saveThunk = (location, options) => async (dispatch, getState, extraArg) => {
   const persistenceService = extraArg;
-  await persistenceService.flush(location);
+  await persistenceService.flush(location, options);
 };
 
-export const saveAction = dispatch => location => {
-  dispatch(saveThunk(location));
+export const saveAction = dispatch => (location, options) => {
+  dispatch(saveThunk(location, options));
 };
 
 // TODO: This is ugly. Should not be using dispatch for general message-passing

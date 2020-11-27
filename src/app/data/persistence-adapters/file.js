@@ -37,6 +37,7 @@ const FilePersistenceAdapter = emitter => {
 
   const memoryProvider = MemoryPersistenceAdapter(emitter);
 
+  // TODO: Move backup logic/timer to main process
   const saveBackup = async () => {
     if (state.filePath && state.backupVersion !== memoryProvider.getVersion()) {
       const parsedPath = path.parse(state.filePath);
@@ -60,11 +61,11 @@ const FilePersistenceAdapter = emitter => {
 
     if (empty) {
       memoryProvider.open(filePath, { empty });
-      console.log('[FilePersistenceAdapter] new:', state.filePath);
+      console.log('[FilePersistenceAdapter] new:', filePath);
     } else {
       const documents = await fileProvider.loadData(filePath);
       memoryProvider.load(documents);
-      console.log('[FilePersistenceAdapter] opened:', state.filePath);
+      console.log('[FilePersistenceAdapter] opened:', filePath);
     }
     state.filePath = filePath;
     state.backupVersion = memoryProvider.getVersion();
@@ -77,16 +78,17 @@ const FilePersistenceAdapter = emitter => {
     emitter.emit('open', filePath, { backupInterval });
   };
 
-  const flush = async (location) => {
+  const flush = async (location, options) => {
     if (location && location !== state.filePath) {
       state.filePath = location;
       emitter.emit('location_changed', location);
     }
 
     const data = await memoryProvider.getAll();
-    await fileProvider.saveData(data, state.filePath);
-    console.log('[FilePersistenceAdapter] saved:', state.filePath);
+    await fileProvider.saveData(data, state.filePath, options);
+
     state.backupVersion = memoryProvider.getVersion();
+    console.log('[FilePersistenceAdapter] saved:', state.filePath);
   };
 
   const destroy = async () => {

@@ -71,7 +71,7 @@
               "entryPoints": [
                 {
                   "html": "./public/index.html",
-                  "js": "./src/electron/renderer.js",
+                  "js": "./src/electron/main-window.js",
                   "name": "main_window"
                 }
               ]
@@ -125,6 +125,7 @@
     "electron-squirrel-startup": "^1.0.0",
     "electron-store": "^3.2.0",
     "eventemitter3": "^4.0.7",
+    "exceljs": "^4.2.0",
     "formik": "^2.2.5",
     "immer": "^7.0.0",
     "is-electron": "^2.2.0",
@@ -136,6 +137,7 @@
     "path-browserify": "^1.0.1",
     "predicate": "^2.0.0",
     "prop-types": "^15.7.2",
+    "ramda": "^0.27.1",
     "react": "^16.13.0",
     "react-bootstrap": "^1.0.0-beta.8",
     "react-dom": "^16.13.0",

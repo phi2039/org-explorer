@@ -9,7 +9,6 @@ const {
 require('./updates');
 
 const isDev = require('electron-is-dev');
-const userPrefs = require('./user-prefs');
 
 const FileHandlers = require('./file-handlers');
 
@@ -39,9 +38,6 @@ const sendNotification = ({
 };
 
 persistenceService.on('save', (location, options) => {
-  if (!options) {
-    userPrefs.setLastFile(location);
-  }
   sendNotification({
     level: 'success',
     title: 'Saved',
@@ -50,7 +46,6 @@ persistenceService.on('save', (location, options) => {
 });
 
 persistenceService.on('load', location => {
-  userPrefs.setLastFile(location);
   sendNotification({
     level: 'success',
     title: 'Opened',

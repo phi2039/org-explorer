@@ -51,6 +51,7 @@ const FileHandlers = () => {
     if (!canceled && filePaths && filePaths.length) {
       const location = filePaths[0];
       openFile(location);
+      userPrefs.setLastFile(location);
     }
   };
 
@@ -73,12 +74,14 @@ const FileHandlers = () => {
   const onSaveDataFile = async () => {
     const location = await getSaveLocation({ ignoreLastLocation: false });
     saveFile(location);
+    userPrefs.setLastFile(location);
   };
 
   const onSaveDataFileAs = async () => {
     const location = await getSaveLocation({ ignoreLastLocation: true });
     if (location) {
       saveFile(location);
+      userPrefs.setLastFile(location);
     }
   };
 

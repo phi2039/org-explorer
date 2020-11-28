@@ -43,6 +43,7 @@ persistenceService.on('save', (location, options) => {
     userPrefs.setLastFile(location);
   }
   sendNotification({
+    level: 'success',
     title: 'Saved',
     message: location,
   });
@@ -51,6 +52,7 @@ persistenceService.on('save', (location, options) => {
 persistenceService.on('load', location => {
   userPrefs.setLastFile(location);
   sendNotification({
+    level: 'success',
     title: 'Opened',
     message: location,
   });

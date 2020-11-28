@@ -9,6 +9,7 @@ const BaseNodeContainer = styled.div`
   margin: 0 5px 0 5px;
   display: inline-block;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
+  cursor: pointer;
   /* non-standard attribute */
   user-select: none;
 `;

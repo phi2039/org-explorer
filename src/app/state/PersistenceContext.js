@@ -5,7 +5,7 @@ import produce, { current } from 'immer';
 
 import useWhyDidYouUpdate from '../hooks/useWhyDidYouUpdate';
 import useReducerAsync from '../hooks/useReducerAsync';
-import PersistenceService from '../data/service';
+import PersistenceService from '../data/persistence';
 
 const PersistenceStateContext = createContext();
 const PersistenceDispatchContext = createContext();
@@ -125,7 +125,13 @@ const persistenceReducer = produce((draft, action) => {
       break;
     }
     case 'mutation_begin': {
+      draft.errors = [];
       draft.isSaving = true;
+      break;
+    }
+    case 'mutation_failed': {
+      draft.errors = ['mutation failed'];
+      draft.isSaving = false;
       break;
     }
     case 'mutation_complete': {

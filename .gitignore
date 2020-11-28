@@ -87,3 +87,9 @@ typings/
 
 # Electron-Forge
 out/
+
+# Temp files
+~*
+
+# Data files
+*.org

@@ -6,7 +6,7 @@ import { useHotkeys } from 'react-hotkeys-hook';
 
 import { usePersistenceState } from '../../../state/PersistenceContext';
 import { useHierarchyState } from '../../Hierarchy';
-import { useClipboard } from '../state';
+import useClipboard from './useClipboard';
 
 import useEntityActions from './useEntityActions';
 

@@ -1,6 +1,5 @@
 import React, {
   createContext,
-  useCallback,
   useContext,
   useMemo,
 } from 'react';
@@ -31,17 +30,6 @@ export const commitAction = dispatch => () => dispatch({
   type: 'commit',
 });
 
-export const setClipboardAction = dispatch => subjectId => dispatch({
-  type: 'set_clipboard',
-  payload: {
-    subjectId,
-  },
-});
-
-export const resetClipboardAction = dispatch => () => dispatch({
-  type: 'reset_clipboard',
-});
-
 const defaultState = {
   action: undefined,
   subject: undefined,
@@ -50,7 +38,7 @@ const defaultState = {
 
 /* eslint-disable no-param-reassign */
 const actionReducer = produce((draft, action) => {
-  console.log('dispatch[Org]', action);
+  console.log('dispatch[OrgActions]', action);
   switch (action.type) {
     case 'begin': {
       draft.action = action.payload.action;
@@ -82,7 +70,7 @@ const actionReducer = produce((draft, action) => {
       throw new Error(`Unhandled action type: ${action.type}`);
     }
   }
-  console.log('nextState[Org]', current(draft));
+  console.log('nextState[OrgActions]', current(draft));
 });
 /* eslint-enable no-param-reassign */
 
@@ -104,22 +92,6 @@ const useActionDispatch = () => {
     );
   }
   return context;
-};
-
-const useClipboard = () => {
-  const context = useContext(ActionStateContext);
-  const dispatch = useContext(ActionDispatchContext);
-  if (context === undefined) {
-    throw new Error(
-      'useActionState must be used within a ActionProvider',
-    );
-  }
-
-  const resetClipboard = useCallback(() => resetClipboardAction(dispatch)(), [dispatch]);
-  return {
-    subject: context.clipboard,
-    resetClipboard,
-  };
 };
 
 const ActionProvider = ({ children }) => {
@@ -180,5 +152,4 @@ export {
   useActionDispatch,
   GraphProvider,
   useGraph,
-  useClipboard,
 };

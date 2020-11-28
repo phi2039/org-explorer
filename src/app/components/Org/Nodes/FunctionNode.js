@@ -1,6 +1,8 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 
+import styled from 'styled-components';
+
 import {
   FiMoreHorizontal,
   FiTrash2,
@@ -21,6 +23,34 @@ import ActionMenu from './ActionMenu';
 
 import BaseNode from './BaseNode';
 import AccessTypes from './common/AccessTypes';
+import ResourceSummary from './common/ResourceSummary';
+
+const EnhancedCardBody = styled(Card.Body)`
+  padding-left: 0;
+  padding-right: 0;
+
+  ${({ compact }) => compact && `
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+  `}
+`;
+
+const EnhancedCardTitle = styled(Card.Title)`
+  margin-bottom: 0;
+`;
+
+const EnhancedListGroupItem = styled(ListGroupItem)`
+  ${({ compact }) => compact && `
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+  `}
+  ${({ activeHover }) => activeHover && `
+    cursor: pointer;
+    :hover {
+      background-color: rgba(255,255,255,0.90);
+    }
+  `}
+`;
 
 const FunctionActionMenu = ({
   onEdit,
@@ -63,49 +93,80 @@ FunctionActionMenu.defaultProps = {
   onCut: null,
 };
 
+const FunctionDetail = ({
+  entity,
+  ...props
+}) => (
+  <>
+    <EnhancedListGroupItem variant="light" {...props}>
+      {entity.currentTotalFTE} FTE
+    </EnhancedListGroupItem>
+    <EnhancedListGroupItem variant="light" {...props}>
+      <AccessTypes entity={entity} />
+    </EnhancedListGroupItem>
+  </>
+);
+
+FunctionDetail.propTypes = {
+  entity: PropTypes.shape({
+    currentTotalFTE: PropTypes.number,
+  }).isRequired,
+};
+
+const CompactFunctionInfo = ({ entity }) => (
+  <EnhancedListGroupItem variant="light">
+    <ResourceSummary fte={entity.currentTotalFTE} />
+  </EnhancedListGroupItem>
+);
+
+CompactFunctionInfo.propTypes = {
+  entity: PropTypes.shape({
+    currentTotalFTE: PropTypes.number,
+  }).isRequired,
+};
+
 const Function = ({
   entity,
+  viewMode,
   isSelected,
   onClick,
   onDelete,
   onEdit,
   onCut,
-}) => (
-  <BaseNode onClick={onClick} onDoubleClick={onEdit}>
-    <Card bg={isSelected ? 'success' : 'secondary'} text="white" style={{ width: '18rem' }}>
-      <Card.Body>
-        <Card.Title>
-          <Container>
-            <Row noGutters>
-              <Col md="auto">
-                <div style={{ width: '1.5em' }} />
-              </Col>
-              <OverlayTrigger
-                placement="right"
-                overlay={<Tooltip>{entity.description || 'No Description'}</Tooltip>}
-              >
-                <Col>
-                  {entity.name}
+}) => {
+  const compact = viewMode !== 'detail';
+  return (
+    <BaseNode onClick={onClick} onDoubleClick={onEdit}>
+      <Card bg={isSelected ? 'success' : 'secondary'} text="white" style={{ width: '18rem' }}>
+        <EnhancedCardBody compact={compact}>
+          <EnhancedCardTitle>
+            <Container>
+              <Row noGutters>
+                <Col md="auto">
+                  <div style={{ width: '1.5em' }} />
                 </Col>
-              </OverlayTrigger>
-              <Col md="auto">
-                <FunctionActionMenu onEdit={onEdit} onDelete={onDelete} onCut={onCut} />
-              </Col>
-            </Row>
-          </Container>
-        </Card.Title>
-      </Card.Body>
-      <ListGroup className="list-group-flush">
-        <ListGroupItem variant="light">
-          {entity.currentTotalFTE} FTE
-        </ListGroupItem>
-        <ListGroupItem variant="light">
-          <AccessTypes entity={entity} />
-        </ListGroupItem>
-      </ListGroup>
-    </Card>
-  </BaseNode>
-);
+                <OverlayTrigger
+                  placement="right"
+                  overlay={<Tooltip>{entity.description || 'No Description'}</Tooltip>}
+                >
+                  <Col>
+                    {entity.name}
+                  </Col>
+                </OverlayTrigger>
+                <Col md="auto">
+                  <FunctionActionMenu onEdit={onEdit} onDelete={onDelete} onCut={onCut} />
+                </Col>
+              </Row>
+            </Container>
+          </EnhancedCardTitle>
+        </EnhancedCardBody>
+        <ListGroup className="list-group-flush">
+          {(!compact || isSelected) ? <FunctionDetail entity={entity} compact={compact} /> : <CompactFunctionInfo entity={entity} />}
+        </ListGroup>
+      </Card>
+    </BaseNode>
+  );
+};
 
 Function.propTypes = {
   entity: PropTypes.shape({
@@ -113,6 +174,7 @@ Function.propTypes = {
     description: PropTypes.string,
     currentTotalFTE: PropTypes.number,
   }).isRequired,
+  viewMode: PropTypes.string,
   isSelected: PropTypes.bool,
   onClick: PropTypes.func,
   onEdit: PropTypes.func,
@@ -121,6 +183,7 @@ Function.propTypes = {
 };
 
 Function.defaultProps = {
+  viewMode: 'detail',
   isSelected: false,
   onClick: () => {},
   onEdit: () => {},

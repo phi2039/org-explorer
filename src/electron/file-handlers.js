@@ -44,11 +44,7 @@ const FileHandlers = () => {
   const onLoadDataFile = async () => {
     const { filePaths, canceled } = await dialog.showOpenDialog({
       filters: [
-        fileTypeFilters.all,
         fileTypeFilters.org,
-        fileTypeFilters.excel,
-        fileTypeFilters.json,
-        fileTypeFilters.yaml,
       ],
       properties: ['openFile'],
     });

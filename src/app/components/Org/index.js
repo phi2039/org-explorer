@@ -28,9 +28,12 @@ import {
   ActionProvider,
   GraphProvider,
   useActionState,
-  useClipboard,
   useGraph,
 } from './state';
+
+import { SettingsProvider } from './settings';
+
+import useClipboard from './hooks/useClipboard';
 
 import Node from './Nodes/BaseNode';
 import Group from './Nodes/GroupNode';
@@ -47,6 +50,8 @@ import FullPageSpinner from '../common/FullPageSpinner';
 import { usePersistenceDispatch, usePersistenceState, mutateAction } from '../../state/PersistenceContext';
 import { AnalyticsProvider } from './analytics-context';
 import useSelectionHotkeys from './hooks/useSelectionHotkeys';
+
+import ViewControls from './ViewControls';
 
 const Workspace = styled.div`
   position: relative;
@@ -254,6 +259,9 @@ const Org = ({
           <span>{focusPath}</span>
         </FocusHeader>
       )}
+      <ViewControls
+        offsetTop={isFocused ? '2.5rem' : 0}
+      />
       <ScrollContainer hideScrollbars={false}>
         <ZoomContainer zoom={zoom} setZoom={setZoom}>
           <Hierarchy render={(node, nodeProps) => (
@@ -295,7 +303,9 @@ const OrgProviders = ({ children }) => (
     <ActionProvider>
       <GraphProvider>
         <AnalyticsProvider>
-          {children}
+          <SettingsProvider>
+            {children}
+          </SettingsProvider>
         </AnalyticsProvider>
       </GraphProvider>
     </ActionProvider>
@@ -304,8 +314,6 @@ const OrgProviders = ({ children }) => (
 
 export default ({ children }) => (
   <OrgProviders>
-    <Org>
-      {children}
-    </Org>
+    <Org />
   </OrgProviders>
 );

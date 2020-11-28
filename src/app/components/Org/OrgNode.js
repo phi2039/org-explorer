@@ -1,6 +1,8 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 
+import { useSettingsState } from './settings';
+
 import useEntity from './hooks/useEntity';
 import useCalculatedValues from './hooks/useCalculatedValues';
 import useEntityActions from './hooks/useEntityActions';
@@ -33,6 +35,8 @@ const OrgNode = ({
 }) => {
   const { subjectId: entityId } = node;
 
+  const { viewMode } = useSettingsState();
+
   const entity = useEntity(entityId);
   const handlers = useEntityActions(entity);
   const calculatedValues = useCalculatedValues(entity);
@@ -45,6 +49,7 @@ const OrgNode = ({
 
   const nodeProps = mapNodeProps({
     node,
+    viewMode,
     entity: {
       ...entity,
       ...calculatedValues,

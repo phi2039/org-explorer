@@ -1,8 +1,8 @@
 import EventEmitter from 'eventemitter3';
 import { defaults } from 'lodash';
 
-import MemoryPersistenceAdapter from './persistence-adapters/memory';
-import FilePersistenceAdapter from './persistence-adapters/file';
+import MemoryPersistenceAdapter from './adapters/memory';
+import FilePersistenceAdapter from './adapters/file';
 
 // TODO: Enforce immutability for returned objects
 const PersistenceService = ({

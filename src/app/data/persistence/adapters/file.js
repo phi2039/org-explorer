@@ -78,7 +78,7 @@ const FilePersistenceAdapter = emitter => {
     emitter.emit('open', filePath, { backupInterval });
   };
 
-  const flush = async (location, options) => {
+  const flush = async (location, options = {}) => {
     if (!options.external && location && location !== state.filePath) {
       state.filePath = location;
       emitter.emit('location_changed', location);

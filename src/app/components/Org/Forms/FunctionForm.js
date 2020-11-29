@@ -60,7 +60,7 @@ const FunctionForm = forwardRef(({
         name="name"
         type="text"
         placeholder="Function Name"
-        autofocus
+        autoFocus
       />
       <TextInput
         label="Description"

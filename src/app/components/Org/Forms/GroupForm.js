@@ -56,7 +56,7 @@ const GroupForm = forwardRef(({
         name="name"
         type="text"
         placeholder="Group Name"
-        autofocus
+        autoFocus
       />
       <TextInput
         label="Manager"

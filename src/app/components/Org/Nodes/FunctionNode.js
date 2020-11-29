@@ -25,7 +25,7 @@ import BaseNode from './BaseNode';
 import AccessTypes from './common/AccessTypes';
 import ResourceSummary from './common/ResourceSummary';
 
-const EnhancedCardBody = styled(Card.Body)`
+const EnhancedCardBody = styled(({ compact, ...props }) => <Card.Body {...props} />)`
   padding-left: 0;
   padding-right: 0;
 
@@ -39,7 +39,7 @@ const EnhancedCardTitle = styled(Card.Title)`
   margin-bottom: 0;
 `;
 
-const EnhancedListGroupItem = styled(ListGroupItem)`
+const EnhancedListGroupItem = styled(({ compact, activeHover, ...props }) => <ListGroupItem {...props} />)`
   ${({ compact }) => compact && `
     padding-top: 0.25rem;
     padding-bottom: 0.25rem;

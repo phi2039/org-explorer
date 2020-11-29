@@ -25,7 +25,7 @@
 
 # Resolved(?)
 
-* *** "Save As" should update current file name (verify overall that save functionality is working...)
+* "Save As" should update current file name (verify overall that save functionality is working...)
 * Reset focus button not visible in release build
 * Can't reset selection in release build
 * Default fields and enter-key action for forms

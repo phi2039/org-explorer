@@ -1,7 +1,7 @@
 {
   "name": "org-explorer",
   "productName": "Org  Explorer",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Labor analysis tool",
   "main": ".webpack/main",
   "scripts": {

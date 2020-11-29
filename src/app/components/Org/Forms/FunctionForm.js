@@ -60,6 +60,7 @@ const FunctionForm = forwardRef(({
         name="name"
         type="text"
         placeholder="Function Name"
+        autofocus
       />
       <TextInput
         label="Description"
@@ -85,6 +86,7 @@ const FunctionForm = forwardRef(({
         label="Requires PHI"
         name="requiresPHI"
       />
+      <input type="submit" hidden />
     </Form>
   );
 });

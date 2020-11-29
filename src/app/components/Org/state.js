@@ -4,7 +4,10 @@ import React, {
   useMemo,
 } from 'react';
 import { PropTypes } from 'prop-types';
-import produce, { current } from 'immer';
+import produce from 'immer';
+
+import isDev from 'electron-is-dev';
+import logDispatch from '../../../lib/logging/log-dispatch';
 
 import useReducerAsync from '../../hooks/useReducerAsync';
 import { usePersistenceState } from '../../state/PersistenceContext';
@@ -38,7 +41,6 @@ const defaultState = {
 
 /* eslint-disable no-param-reassign */
 const actionReducer = produce((draft, action) => {
-  console.log('dispatch[OrgActions]', action);
   switch (action.type) {
     case 'begin': {
       draft.action = action.payload.action;
@@ -70,7 +72,6 @@ const actionReducer = produce((draft, action) => {
       throw new Error(`Unhandled action type: ${action.type}`);
     }
   }
-  console.log('nextState[OrgActions]', current(draft));
 });
 /* eslint-enable no-param-reassign */
 
@@ -95,7 +96,7 @@ const useActionDispatch = () => {
 };
 
 const ActionProvider = ({ children }) => {
-  const [state, dispatch] = useReducerAsync(actionReducer, defaultState);
+  const [state, dispatch] = useReducerAsync(isDev ? logDispatch(actionReducer, 'OrgActions') : actionReducer, defaultState);
 
   return (
     <ActionStateContext.Provider value={state}>

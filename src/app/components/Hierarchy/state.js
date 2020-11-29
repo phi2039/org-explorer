@@ -4,6 +4,9 @@ import React, {
   useReducer,
 } from 'react';
 
+import isDev from 'electron-is-dev';
+import logDispatch from '../../../lib/logging/log-dispatch';
+
 const HierarchyStateContext = createContext();
 const HierarchyDispatchContext = createContext();
 
@@ -110,7 +113,6 @@ const load = ({
 // TODO: Switch to immer (performance improvement?)
 const hierarchyReducer = (state, action) => {
   let nextState = state;
-  console.log('dispatch[Hierarchy]', action);
   switch (action.type) {
     case 'load': {
       nextState = load(action.payload.data);
@@ -188,12 +190,11 @@ const hierarchyReducer = (state, action) => {
       throw new Error(`Unhandled action type: ${action.type}`);
     }
   }
-  console.log('nextState[Hierarchy]', nextState);
   return nextState;
 };
 
 const HierarchyProvider = ({ nodes = {}, root, children }) => {
-  const [state, dispatch] = useReducer(hierarchyReducer, load({
+  const [state, dispatch] = useReducer(isDev ? logDispatch(hierarchyReducer, 'Hierarchy') : hierarchyReducer, load({
     nodes,
     root,
   }));

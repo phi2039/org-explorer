@@ -74,7 +74,10 @@ const ControlBar = ({ offsetTop, controls, initialActiveItem }) => {
 };
 
 ControlBar.propTypes = {
-  offsetTop: PropTypes.number,
+  offsetTop: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]),
   controls: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string,
     icon: PropTypes.elementType,

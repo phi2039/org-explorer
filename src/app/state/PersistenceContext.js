@@ -1,9 +1,13 @@
 import React, { createContext, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import produce, { current } from 'immer';
+import produce from 'immer';
 
-import useWhyDidYouUpdate from '../hooks/useWhyDidYouUpdate';
+import isDev from 'electron-is-dev';
+import logDispatch from '../../lib/logging/log-dispatch';
+
+// import useWhyDidYouUpdate from '../hooks/useWhyDidYouUpdate';
+
 import useReducerAsync from '../hooks/useReducerAsync';
 import PersistenceService from '../data/persistence';
 
@@ -92,7 +96,6 @@ const getInitialState = source => ({
 
 /* eslint-disable no-param-reassign */
 const persistenceReducer = produce((draft, action) => {
-  console.log('dispatch[Persistence]', action);
   switch (action.type) {
     case 'set_source': {
       draft.source = action.payload.source;
@@ -152,7 +155,6 @@ const persistenceReducer = produce((draft, action) => {
       throw new Error(`Unhandled action type: ${action.type}`);
     }
   }
-  console.log('nextState[Persistence]', current(draft));
 });
 /* eslint-enable no-param-reassign */
 
@@ -161,8 +163,9 @@ const persistenceService = PersistenceService({
 });
 
 const PersistenceProvider = ({ initialSource, children }) => {
-  const [state, dispatch] = useReducerAsync(persistenceReducer, getInitialState(initialSource), persistenceService);
-  useWhyDidYouUpdate('PersistenceProvider', state);
+  const [state, dispatch] = useReducerAsync(isDev ? logDispatch(persistenceReducer, 'Persistence') : persistenceReducer, getInitialState(initialSource), persistenceService);
+
+  // useWhyDidYouUpdate('PersistenceProvider', state);
 
   useEffect(() => {
     const locationListener = persistenceService.on('location_changed', async (location /* , options */) => {

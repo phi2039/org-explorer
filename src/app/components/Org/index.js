@@ -209,12 +209,12 @@ const Org = ({
     zoomOut,
   } = useZoom();
 
-  const resetFocus = useCallback(
-    (root !== activeRoot)
-      ? resetActiveRootAction(hierarchyDispatch)
-      : null,
-    [hierarchyDispatch],
-  );
+  const resetFocus = useCallback(() => {
+    if (root !== activeRoot) {
+      resetActiveRootAction(hierarchyDispatch);
+    }
+  },
+  [hierarchyDispatch, activeRoot, root]);
 
   const isFocused = root !== activeRoot;
   const focusPath = useMemo(() => isFocused ? graph.path(activeRoot).reverse().map(id => entities[id].name).join(' -> ') : '', [isFocused, graph, activeRoot, entities]);
@@ -250,7 +250,7 @@ const Org = ({
           expandAll,
           zoomIn,
           zoomOut,
-          resetFocus,
+          resetFocus: isFocused ? resetFocus : null,
         }}
         offsetTop={isFocused ? '2.5rem' : 0}
       />

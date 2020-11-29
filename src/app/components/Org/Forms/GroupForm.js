@@ -56,6 +56,7 @@ const GroupForm = forwardRef(({
         name="name"
         type="text"
         placeholder="Group Name"
+        autofocus
       />
       <TextInput
         label="Manager"
@@ -70,6 +71,7 @@ const GroupForm = forwardRef(({
         placeholder="0-100"
         format="percentage"
       />
+      <input type="submit" hidden />
     </Form>
   );
 });

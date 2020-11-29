@@ -14,8 +14,6 @@ import {
 
 import {
   resetSelectionAction,
-  expandAllAction,
-  collapseAllAction,
   toggleStateAction,
   setActiveRootAction,
   resetActiveRootAction,
@@ -207,26 +205,18 @@ const RootContainer = styled.div`
   }
 `;
 
-const DebugControls = () => {
-  const dispatch = useHierarchyDispatch();
-  const expandAll = useCallback(expandAllAction(dispatch), [dispatch]);
-  const collapseAll = useCallback(collapseAllAction(dispatch), [dispatch]);
-
-  return (
-    <div style={{ position: 'absolute', left: 300, bottom: 0 }}>
-      <button type="button" onClick={expandAll}>Expand All</button>
-      <button type="button" onClick={collapseAll}>Collapse All</button>
-    </div>
-  );
-};
-
 const Hierarchy = ({ render }) => {
   const {
     hierarchy: { activeRoot, root, selection },
   } = useHierarchyState();
   const dispatch = useHierarchyDispatch();
 
-  const resetSelection = useCallback(selection ? resetSelectionAction(dispatch) : null, [dispatch]);
+  const resetSelection = useCallback(() => {
+    if (selection) {
+      resetSelectionAction(dispatch)();
+    }
+  }, [dispatch, selection]);
+
   if (!root && !activeRoot) {
     return null;
   }
@@ -240,7 +230,6 @@ const Hierarchy = ({ render }) => {
           </tr>
         </tbody>
       </Table>
-      {/* <DebugControls /> */}
     </RootContainer>
   );
 };

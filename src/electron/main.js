@@ -7,8 +7,7 @@ const {
 } = require('electron'); // eslint-disable-line import/no-extraneous-dependencies
 
 require('./updates');
-
-const isDev = require('electron-is-dev');
+require('./debug');
 
 const FileHandlers = require('./file-handlers');
 
@@ -63,6 +62,7 @@ const createWindow = () => {
     show: false, // Wait until everything is loaded to show
     titleBarStyle: 'hidden',
     webPreferences: {
+      enableRemoteModule: true,
       nodeIntegration: true,
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY, // eslint-disable-line no-undef
     },
@@ -77,32 +77,6 @@ const createWindow = () => {
   mainWindow.webContents.once('did-finish-load', () => {
     onWindowReady();
   });
-
-  if (isDev) {
-    const {
-      default: installExtension,
-      REACT_DEVELOPER_TOOLS,
-      REDUX_DEVTOOLS,
-    } = require('electron-devtools-installer'); // eslint-disable-line global-require, import/no-extraneous-dependencies
-
-    app.whenReady().then(() => {
-      installExtension(REACT_DEVELOPER_TOOLS)
-        .then((name) => {
-          console.log(`Added Extension: ${name}`);
-        })
-        .catch((err) => {
-          console.log('An error occurred: ', err);
-        });
-
-      installExtension(REDUX_DEVTOOLS)
-        .then((name) => {
-          console.log(`Added Extension: ${name}`);
-        })
-        .catch((err) => {
-          console.log('An error occurred: ', err);
-        });
-    });
-  }
 
   mainWindow.once('ready-to-show', () => {
     mainWindow.show();

@@ -23,7 +23,7 @@ import ResourceSummary from '../common/ResourceSummary';
 import Focus from './Focus';
 import GroupActionMenu from './GroupActionMenu';
 
-const EnhancedCardBody = styled(Card.Body)`
+const EnhancedCardBody = styled(({ compact, ...props }) => <Card.Body {...props} />)`
   padding-left: 0;
   padding-right: 0;
 
@@ -37,7 +37,7 @@ const EnhancedCardTitle = styled(Card.Title)`
   margin-bottom: 0;
 `;
 
-const EnhancedListGroupItem = styled(ListGroupItem)`
+const EnhancedListGroupItem = styled(({ compact, activeHover, ...props }) => <ListGroupItem {...props} />)`
   ${({ compact }) => compact && `
     padding-top: 0.25rem;
     padding-bottom: 0.25rem;
@@ -87,7 +87,6 @@ const GroupHeader = ({
         </Container>
       </EnhancedCardTitle>
     </EnhancedCardBody>
-
   </>
 );
 
@@ -252,7 +251,7 @@ const Group = ({
   return (
     <BaseNode onClick={onClick} onDoubleClick={onEdit}>
       <Card bg={isSelected ? 'success' : 'primary'} text="white" style={{ width: '18rem' }}>
-        <GroupHeader entity={entity} isSelected={isSelected} onEdit={onEdit} onAddGroup={onAddGroup} onAddWorkload={onAddWorkload} compact={compact} {...headerProps} />
+        <GroupHeader entity={entity} onEdit={onEdit} onAddGroup={onAddGroup} onAddWorkload={onAddWorkload} compact={compact} {...headerProps} />
         <ListGroup variant="flush">
           {(!compact || isSelected) ? <GroupDetail entity={entity} compact={compact} /> : <CompactGroupInfo entity={entity} />}
           <GroupToggle toggleState={toggleState} collapsed={collapsed} compact={compact} />

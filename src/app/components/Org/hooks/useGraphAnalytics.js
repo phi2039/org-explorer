@@ -10,7 +10,7 @@ import { zipObject } from 'lodash';
 
 import { createReducers, computeMeasures } from '../analytics';
 
-import useWhyDidYouUpdate from '../../../hooks/useWhyDidYouUpdate';
+// import useWhyDidYouUpdate from '../../../hooks/useWhyDidYouUpdate';
 
 const mapObject = (fn, ...args) => obj => Object.entries(obj).reduce((acc, [key, value]) => ({ ...acc, [key]: fn(value, ...args) }), {});
 
@@ -55,7 +55,7 @@ const useGraphAnalytics = (graph, entities, {
 }) => {
   const partials = useMemo(() => reducePartials(graph, entities, createReducers(metrics)), [graph, entities, metrics]);
 
-  useWhyDidYouUpdate('useGraphAnalytics', { graph, entities, metrics });
+  // useWhyDidYouUpdate('useGraphAnalytics', { graph, entities, metrics });
 
   const enhance = useCallback(mapObject(computeMeasures(measures)), [measures]);
 

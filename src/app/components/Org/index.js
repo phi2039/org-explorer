@@ -212,7 +212,7 @@ const Org = ({
 
   const resetFocus = useCallback(() => {
     if (root !== activeRoot) {
-      resetActiveRootAction(hierarchyDispatch);
+      resetActiveRootAction(hierarchyDispatch)();
     }
   },
   [hierarchyDispatch, activeRoot, root]);

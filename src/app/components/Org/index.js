@@ -9,8 +9,6 @@ import styled from 'styled-components';
 
 import IndianaScrollContainer from 'react-indiana-drag-scroll';
 
-// import { useToasts } from 'react-toast-notifications'
-
 import ZoomContainer, { useZoom } from '../common/ZoomContainer';
 
 import Hierarchy, { HierarchyProvider, useHierarchyState, useHierarchyDispatch } from '../Hierarchy';
@@ -47,11 +45,11 @@ import OrgNode from './OrgNode';
 import ModalActions from './ModalActions';
 
 import FullPageSpinner from '../common/FullPageSpinner';
-import { usePersistenceDispatch, usePersistenceState, mutateAction } from '../../state/PersistenceContext';
 import { AnalyticsProvider } from './analytics-context';
 import useSelectionHotkeys from './hooks/useSelectionHotkeys';
 
 import ViewControls from './ViewControls';
+import { useEntities } from '../../state/entity-store';
 
 const Workspace = styled.div`
   position: relative;
@@ -184,8 +182,7 @@ const Org = ({
   },
   ...props
 }) => {
-  const { cache: { entities }, isLoading } = usePersistenceState();
-  const persistenceDispatch = usePersistenceDispatch();
+  const { entities, isSaving } = useEntities();
 
   const { hierarchy: { activeRoot, root } } = useHierarchyState();
   const hierarchyDispatch = useHierarchyDispatch();
@@ -222,7 +219,7 @@ const Org = ({
   const expandAll = useCallback(expandAllAction(hierarchyDispatch), [hierarchyDispatch]);
   const collapseAll = useCallback(collapseAllAction(hierarchyDispatch), [hierarchyDispatch]);
 
-  const mutate = useCallback(mutateAction(persistenceDispatch));
+  const { mutate } = useEntities();
 
   const commitChanges = useCallback((action, subject, values) => {
     if (action === 'create') {
@@ -234,7 +231,7 @@ const Org = ({
 
   const { action } = useActionState();
 
-  if (isLoading) {
+  if (isSaving) {
     return (
       <FullPageSpinner caption="Loading" />
     );

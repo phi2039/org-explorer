@@ -10,9 +10,9 @@ import isDev from 'electron-is-dev';
 import logDispatch from '../../../lib/logging/log-dispatch';
 
 import useReducerAsync from '../../hooks/useReducerAsync';
-import { usePersistenceState } from '../../state/PersistenceContext';
 
 import Graph from '../../../lib/graph';
+import { useEntities } from '../../state/entity-store';
 
 const ActionStateContext = createContext();
 const ActionDispatchContext = createContext();
@@ -128,7 +128,7 @@ const useGraph = () => {
 };
 
 const GraphProvider = ({ children }) => {
-  const { cache: { entities } } = usePersistenceState();
+  const { entities } = useEntities();
 
   const graph = useMemo(() => Graph(Object.values(entities).map(({ id, parent }) => ({ id, parent }))), [entities]);
 

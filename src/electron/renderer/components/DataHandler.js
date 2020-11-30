@@ -1,62 +1,74 @@
-import { useCallback, useEffect } from 'react';
+import { useEffect } from 'react';
 
 import { ipcRenderer } from 'electron'; // eslint-disable-line import/no-extraneous-dependencies
 
 import {
-  usePersistenceDispatch,
-  openAction,
-  saveAction,
-} from '../../../app/state/PersistenceContext';
+  usePersistence,
+} from '../../../app/context/PersistenceContext';
 
 import exportTransforms from '../exporters';
 
 const normalizePath = str => str && str.replaceAll('\\', '/');
 
 const DataHandler = () => {
-  const persistenceDispatch = usePersistenceDispatch();
-  const saveData = useCallback(saveAction(persistenceDispatch), [persistenceDispatch]);
-  const openPersistence = useCallback(openAction(persistenceDispatch), [persistenceDispatch]);
+  const { open, save } = usePersistence();
 
   useEffect(() => {
-    ipcRenderer.removeAllListeners('persistence:open');
-    ipcRenderer.on('persistence:open', (event, { location, options }) => {
-      openPersistence(location, options);
-    });
+    const openListener = (event, { location, options }) => {
+      open(location, options);
+    };
+    ipcRenderer.on('persistence:open', openListener);
 
-    ipcRenderer.removeAllListeners('persistence:flush');
-    ipcRenderer.on('persistence:flush', (event, location) => {
-      saveData(location);
-    });
+    return () => {
+      ipcRenderer.removeListener('persistence:open', openListener);
+    };
+  }, [open]);
 
-    ipcRenderer.removeAllListeners('persistence:export');
-    ipcRenderer.on('persistence:export', (event, location, format) => {
-      saveData(location, {
+  useEffect(() => {
+    const flushListener = (event, location) => {
+      save(location);
+    };
+    ipcRenderer.on('persistence:flush', flushListener);
+
+    const exportListener = (event, location, format) => {
+      save(location, {
         external: true,
         transforms: exportTransforms[format],
       });
-    });
-    ipcRenderer.send('view:ready');
-  }, [openPersistence, saveData]);
+    };
+    ipcRenderer.on('persistence:export', exportListener);
+
+    return () => {
+      ipcRenderer.removeListener('persistence:flush', flushListener);
+      ipcRenderer.removeListener('persistence:export', exportListener);
+    };
+  }, [save]);
 
   useEffect(() => {
-    const dropListener = document.addEventListener('drop', (e) => {
+    const dropListener = (e) => {
       e.preventDefault();
       e.stopPropagation();
 
       const location = normalizePath(e.dataTransfer.files[0].path);
-      openPersistence(location);
-    });
+      open(location);
+    };
+    document.addEventListener('drop', dropListener);
 
-    const dragListener = document.addEventListener('dragover', (e) => {
+    const dragListener = (e) => {
       e.preventDefault();
       e.stopPropagation();
-    });
+    };
+    document.addEventListener('dragover', dragListener);
 
     return () => {
       document.removeEventListener('drop', dropListener);
       document.removeEventListener('dragover', dragListener);
     };
-  }, [openPersistence]);
+  }, [open]);
+
+  useEffect(() => {
+    ipcRenderer.send('view:ready');
+  }, []);
 
   return null;
 };

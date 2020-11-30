@@ -11,7 +11,7 @@ import ModalForm from './ModalForm';
 
 import FullPageSpinner from '../common/FullPageSpinner';
 
-import { usePersistenceState } from '../../state/PersistenceContext';
+import { usePersistenceState } from '../../context/PersistenceContext';
 
 const renderEntityActionForm = (entity, action, forms) => {
   const Form = forms[entity.type][action];

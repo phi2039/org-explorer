@@ -3,9 +3,9 @@ import { PropTypes } from 'prop-types';
 
 import { useSettingsState } from './settings';
 
-import useEntity from './hooks/useEntity';
 import useCalculatedValues from './hooks/useCalculatedValues';
 import useEntityActions from './hooks/useEntityActions';
+import { useEntity } from '../../state/entity-store';
 
 const mapNodeProps = ({
   isActiveRoot,

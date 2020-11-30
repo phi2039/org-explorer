@@ -12,16 +12,16 @@ import {
 
 import useClipboard from './useClipboard';
 
-import { usePersistenceDispatch, mutateAction } from '../../../state/PersistenceContext';
+import { useEntities } from '../../../state/entity-store';
 
 // import useWhyDidYouUpdate from '../../../hooks/useWhyDidYouUpdate';
 
 const useEntityActions = entity => {
   const { subject, setClipboard, resetClipboard } = useClipboard();
   const actionDispatch = useActionDispatch();
-  const persistenceDispatch = usePersistenceDispatch();
   const graph = useGraph();
   const { addToast } = useToasts();
+  const { mutate } = useEntities();
 
   const notify = useCallback((level, message) => {
     addToast(message, {
@@ -30,8 +30,6 @@ const useEntityActions = entity => {
       autoDismissTimeout: 1500,
     });
   }, [addToast]);
-
-  const mutate = useCallback(mutateAction(persistenceDispatch), [mutateAction]);
 
   const onEdit = useCallback(() => beginActionAction(actionDispatch)('edit', entity), [actionDispatch, entity]);
 

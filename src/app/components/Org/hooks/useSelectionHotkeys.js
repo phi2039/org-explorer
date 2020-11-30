@@ -4,7 +4,7 @@ import {
 
 import { useHotkeys } from 'react-hotkeys-hook';
 
-import { usePersistenceState } from '../../../state/PersistenceContext';
+import { useEntities } from '../../../state/entity-store';
 import { useHierarchyState } from '../../Hierarchy';
 import useClipboard from './useClipboard';
 
@@ -15,7 +15,7 @@ import useEntityActions from './useEntityActions';
 const nop = () => {};
 
 const useSelectionHotkeys = () => {
-  const { cache: { entities } } = usePersistenceState();
+  const { entities } = useEntities();
   const { hierarchy: { selection } } = useHierarchyState();
   const { subject, resetClipboard } = useClipboard();
 

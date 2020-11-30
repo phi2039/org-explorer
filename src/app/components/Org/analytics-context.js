@@ -5,9 +5,9 @@ import React, {
 import { PropTypes } from 'prop-types';
 
 import { metrics, measures } from './metrics';
-import { usePersistenceState } from '../../state/PersistenceContext';
 import { useGraph } from './state';
 import useGraphAnalytics from './hooks/useGraphAnalytics';
+import { useEntities } from '../../state/entity-store';
 
 const AnalyticsContext = createContext();
 
@@ -22,7 +22,7 @@ const useAnalytics = () => {
 };
 
 const AnalyticsProvider = ({ children }) => {
-  const { cache: { entities } } = usePersistenceState();
+  const { entities } = useEntities();
   const graph = useGraph();
   const analytics = useGraphAnalytics(graph, entities, { metrics, measures });
 

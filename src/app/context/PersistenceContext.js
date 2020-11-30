@@ -8,12 +8,12 @@ import PropTypes from 'prop-types';
 
 import produce from 'immer';
 
-import isDev from 'electron-is-dev';
-import logDispatch from '../../lib/logging/log-dispatch';
+import { createReducer } from 'react-use';
+import logger from 'redux-logger';
+import thunk from 'redux-thunk';
 
 // import useWhyDidYouUpdate from '../hooks/useWhyDidYouUpdate';
 
-import useReducerAsync from '../hooks/useReducerAsync';
 import PersistenceService from '../data/persistence';
 import { useEntities } from '../state/entity-store';
 
@@ -42,8 +42,10 @@ const persistenceService = PersistenceService({
   persistenceAdapter: 'file',
 });
 
+const useThunkReducer = createReducer(thunk.withExtraArgument(persistenceService), logger);
+
 const PersistenceProvider = ({ initialSource, children }) => {
-  const [state, dispatch] = useReducerAsync(isDev ? logDispatch(persistenceReducer, 'Persistence') : persistenceReducer, getInitialState(initialSource), persistenceService);
+  const [state, dispatch] = useThunkReducer(persistenceReducer, getInitialState(initialSource));
   const { entities, load } = useEntities();
 
   useEffect(() => {

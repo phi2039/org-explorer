@@ -154,7 +154,10 @@
     "react-spring": "^8.0.27",
     "react-table": "^7.6.2",
     "react-toast-notifications": "^2.4.0",
+    "react-use": "^15.3.4",
     "read-excel-file": "^4.0.2",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0",
     "styled-components": "^4.2.0",
     "styled-system": "^5.1.5",
     "yup": "^0.29.3"

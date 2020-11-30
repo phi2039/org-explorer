@@ -6,10 +6,8 @@ import React, {
 import { PropTypes } from 'prop-types';
 import produce from 'immer';
 
-import isDev from 'electron-is-dev';
-import logDispatch from '../../../lib/logging/log-dispatch';
-
-import useReducerAsync from '../../hooks/useReducerAsync';
+import { createReducer } from 'react-use';
+import logger from 'redux-logger';
 
 import Graph from '../../../lib/graph';
 import { useEntities } from '../../state/entity-store';
@@ -95,8 +93,10 @@ const useActionDispatch = () => {
   return context;
 };
 
+const useLoggingReducer = createReducer(logger);
+
 const ActionProvider = ({ children }) => {
-  const [state, dispatch] = useReducerAsync(isDev ? logDispatch(actionReducer, 'OrgActions') : actionReducer, defaultState);
+  const [state, dispatch] = useLoggingReducer(actionReducer, defaultState);
 
   return (
     <ActionStateContext.Provider value={state}>

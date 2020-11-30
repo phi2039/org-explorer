@@ -51,6 +51,8 @@ import useSelectionHotkeys from './hooks/useSelectionHotkeys';
 import ViewControls from './ViewControls';
 import { useEntities } from '../../state/entity-store';
 
+// import useWhyDidYouUpdate from '../../hooks/useWhyDidYouUpdate';
+
 const Workspace = styled.div`
   position: relative;
   width: 100vw;
@@ -198,6 +200,8 @@ const Org = ({
       loadHierarchyData(reduceHierarchyData(entities, graph));
     }
   }, [entities, graph, loadHierarchyData]);
+
+  // useWhyDidYouUpdate('Hierarchy', { entities, graph });
 
   const {
     zoom,

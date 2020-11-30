@@ -1,34 +1,71 @@
-import React, { createContext, useCallback, useContext } from 'react';
+import React, { createContext, useCallback, useContext, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import cuid from 'cuid';
 
-import produce from 'immer';
+import { isEqual } from 'lodash';
 
-import isDev from 'electron-is-dev';
-import logDispatch from '../../lib/logging/log-dispatch';
-import useReducerAsync from '../hooks/useReducerAsync';
+import produce, { enablePatches, produceWithPatches } from 'immer';
+
+import { createReducer } from 'react-use';
+import logger from 'redux-logger';
+import thunk from 'redux-thunk';
 
 const EntityStateContext = createContext();
 const EntityDispatchContext = createContext();
 
+enablePatches();
+
+/* eslint-disable no-param-reassign */
+const withTimeline = reducer => (state, action) => {
+  switch (action.type) {
+    case 'timeline_undo':
+      return produce(state, draft => {
+        if (draft.past.length) {
+          const newPresent = draft.past.pop();
+          draft.future.unshift(draft.present);
+          draft.present = newPresent;
+        }
+      });
+    case 'timeline_redo':
+      return produce(state, draft => {
+        if (draft.future.length) {
+          const newPresent = draft.future.shift();
+          draft.past.push(draft.present);
+          draft.present = newPresent;
+        }
+      });
+    case 'timeline_clear':
+      return produce(state, draft => {
+        draft.past = [];
+        draft.future = [];
+      });
+    default:
+      return produce(state, draft => {
+        const [nextState, patches] = produceWithPatches(draft.present, d => reducer(d, action));
+        if (patches.length) {
+          draft.past.push(draft.present);
+          draft.present = nextState;
+          draft.future = [];
+        }
+      });
+  }
+};
+/* eslint-enable no-param-reassign */
+
+const useThunkReducer = createReducer(thunk, logger);
+
 const updateEntity = entities => (id, { id: _id, type, ...values }) => ({ ...entities[id], ...values });
 
 const mutateThunk = mutations => async (dispatch, getState) => {
-  dispatch({
-    type: 'mutation_begin',
-    payload: {
-      mutations,
-    },
-  });
+  const { present: { entities } } = getState();
 
-  const { entities } = getState();
   const { update = [], remove = [], create = [] } = mutations;
   const updated = update.map(({ id, values }) => updateEntity(entities)(id, values)); // Takes {id, values}  -> Returns entities
   const removed = remove.map(id => ({ id })); // Takes id  -> Returns partial entities (only id attribute)
   const created = create.map(values => ({ ...values, id: cuid() })); // Takes values  -> Returns entities
 
   dispatch({
-    type: 'mutation_complete',
+    type: 'entities_mutate',
     payload: {
       updated,
       removed,
@@ -41,41 +78,35 @@ export const mutateAction = dispatch => mutations => {
   dispatch(mutateThunk(mutations));
 };
 
-export const loadAction = dispatch => entities => {
+const loadThunk = entities => async (dispatch, getState) => {
   dispatch({
-    type: 'load',
+    type: 'entities_load',
     payload: {
       entities,
     },
   });
+  dispatch({ type: 'timeline_clear' });
+};
+
+export const loadAction = dispatch => entities => {
+  dispatch(loadThunk(entities));
 };
 
 const getInitialState = source => ({
-  entities: {},
+  past: [],
+  future: [],
+  present: {},
   source,
 });
 
 /* eslint-disable no-param-reassign */
 const entityReducer = produce((draft, action) => {
   switch (action.type) {
-    case 'load': {
-      draft.errors = [];
-      draft.isSaving = false;
+    case 'entities_load': {
       draft.entities = action.payload.entities;
       break;
     }
-    case 'mutation_begin': {
-      draft.errors = [];
-      draft.isSaving = true;
-      break;
-    }
-    case 'mutation_failed': {
-      draft.errors = action.payload.errors;
-      draft.isSaving = false;
-      break;
-    }
-    case 'mutation_complete': {
-      draft.isSaving = false;
+    case 'entities_mutate': {
       const { created, updated, removed } = action.payload;
       created.forEach(item => {
         draft.entities[item.id] = item;
@@ -84,12 +115,18 @@ const entityReducer = produce((draft, action) => {
         delete draft.entities[item.id];
       });
       updated.forEach(item => {
-        draft.entities[item.id] = item;
+        if (!draft.entities[item.id]) {
+          draft.entities[item.id] = item;
+        } else if (!isEqual(draft.entities[item.id], item)) {
+          Object.assign(draft.entities[item.id], item);
+        }
       });
       break;
     }
     default: {
-      throw new Error(`Unhandled action type: ${action.type}`);
+      if (action.type) {
+        throw new Error(`Unhandled action type: ${action.type}`);
+      }
     }
   }
 });
@@ -106,7 +143,7 @@ const useEntityContext = () => {
 };
 
 const useEntities = () => {
-  const { entities } = useEntityContext();
+  const { present: { entities = {} } } = useEntityContext();
   const dispatch = useContext(EntityDispatchContext);
 
   const mutate = useCallback(mutateAction(dispatch), [dispatch]);
@@ -116,16 +153,35 @@ const useEntities = () => {
 };
 
 const useEntity = id => {
-  const context = useContext(EntityStateContext);
-  const entity = context.entities[id];
+  const { entities } = useEntities();
+  const entity = entities[id];
   if (!entity) {
     throw new Error(`unknown entity: ${id}`);
   }
   return entity;
 };
 
+const useTimeline = () => {
+  const dispatch = useContext(EntityDispatchContext);
+  const { present, past, future } = useEntityContext();
+
+  const doUndo = useCallback(() => dispatch({ type: 'timeline_undo' }), [dispatch]);
+  const doRedo = useCallback(() => dispatch({ type: 'timeline_redo' }), [dispatch]);
+  const doClear = useCallback(() => dispatch({ type: 'timeline_clear' }), [dispatch]);
+
+  const timeline = useMemo(() => ({ present, past, future }), [present, past, future]);
+
+  return {
+    doUndo,
+    doRedo,
+    doClear,
+    timeline,
+  };
+};
+
 const EntityProvider = ({ initialSource, children }) => {
-  const [state, dispatch] = useReducerAsync(isDev ? logDispatch(entityReducer, 'Entities') : entityReducer, getInitialState(initialSource));
+  const reducer = withTimeline(entityReducer);
+  const [state, dispatch] = useThunkReducer(reducer, getInitialState(initialSource));
 
   return (
     <EntityStateContext.Provider value={state}>
@@ -153,4 +209,5 @@ export {
   EntityProvider,
   useEntities,
   useEntity,
+  useTimeline,
 };

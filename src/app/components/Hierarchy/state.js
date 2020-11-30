@@ -1,11 +1,10 @@
 import React, {
   createContext,
   useContext,
-  useReducer,
 } from 'react';
 
-import isDev from 'electron-is-dev';
-import logDispatch from '../../../lib/logging/log-dispatch';
+import { createReducer } from 'react-use';
+import logger from 'redux-logger';
 
 const HierarchyStateContext = createContext();
 const HierarchyDispatchContext = createContext();
@@ -193,8 +192,10 @@ const hierarchyReducer = (state, action) => {
   return nextState;
 };
 
+const useLoggingReducer = createReducer(logger);
+
 const HierarchyProvider = ({ nodes = {}, root, children }) => {
-  const [state, dispatch] = useReducer(isDev ? logDispatch(hierarchyReducer, 'Hierarchy') : hierarchyReducer, load({
+  const [state, dispatch] = useLoggingReducer(hierarchyReducer, load({
     nodes,
     root,
   }));

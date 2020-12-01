@@ -1,7 +1,7 @@
 {
   "name": "org-explorer",
   "productName": "Org  Explorer",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "Labor analysis tool",
   "main": ".webpack/main",
   "scripts": {
@@ -41,7 +41,8 @@
         {
           "name": "@electron-forge/maker-zip",
           "platforms": [
-            "darwin","win32"
+            "darwin",
+            "win32"
           ]
         },
         {

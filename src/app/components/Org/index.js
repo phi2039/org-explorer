@@ -313,7 +313,7 @@ const OrgProviders = ({ children }) => (
   </HierarchyProvider>
 );
 
-export default ({ children }) => (
+export default () => (
   <OrgProviders>
     <Org />
   </OrgProviders>

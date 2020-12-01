@@ -7,12 +7,17 @@ import { useView } from '../context/ViewContext';
 import { usePersistenceState } from '../context/PersistenceContext';
 
 import Org from './Org';
+import Tree from './Tree';
 
 const View = () => {
   const [view] = useView();
 
   if (view === 'hierarchy') {
     return <Org />;
+  }
+
+  if (view === 'tree') {
+    return <Tree />;
   }
 
   return <div />; // Unknown view

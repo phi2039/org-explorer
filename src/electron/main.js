@@ -144,6 +144,12 @@ const generateMenu = () => {
             mainWindow.webContents.send('menu-action', 'view.hierarchy');
           },
         },
+        {
+          label: 'Tree (Beta)',
+          click() {
+            mainWindow.webContents.send('menu-action', 'view.tree');
+          },
+        },
         { type: 'separator' },
         { role: 'reload' },
         { role: 'forcereload' },

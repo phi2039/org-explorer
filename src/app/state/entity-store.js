@@ -160,9 +160,6 @@ const useEntities = () => {
 const useEntity = id => {
   const { entities } = useEntities();
   const entity = entities[id];
-  if (!entity) {
-    throw new Error(`unknown entity: ${id}`);
-  }
   return entity;
 };
 

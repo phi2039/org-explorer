@@ -50,6 +50,7 @@ const FilePersistenceAdapter = emitter => {
   };
 
   /* ***Adapter Implementation*** */
+  const getLocation = () => state.filePath;
 
   const open = async (filePath, {
     backupInterval = 30000,
@@ -101,6 +102,7 @@ const FilePersistenceAdapter = emitter => {
 
   return {
     ...memoryProvider,
+    getLocation,
     destroy,
     open,
     flush,

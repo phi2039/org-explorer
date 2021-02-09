@@ -3,6 +3,7 @@ import React, {
   useCallback,
   useContext,
   useEffect,
+  useMemo,
 } from 'react';
 import PropTypes from 'prop-types';
 
@@ -14,7 +15,6 @@ import thunk from 'redux-thunk';
 
 // import useWhyDidYouUpdate from '../hooks/useWhyDidYouUpdate';
 
-import PersistenceService from '../data/persistence';
 import { useEntities } from '../state/entity-store';
 
 const PersistenceStateContext = createContext();
@@ -38,14 +38,10 @@ const persistenceReducer = produce((draft, action) => {
 });
 /* eslint-enable no-param-reassign */
 
-const persistenceService = PersistenceService({
-  persistenceAdapter: 'file',
-});
+const PersistenceProvider = ({ persistenceService, children }) => {
+  const useThunkReducer = useMemo(() => createReducer(thunk.withExtraArgument(persistenceService), logger), [persistenceService]);
 
-const useThunkReducer = createReducer(thunk.withExtraArgument(persistenceService), logger);
-
-const PersistenceProvider = ({ initialSource, children }) => {
-  const [state, dispatch] = useThunkReducer(persistenceReducer, getInitialState(initialSource));
+  const [state, dispatch] = useThunkReducer(persistenceReducer, getInitialState(persistenceService.getLocation()));
   const { entities, load } = useEntities();
 
   useEffect(() => {
@@ -75,16 +71,16 @@ const PersistenceProvider = ({ initialSource, children }) => {
       persistenceService.removeListener(locationListener);
       persistenceService.removeListener(openListener);
     };
-  }, [dispatch, load]);
+  }, [persistenceService, dispatch, load]);
 
   const save = useCallback(async (location, options) => {
     await persistenceService.load(entities); // TODO: This is not the stadard interface (so may fail)
     await persistenceService.flush(location, options);
-  }, [entities]);
+  }, [persistenceService, entities]);
 
   const open = useCallback(async (location, options) => {
     await persistenceService.open(location, options);
-  }, []);
+  }, [persistenceService]);
 
   // useWhyDidYouUpdate('PersistenceProvider', contextValue);
 
@@ -103,15 +99,19 @@ const PersistenceProvider = ({ initialSource, children }) => {
 };
 
 PersistenceProvider.propTypes = {
-  initialSource: PropTypes.string,
+  persistenceService: PropTypes.shape({
+    getLocation: PropTypes.func,
+    getAll: PropTypes.func,
+    on: PropTypes.func,
+    removeListener: PropTypes.func,
+    load: PropTypes.func,
+    flush: PropTypes.func,
+    open: PropTypes.func,
+  }).isRequired,
   children: PropTypes.oneOfType([
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node),
   ]).isRequired,
-};
-
-PersistenceProvider.defaultProps = {
-  initialSource: null,
 };
 
 const usePersistenceState = () => {

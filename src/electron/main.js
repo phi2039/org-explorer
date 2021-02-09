@@ -63,7 +63,7 @@ const createWindow = () => {
     titleBarStyle: 'hidden',
     webPreferences: {
       enableRemoteModule: true,
-      nodeIntegration: true,
+      nodeIntegration: false,
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY, // eslint-disable-line no-undef
     },
     height: 860,

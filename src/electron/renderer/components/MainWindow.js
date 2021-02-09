@@ -15,10 +15,15 @@ import NotificationHandler from './NotificationHandler';
 
 import '../../../../public/index.css';
 import { EntityProvider } from '../../../app/state/entity-store';
+import PersistenceService from '../../../app/data/persistence';
+
+const persistenceService = PersistenceService({
+  persistenceAdapter: 'file',
+});
 
 const MainWindow = () => (
   <EntityProvider>
-    <PersistenceProvider>
+    <PersistenceProvider persistenceService={persistenceService}>
       <ToastProvider>
         <DataHandler />
         <NotificationHandler />

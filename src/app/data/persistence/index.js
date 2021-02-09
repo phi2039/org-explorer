@@ -27,6 +27,7 @@ const PersistenceService = ({
   const provider = providerFactory(emitter, options);
 
   return defaults(provider, {
+    getLocation: () => null,
     destroy: async () => {},
     flush: async () => {},
     getMany: async (ids) => {

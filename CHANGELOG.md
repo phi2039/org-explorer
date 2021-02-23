@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.0.18 (2021-02-23)
+
+
+### Bug Fixes
+
+* 🐛 enable node integration ([53b6904](https://gitlab.com/phi2039/org-explorer/commit/53b69047eac16795292129386d05ce215a87adb8))
+
 ### [1.0.16](https://gitlab.com/phi2039/org-explorer/compare/v1.0.15...v1.0.16) (2020-12-04)
 
 ### [1.0.15](https://gitlab.com/phi2039/org-explorer/compare/v1.0.14...v1.0.15) (2020-12-01)
